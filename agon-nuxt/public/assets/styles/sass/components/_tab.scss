@@ -1,0 +1,18 @@
+.tab-item.active {
+    border: 2px solid var(--green-900);
+    color: var(--green-900);
+    background: #fff;
+}
+
+.product-tab.active {
+    color: var(--green-1000);
+    border-color: var(--green-100);
+}
+
+.product-tag-content {
+    // display: none;
+
+    &.active {
+        display: block;
+    }
+}

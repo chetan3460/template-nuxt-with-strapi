@@ -1,0 +1,17 @@
+html {
+    overflow: auto;
+}
+
+.full-width {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.col-12 {
+    flex: 0 0 auto;
+    width: 100%;
+}

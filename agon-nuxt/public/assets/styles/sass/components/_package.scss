@@ -1,0 +1,86 @@
+.package {
+    .bill-monthly {
+        display: flex;
+    }
+
+    .bill-annually {
+        display: none;
+    }
+
+    &.annually {
+        .bill-monthly {
+            display: none;
+        }
+
+        .bill-annually {
+            display: flex;
+        }
+    }
+}
+
+.package-list {
+    .package-card.active {
+        background-color: var(--green-900) !important;
+        color: white;
+
+        li>span {
+            color: var(--gray-200);
+        }
+
+        &>a {
+            background-color: transparent;
+            border-color: white;
+        }
+
+        .tick-icon {
+            display: none;
+        }
+
+        .tick-icon-active {
+            display: inline-block;
+        }
+    }
+}
+
+.package-list {
+    .package-card:hover {
+        background-color: var(--green-900) !important;
+        color: white;
+        transform: translateY(-3px);
+
+        li>span {
+            color: var(--gray-200);
+        }
+
+        &>a {
+            background-color: transparent;
+            border-color: white;
+        }
+
+        .tick-icon {
+            display: none;
+        }
+
+        .tick-icon-active {
+            display: inline-block;
+        }
+    }
+}
+
+.block-price-item {
+    &.active, &:hover {
+        background-color: var(--green-900);
+
+        p, .text-heading-3 {
+            color: #fff;
+        }
+
+        .discount {
+            background-color: #83c5be;
+        }
+
+        .block-price-icon {
+            background-image: url("/assets/images/icons/icon-check-white.svg");
+        }
+    }
+}

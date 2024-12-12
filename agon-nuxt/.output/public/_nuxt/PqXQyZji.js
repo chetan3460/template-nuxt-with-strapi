@@ -1,0 +1,1 @@
+import{p as s}from"./C2HfOY-H.js";const i=s("/assets/images/icons/icon-resources.svg"),t=s("/assets/images/icons/icon-cards.svg"),a=s("/assets/images/icons/icon-stats.svg");export{i as _,t as a,a as b};

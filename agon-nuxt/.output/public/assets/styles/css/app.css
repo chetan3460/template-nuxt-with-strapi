@@ -1,0 +1,477 @@
+html {
+  overflow: auto;
+}
+
+.full-width {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.col-12 {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.home-page-2 .address {
+  display: block !important;
+  color: white;
+  background-color: var(--gray-900);
+}
+.home-page-2 .address .contact {
+  color: var(--orange-900);
+}
+
+.home-page-3 .address,
+.home-page-8 .address,
+.career-page .address,
+.career-details-page .address {
+  display: block !important;
+  color: white;
+  background-color: var(--green-900);
+}
+.home-page-3 .address .contact,
+.home-page-8 .address .contact,
+.career-page .address .contact,
+.career-details-page .address .contact {
+  color: var(--green-100);
+}
+
+.banner-hero.banner-1 {
+  position: relative;
+  overflow: hidden;
+}
+.banner-hero.banner-1::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 265px;
+  width: 200px;
+  background: url("/assets/images/icons/pattern-2.svg") no-repeat;
+  background-size: cover;
+  z-index: 1;
+}
+.banner-hero.banner-1::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 200px;
+  width: 200px;
+  background: url("/assets/images/icons/pattern-1.svg") no-repeat;
+  background-size: cover;
+}
+.banner-hero.banner-2 {
+  position: relative;
+  overflow: hidden;
+}
+.banner-hero.banner-2::after {
+  content: "";
+  position: absolute;
+  bottom: -48px;
+  left: -48px;
+  height: 200px;
+  width: 200px;
+  background: url("/assets/images/icons/pattern-1.svg") no-repeat;
+  background-size: cover;
+  opacity: 0.3;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.home-page-4 header,
+.home-page-4 .sticky-header {
+  background-color: var(--green-900);
+}
+.home-page-4 .logo,
+.home-page-4 .icon-caret,
+.home-page-4 .burger-icon {
+  filter: brightness(0) invert(1);
+}
+.home-page-4 .menu-link {
+  color: white;
+}
+
+.about-2-page header,
+.about-2-page .sticky-header {
+  background-color: var(--bg-2);
+}
+
+.services-1-page header,
+.services-1-page .sticky-header {
+  background-color: var(--bg-5);
+}
+
+.faqs-1-page .logo,
+.faqs-1-page .icon-caret,
+.faqs-1-page .burger-icon {
+  filter: brightness(0) invert(1);
+}
+.faqs-1-page .menu-link {
+  color: white;
+}
+.faqs-1-page header,
+.faqs-1-page .sticky-header {
+  background-color: #2e848c;
+}
+
+.burger-icon {
+  position: absolute;
+  width: 24px;
+  height: 20px;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 13px;
+  z-index: 1002;
+}
+@media (min-width: 768px) {
+  .burger-icon {
+    right: 37px;
+  }
+}
+.burger-icon.burger-icon-white > span::before, .burger-icon.burger-icon-white > span::after {
+  background-color: var(--gray-500);
+}
+.burger-icon > span {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+.burger-icon > span::before, .burger-icon > span::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+}
+.burger-icon > span.burger-icon-top {
+  top: 2px;
+}
+.burger-icon > span.burger-icon-mid {
+  top: 9px;
+}
+.burger-icon > span.burger-icon-bottom {
+  bottom: 2px;
+}
+.burger-icon.burger-close {
+  filter: invert(8%) sepia(34%) saturate(870%) hue-rotate(181deg) brightness(97%) contrast(98%) !important;
+}
+@media screen and (max-width: 1023.98px) {
+  .burger-icon.burger-close {
+    position: fixed;
+    right: 10px;
+    top: 20px;
+  }
+}
+.burger-icon.burger-close > span.burger-icon-top {
+  display: none;
+  opacity: 0;
+}
+.burger-icon.burger-close > span.burger-icon-mid {
+  top: 8px;
+  transform: rotate(45deg);
+}
+.burger-icon.burger-close > span.burger-icon-bottom {
+  bottom: 10px;
+  transform: rotate(-45deg);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 11;
+  display: none;
+  cursor: crosshair;
+}
+
+.overlay.show {
+  display: initial;
+}
+
+header.sticky-header {
+  position: fixed !important;
+  top: 0;
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+  z-index: 100;
+  background-color: #fff;
+  animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
+}
+
+nav .menu-mobile-item.expand .menu-child {
+  display: block;
+}
+nav .menu-mobile-item.expand img {
+  transform: rotate(180deg);
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+details summary {
+  background-color: var(--gray-200);
+  transition: all 0.3s ease;
+}
+details summary h4 {
+  color: var(--gray-500);
+}
+details summary::after {
+  content: url("/assets/images/icons/icon-angle-down-fill.svg");
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+details[open] > summary::after {
+  content: url("/assets/images/icons/icon-angle-up-fill.svg");
+}
+details[open] > summary {
+  background-color: var(--gray-900);
+  transition: all 0.3s ease;
+}
+details[open] > summary h4 {
+  color: white;
+}
+
+.slick-slider.dots .slick-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 33px;
+}
+.slick-slider.dots .slick-dots .slick-active {
+  background-color: var(--green-900);
+}
+.slick-slider.dots .slick-dots li {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--gray-300);
+  margin-left: 8px;
+  cursor: pointer;
+}
+.slick-slider.dots .slick-dots button {
+  visibility: hidden;
+}
+
+.number-dots .slick-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.number-dots .slick-dots .slick-active {
+  background-color: var(--green-900);
+  color: white;
+}
+.number-dots .slick-dots li {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--gray-200);
+  margin-left: 8px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: var(--gray-500);
+  transition: all 0.2s;
+}
+.number-dots .slick-dots li button {
+  font-weight: bold;
+}
+.number-dots .slick-dots li:hover {
+  background-color: var(--green-900);
+  color: white;
+  transition: all 0.2s;
+}
+
+.slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .product-nav .slick-track {
+    display: flex !important;
+    flex-direction: column;
+    width: 100% !important;
+    transform: translate3d(0, 0, 0) !important;
+    gap: 24px;
+  }
+  .product-nav .slick-track div {
+    width: 100% !important;
+    cursor: pointer;
+  }
+}
+
+input[type=range] {
+  box-sizing: border-box;
+  appearance: none;
+  width: 274px;
+  margin: 0;
+  padding: 0 2px;
+  /* Add some L/R padding to ensure box shadow of handle is shown */
+  overflow: hidden;
+  border: 0;
+  border-radius: 1px;
+  outline: none;
+  background: linear-gradient(#e4e7ec, #e4e7ec) no-repeat center;
+  /* Use a linear gradient to generate only the 2px height background */
+  background-size: 100% 6px;
+  pointer-events: none;
+}
+input[type=range]#lower {
+  background: linear-gradient(#e4e7ec, #e4e7ec) no-repeat center;
+  background-size: 100% 6px;
+}
+input[type=range]#upper {
+  background: linear-gradient(to right, #e4e7ec 8%, var(--green-900) 8% 98%, #e4e7ec 98%) no-repeat center;
+  background-size: 100% 6px;
+  z-index: 1;
+  overflow: hidden;
+}
+input[type=range]:active, input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: var(--green-900);
+  position: relative;
+  margin: 5px 0;
+  /* Add some margin to ensure box shadow is shown */
+  cursor: pointer;
+  appearance: none;
+  pointer-events: all;
+  box-shadow: 0 1px 4px 0.5px rgba(0, 0, 0, 0.25);
+  z-index: 999999999;
+}
+
+.multi-range {
+  position: relative;
+  height: 50px;
+}
+.multi-range input[type=range] {
+  position: absolute;
+}
+.multi-range input[type=range]:nth-child(1)::-webkit-slider-thumb::before {
+  background-color: var(--green-900);
+}
+.multi-range input[type=range]:nth-child(2) {
+  background: none;
+}
+.multi-range input[type=range]:nth-child(2)::-webkit-slider-thumb::before {
+  background-color: var(--green-900);
+}
+
+input:checked ~ .dot {
+  transform: translateX(165%);
+}
+
+.package .bill-monthly {
+  display: flex;
+}
+.package .bill-annually {
+  display: none;
+}
+.package.annually .bill-monthly {
+  display: none;
+}
+.package.annually .bill-annually {
+  display: flex;
+}
+
+.package-list .package-card.active {
+  background-color: var(--green-900) !important;
+  color: white;
+}
+.package-list .package-card.active li > span {
+  color: var(--gray-200);
+}
+.package-list .package-card.active > a {
+  background-color: transparent;
+  border-color: white;
+}
+.package-list .package-card.active .tick-icon {
+  display: none;
+}
+.package-list .package-card.active .tick-icon-active {
+  display: inline-block;
+}
+
+.package-list .package-card:hover {
+  background-color: var(--green-900) !important;
+  color: white;
+  transform: translateY(-3px);
+}
+.package-list .package-card:hover li > span {
+  color: var(--gray-200);
+}
+.package-list .package-card:hover > a {
+  background-color: transparent;
+  border-color: white;
+}
+.package-list .package-card:hover .tick-icon {
+  display: none;
+}
+.package-list .package-card:hover .tick-icon-active {
+  display: inline-block;
+}
+
+.block-price-item.active, .block-price-item:hover {
+  background-color: var(--green-900);
+}
+.block-price-item.active p, .block-price-item.active .text-heading-3, .block-price-item:hover p, .block-price-item:hover .text-heading-3 {
+  color: #fff;
+}
+.block-price-item.active .discount, .block-price-item:hover .discount {
+  background-color: #83c5be;
+}
+.block-price-item.active .block-price-icon, .block-price-item:hover .block-price-icon {
+  background-image: url("/assets/images/icons/icon-check-white.svg");
+}
+
+.tab-item.active {
+  border: 2px solid var(--green-900);
+  color: var(--green-900);
+  background: #fff;
+}
+
+.product-tab.active {
+  color: var(--green-1000);
+  border-color: var(--green-100);
+}
+
+.product-tag-content.active {
+  display: block;
+}
+
+.partner-item:hover {
+  box-shadow: 14px 14px 36px 0px rgba(153, 153, 153, 0.2196078431);
+}/*# sourceMappingURL=app.css.map */

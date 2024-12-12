@@ -1,0 +1,46 @@
+.banner-hero {
+    &.banner-1 {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            height: 265px;
+            width: 200px;
+            background: url("/assets/images/icons/pattern-2.svg") no-repeat;
+            background-size: cover;
+            z-index: 1;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            height: 200px;
+            width: 200px;
+            background: url("/assets/images/icons/pattern-1.svg") no-repeat;
+            background-size: cover;
+        }
+    }
+
+    &.banner-2 {
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -48px;
+            left: -48px;
+            height: 200px;
+            width: 200px;
+            background: url("/assets/images/icons/pattern-1.svg") no-repeat;
+            background-size: cover;
+            opacity: 0.3;
+        }
+    }
+}

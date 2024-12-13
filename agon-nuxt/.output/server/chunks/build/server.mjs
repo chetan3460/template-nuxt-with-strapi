@@ -1,5 +1,5 @@
 import { version, ref, watchEffect, watch, getCurrentInstance, defineAsyncComponent, defineComponent, h, inject, computed, unref, provide, shallowReactive, Suspense, nextTick, Fragment, Transition, hasInjectionContext, mergeProps, useSSRContext, createApp, effectScope, reactive, getCurrentScope, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, isReadonly, withCtx, isRef, isShallow, isReactive, toRaw } from 'vue';
-import { $ as $fetch, h as hasProtocol, i as isScriptProtocol, k as joinURL, w as withQuery, l as defu, s as sanitizeStatusCode, m as getContext, n as createHooks, c as createError$1, t as toRouteMatcher, o as createRouter$1 } from '../nitro/nitro.mjs';
+import { $ as $fetch, h as hasProtocol, i as isScriptProtocol, k as joinURL, w as withQuery, c as createError$1, l as defu, s as sanitizeStatusCode, m as getContext, n as createHooks, t as toRouteMatcher, o as createRouter$1 } from '../nitro/nitro.mjs';
 import { b as baseURL, p as publicAssetsURL } from '../routes/renderer.mjs';
 import { CapoPlugin, getActiveHead } from 'unhead';
 import { defineHeadPlugin, composableNames } from '@unhead/shared';
@@ -23,6 +23,8 @@ const appLayoutTransition = false;
 const appPageTransition = false;
 const appKeepalive = false;
 const nuxtLinkDefaults = { "componentName": "NuxtLink", "prefetch": true, "prefetchOn": { "visibility": true } };
+const asyncDataDefaults = { "value": null, "errorValue": null, "deep": true };
+const fetchDefaults = {};
 const appId = "nuxt-app";
 function getNuxtAppCtx(id = appId) {
   return getContext(id, {
@@ -611,37 +613,37 @@ const _routes = [
   {
     name: "about-1",
     path: "/about-1",
-    component: () => import('./index-CJD07qqp.mjs')
+    component: () => import('./index-B3tMWOIK.mjs')
   },
   {
     name: "about-2",
     path: "/about-2",
-    component: () => import('./index-C7zCQHbu.mjs')
+    component: () => import('./index-OlBaJVdZ.mjs')
   },
   {
     name: "about-3",
     path: "/about-3",
-    component: () => import('./index-iGWOuikG.mjs')
+    component: () => import('./index-GC5tAoS_.mjs')
   },
   {
     name: "blog-1",
     path: "/blog-1",
-    component: () => import('./index-DZirM8C5.mjs')
+    component: () => import('./index-IHE9-5UG.mjs')
   },
   {
     name: "blog-2",
     path: "/blog-2",
-    component: () => import('./index-DwUOfyLj.mjs')
+    component: () => import('./index-8kzQaj5V.mjs')
   },
   {
     name: "career-details",
     path: "/career-details",
-    component: () => import('./index-nH_ZcRCH.mjs')
+    component: () => import('./index-C4TQr-8S.mjs')
   },
   {
     name: "career",
     path: "/career",
-    component: () => import('./index-C3lFu7hi.mjs')
+    component: () => import('./index-BzctmqOf.mjs')
   },
   {
     name: "contact",
@@ -656,7 +658,7 @@ const _routes = [
   {
     name: "faqs-1",
     path: "/faqs-1",
-    component: () => import('./index-DYnCGPLS.mjs')
+    component: () => import('./index-Bl_M9ytY.mjs')
   },
   {
     name: "faqs-2",
@@ -667,44 +669,44 @@ const _routes = [
     name: "home-2",
     path: "/home-2",
     meta: __nuxt_page_meta$2 || {},
-    component: () => import('./index-CZF9UYsW.mjs')
+    component: () => import('./index-DR9MSgyu.mjs')
   },
   {
     name: "home-3",
     path: "/home-3",
     meta: __nuxt_page_meta$1 || {},
-    component: () => import('./index-DquXxJ65.mjs')
+    component: () => import('./index-D3D6Gf-K.mjs')
   },
   {
     name: "home-4",
     path: "/home-4",
-    component: () => import('./index-W25TWMzM.mjs')
+    component: () => import('./index-Dik1Pbk2.mjs')
   },
   {
     name: "home-5",
     path: "/home-5",
-    component: () => import('./index-DNs3u10-.mjs')
+    component: () => import('./index-BGdFpVNQ.mjs')
   },
   {
     name: "home-6",
     path: "/home-6",
-    component: () => import('./index-bz4B5Z0r.mjs')
+    component: () => import('./index-DVWQyNaD.mjs')
   },
   {
     name: "home-7",
     path: "/home-7",
-    component: () => import('./index-C2INHybq.mjs')
+    component: () => import('./index-D5_Cw9BV.mjs')
   },
   {
     name: "home-8",
     path: "/home-8",
     meta: __nuxt_page_meta || {},
-    component: () => import('./index-aKnVEK9_.mjs')
+    component: () => import('./index-DhusahWP.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-B6Y-vogT.mjs')
+    component: () => import('./index-B1Da55uc.mjs')
   },
   {
     name: "login",
@@ -714,12 +716,12 @@ const _routes = [
   {
     name: "pricing-1",
     path: "/pricing-1",
-    component: () => import('./index-C4ZIo5sO.mjs')
+    component: () => import('./index-DsP44sAt.mjs')
   },
   {
     name: "pricing-2",
     path: "/pricing-2",
-    component: () => import('./index-CHwf2QzL.mjs')
+    component: () => import('./index-DPsmNNYS.mjs')
   },
   {
     name: "reset-password",
@@ -729,37 +731,37 @@ const _routes = [
   {
     name: "services-1",
     path: "/services-1",
-    component: () => import('./index-DzLVwqDk.mjs')
+    component: () => import('./index-DWsZEPVO.mjs')
   },
   {
     name: "services-2",
     path: "/services-2",
-    component: () => import('./index--MV3EJ5H.mjs')
+    component: () => import('./index-DH-UDTie.mjs')
   },
   {
     name: "shop-1",
     path: "/shop-1",
-    component: () => import('./index-9LiK4Qg7.mjs')
+    component: () => import('./index-B004DLsi.mjs')
   },
   {
     name: "shop-2",
     path: "/shop-2",
-    component: () => import('./index-D751_rns.mjs')
+    component: () => import('./index-BVpJgIQI.mjs')
   },
   {
     name: "signup",
     path: "/signup",
-    component: () => import('./index-D4QX8IuO.mjs')
+    component: () => import('./index-qe2h_4cn.mjs')
   },
   {
     name: "single-product",
     path: "/single-product",
-    component: () => import('./index-DQW5JRW3.mjs')
+    component: () => import('./index-BNhglFhy.mjs')
   },
   {
     name: "single",
     path: "/single",
-    component: () => import('./index-DbpnbLcT.mjs')
+    component: () => import('./index-cl-AYIso.mjs')
   },
   {
     name: "term-conditions",
@@ -1110,15 +1112,20 @@ const revive_payload_server_eJ33V7gbc6 = /* @__PURE__ */ defineNuxtPlugin({
 const components_plugin_KR1HBZs4kY = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:global-components"
 });
+const strapi_liDD6vJf4g = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
+  const strapiBaseUrl = (/* @__PURE__ */ useRuntimeConfig()).STRAPI_BASE_URL || "http://localhost:1337";
+  nuxtApp.provide("strapiBaseUrl", strapiBaseUrl);
+});
 const plugins = [
   unhead_KgADcZ0jPj,
   plugin,
   revive_payload_server_eJ33V7gbc6,
-  components_plugin_KR1HBZs4kY
+  components_plugin_KR1HBZs4kY,
+  strapi_liDD6vJf4g
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-G4QYHMIy.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-DE_2x9ss.mjs'))
+  default: defineAsyncComponent(() => import('./default-9IDe4tK-.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-Dp-gJ26S.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -1481,5 +1488,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _export_sfc as _, _imports_1 as a, _imports_0 as b, useRouter as c, navigateTo as d, entry$1 as default, useNuxtApp as e, useRuntimeConfig as f, nuxtLinkDefaults as n, resolveRouteObject as r, useHead as u };
+export { _export_sfc as _, _imports_1 as a, _imports_0 as b, useNuxtApp as c, asyncDataDefaults as d, entry$1 as default, createError as e, fetchDefaults as f, useRouter as g, navigateTo as h, useRuntimeConfig as i, nuxtLinkDefaults as n, resolveRouteObject as r, useHead as u };
 //# sourceMappingURL=server.mjs.map

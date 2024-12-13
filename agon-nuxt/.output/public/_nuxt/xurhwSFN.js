@@ -1,1 +1,0 @@
-import{p as s}from"./C2HfOY-H.js";const o=s("/assets/images/product-md-1.png"),a=s("/assets/images/icons/icon-eye.svg"),e=s("/assets/images/product-md-2.png"),i=s("/assets/images/product-md-3.png"),m=s("/assets/images/product-md-4.png"),p=s("/assets/images/icons/icon-angle-down.svg");export{o as _,a,e as b,i as c,m as d,p as e};

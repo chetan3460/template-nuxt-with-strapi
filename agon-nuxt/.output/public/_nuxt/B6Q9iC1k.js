@@ -1,0 +1,1 @@
+import{p as s}from"./B5ceAPYl.js";const a=s("/assets/images/icons/icon-facebook-gray.svg"),o=s("/assets/images/icons/icon-instagram-gray.svg"),t=s("/assets/images/icons/icon-twitter-gray.svg"),c=s("/assets/images/icons/icon-linkedin-gray.svg");export{a as _,o as a,t as b,c};

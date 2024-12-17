@@ -1,7 +1,7 @@
 import { ssrRenderAttrs, ssrRenderClass, ssrRenderAttr, ssrRenderStyle, ssrIncludeBooleanAttr } from 'vue/server-renderer';
 import { useSSRContext } from 'vue';
 import { _ as _export_sfc } from './server.mjs';
-import { p as publicAssetsURL } from '../routes/renderer.mjs';
+import { p as publicAssetsURL } from '../nitro/nitro.mjs';
 
 const _sfc_main = {
   props: {

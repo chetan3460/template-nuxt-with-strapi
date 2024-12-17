@@ -1,20 +1,17 @@
 import { useSSRContext, mergeProps } from 'vue';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr } from 'vue/server-renderer';
 import { u as useHead, _ as _export_sfc, a as _imports_0$1 } from './server.mjs';
-import { p as publicAssetsURL } from '../routes/renderer.mjs';
+import { p as publicAssetsURL } from '../nitro/nitro.mjs';
 import { _ as _imports_0$2, a as _imports_1$1, b as _imports_2 } from './virtual_public-C3LypWMC.mjs';
-import '../nitro/nitro.mjs';
+import 'unhead';
+import '@unhead/shared';
+import 'vue-router';
 import 'node:http';
 import 'node:https';
 import 'node:fs';
 import 'node:path';
 import 'node:url';
-import 'unhead';
-import '@unhead/shared';
-import 'vue-router';
-import 'vue-bundle-renderer/runtime';
-import 'devalue';
-import '@unhead/ssr';
+import 'ipx';
 
 const _sfc_main$3 = {};
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs) {

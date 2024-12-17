@@ -6,14 +6,11 @@ import 'node:https';
 import 'node:fs';
 import 'node:path';
 import 'node:url';
-import '../routes/renderer.mjs';
-import 'vue-bundle-renderer/runtime';
-import 'devalue';
-import 'vue/server-renderer';
-import '@unhead/ssr';
+import 'ipx';
 import 'unhead';
 import '@unhead/shared';
 import 'vue-router';
+import 'vue/server-renderer';
 
 const _sfc_main = {};
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {

@@ -84,12 +84,6 @@ if (data.value) {
 }
 
 
-
-
-
-
-
-
 // Define a reactive state for the video open/close status
 const videoIsOpen = ref(false);
 

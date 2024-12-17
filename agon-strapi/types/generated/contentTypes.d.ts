@@ -403,6 +403,39 @@ export interface ApiBannerBlockBannerBlock extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiPartnerLogoPartnerLogo extends Struct.SingleTypeSchema {
+  collectionName: 'partner_logos';
+  info: {
+    description: '';
+    displayName: 'PartnerLogo';
+    pluralName: 'partner-logos';
+    singularName: 'partner-logo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::partner-logo.partner-logo'
+    > &
+      Schema.Attribute.Private;
+    partnerItems: Schema.Attribute.Component<
+      'partner-items.partner-item',
+      true
+    > &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -913,6 +946,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::banner-block.banner-block': ApiBannerBlockBannerBlock;
+      'api::partner-logo.partner-logo': ApiPartnerLogoPartnerLogo;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

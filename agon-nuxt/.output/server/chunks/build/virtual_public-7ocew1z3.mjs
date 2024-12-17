@@ -1,4 +1,4 @@
-import { p as publicAssetsURL } from '../routes/renderer.mjs';
+import { p as publicAssetsURL } from '../nitro/nitro.mjs';
 
 const _imports_0 = publicAssetsURL("/assets/images/icons/icon-flower.svg");
 const _imports_3 = publicAssetsURL("/assets/images/icons/icon-map.svg");

@@ -1,11 +1,14 @@
 import { resolve } from "path"
 
 export default defineNuxtConfig({
+
+
   devtools: { enabled: false },
   image: {
     strapi: {
       baseURL: 'http://localhost:1337/uploads/'
-    }
+    },
+    formats: ['webp', 'avif'],
   },
   alias: {
     "@": resolve(__dirname, "/"),
@@ -29,23 +32,22 @@ export default defineNuxtConfig({
     "~/public/assets/styles/tailwind.min.css",
   ],
 
-  modules: [
-    [
-      "@nuxtjs/google-fonts",
-      {
-        families: {
-          Chivo: {
-            wght: [400, 700, 900],
-          },
-          "Noto+Sans": {
-            wght: [400, 500, 600, 700, 800],
-          },
-          download: true,
-          inject: true,
+  modules: [[
+    "@nuxtjs/google-fonts",
+    {
+      families: {
+        Chivo: {
+          wght: [400, 700, 900],
         },
+        "Noto+Sans": {
+          wght: [400, 500, 600, 700, 800],
+        },
+        download: true,
+        inject: true,
       },
-    ],
-  ],
+    },
+  ], "@nuxt/image"],
+  
 
 
 

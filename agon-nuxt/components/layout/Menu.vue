@@ -41,7 +41,7 @@
                 <li class="hr px-[22px]"><span class="block bg-gray-100 w-full h-[1px] my-[5px]"></span></li>
                 <li class="menu-child-item font-chivo group transition-all duration-200 py-[10px] px-[22px] hover:filter-green hover:pl-[25px] hover:opacity-100"
                     data-menu="single">
-                    <NuxtLink class="flex items-center text-[14px]" to="/single"><img
+                    <NuxtLink class="flex items-center text-[14px]" to="#"><img
                             class="opacity-40 w-[12px] h-[12px] mr-[8px] -translate-y-[1px]"
                             src="/assets/images/icons/icon-document-signed.svg" alt="" /><span
                             class="whitespace-nowrap">Blog Single</span></NuxtLink>

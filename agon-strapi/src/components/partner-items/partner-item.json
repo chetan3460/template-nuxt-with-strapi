@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_partner_items_partner_items",
+  "info": {
+    "displayName": "partner-item",
+    "icon": "arrowRight",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

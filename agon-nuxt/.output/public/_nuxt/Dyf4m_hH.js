@@ -1,0 +1,1 @@
+import{_,a as s,b as c}from"./CJes8lt8.js";import{_ as r,o as m,c as p,b as o,a as l,U as d}from"./Bgv5-FJY.js";import"./C_YjY5NY.js";const f={},u={class:"wrapper mx-auto text-gray-900 font-normal max-w-[1320px]"};function i(e,x){const t=_,a=s,n=c;return m(),p("div",u,[o(t),l("div",null,[d(e.$slots,"default")]),o(a),o(n)])}const b=r(f,[["render",i]]);export{b as default};

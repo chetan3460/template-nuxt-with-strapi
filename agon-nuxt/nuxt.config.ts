@@ -1,8 +1,6 @@
 import { resolve } from "path"
 
 export default defineNuxtConfig({
-
-
   devtools: { enabled: false },
   image: {
     strapi: {
@@ -48,11 +46,7 @@ export default defineNuxtConfig({
       },
     ],
   ],
-  nitro: {
-    cache: {
-      varies: ['host', 'x-forwarded-host'],
-    },
-  },
+
 
 
   compatibilityDate: "2024-12-12",

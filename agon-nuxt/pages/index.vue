@@ -18,4 +18,7 @@ useHead({
         class: "overflow-x-hidden w-screen relative home-page"
     }
 });
+
+
+
 </script>

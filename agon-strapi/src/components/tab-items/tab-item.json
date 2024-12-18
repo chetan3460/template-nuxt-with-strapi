@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_tab_items_tab_items",
+  "info": {
+    "displayName": "tab-item",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "btnLink": {
+      "type": "string"
+    },
+    "videoUrl": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "btnText": {
+      "type": "string"
+    },
+    "contentTest": {
+      "type": "blocks"
+    }
+  }
+}

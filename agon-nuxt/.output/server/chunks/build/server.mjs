@@ -601,12 +601,12 @@ const _routes = [
   {
     name: "about-1",
     path: "/about-1",
-    component: () => import('./index-DQ9asOoa.mjs')
+    component: () => import('./index-Yw854cFQ.mjs')
   },
   {
     name: "blog-1",
     path: "/blog-1",
-    component: () => import('./index-N_wVDVeQ.mjs')
+    component: () => import('./index-DU59kM8S.mjs')
   },
   {
     name: "blog-2",
@@ -616,12 +616,12 @@ const _routes = [
   {
     name: "career-details",
     path: "/career-details",
-    component: () => import('./index-x0yZMVmS.mjs')
+    component: () => import('./index-3KDocd4-.mjs')
   },
   {
     name: "career",
     path: "/career",
-    component: () => import('./index-Brm-n4kP.mjs')
+    component: () => import('./index-BQju-eJG.mjs')
   },
   {
     name: "contact",
@@ -641,7 +641,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-BfdbUd-I.mjs')
+    component: () => import('./index-DG1CSriH.mjs')
   },
   {
     name: "services-1",
@@ -1014,8 +1014,8 @@ const plugins = [
   strapi_liDD6vJf4g
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-DXaMAyeL.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-DnbsYS_N.mjs'))
+  default: defineAsyncComponent(() => import('./default-Dmu1IHOn.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-BWEeEbxM.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",

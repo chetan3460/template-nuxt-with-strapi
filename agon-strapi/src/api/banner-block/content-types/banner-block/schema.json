@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "description": {
-      "type": "text"
-    },
     "btnText": {
       "type": "string"
     },
@@ -39,6 +36,9 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }

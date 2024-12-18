@@ -387,7 +387,7 @@ export interface ApiBannerBlockBannerBlock extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.RichText;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -430,6 +430,38 @@ export interface ApiPartnerLogoPartnerLogo extends Struct.SingleTypeSchema {
     > &
       Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSeeWhyBlockSeeWhyBlock extends Struct.SingleTypeSchema {
+  collectionName: 'see_why_blocks';
+  info: {
+    description: '';
+    displayName: 'SeeWhyBlock';
+    pluralName: 'see-why-blocks';
+    singularName: 'see-why-block';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    heading: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::see-why-block.see-why-block'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    SeeWhyBlockItems: Schema.Attribute.Component<'tab-items.tab-item', true> &
+      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -947,6 +979,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::banner-block.banner-block': ApiBannerBlockBannerBlock;
       'api::partner-logo.partner-logo': ApiPartnerLogoPartnerLogo;
+      'api::see-why-block.see-why-block': ApiSeeWhyBlockSeeWhyBlock;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

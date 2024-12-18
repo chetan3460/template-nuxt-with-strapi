@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "see_why_blocks",
+  "info": {
+    "singularName": "see-why-block",
+    "pluralName": "see-why-blocks",
+    "displayName": "SeeWhyBlock",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "content": {
+      "type": "text"
+    },
+    "SeeWhyBlockItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "tab-items.tab-item",
+      "required": true
+    }
+  }
+}

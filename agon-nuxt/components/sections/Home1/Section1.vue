@@ -8,6 +8,8 @@
                 <p class="text-quote md:text-lead-lg text-gray-500 pr-[40px] lg:pr-[60px] mb-[40px]">
                     {{ bannerBlock.description }}
                 </p>
+                <!-- <div v-html="renderMarkdown(bannerBlock.test)"></div> -->
+
                 <div class="flex items-center justify-start">
                     <button type="button">
                         <NuxtLink
@@ -60,7 +62,18 @@
 <script setup>
 import { ref, computed } from 'vue';
 import ModalVideo from "../components/elements/ModalVideo.vue";
+import MarkdownIt from 'markdown-it';
+// Initialize the Markdown parser
+const markdownParser = new MarkdownIt();
 
+// Store the fetched content
+
+
+
+// Define a method to render Markdown
+const renderMarkdown = (content) => {
+    return markdownParser.render(content);
+};
 
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 

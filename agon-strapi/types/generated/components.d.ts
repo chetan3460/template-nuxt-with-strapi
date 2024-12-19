@@ -22,7 +22,13 @@ export interface TabItemsTabItem extends Struct.ComponentSchema {
   attributes: {
     btnLink: Schema.Attribute.String;
     btnText: Schema.Attribute.String;
-    contentTest: Schema.Attribute.Blocks;
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultMarkdown';
+        }
+      >;
     description: Schema.Attribute.RichText;
     image: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;

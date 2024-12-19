@@ -29,27 +29,32 @@ export default defineNuxtConfig({
     'swiper/css/free-mode',
     'swiper/css/thumbs',
     "~/public/assets/styles/app.min.css",
+    "~/public/css/main.css",
     "~/public/assets/styles/tailwind.min.css",
   ],
 
-  modules: [[
-    "@nuxtjs/google-fonts",
-    {
-      families: {
-        Chivo: {
-          wght: [400, 700, 900],
+  // buildModules: [
+  //   "@nuxtjs/tailwindcss", // TailwindCSS integration
+  // ],
+  modules: [
+    [
+      "@nuxtjs/google-fonts",
+      {
+        families: {
+          Chivo: {
+            wght: [400, 700, 900], // Font weights
+          },
+          "Noto Sans": {
+            wght: [400, 500, 600, 700, 800], // Font weights for Noto Sans
+          },
         },
-        "Noto+Sans": {
-          wght: [400, 500, 600, 700, 800],
-        },
-        download: true,
-        inject: true,
-      },
-    },
-  ], "@nuxt/image"],
-  
-
-
+        download: true, // Allows font download for better performance
+        inject: true,   // Injects the fonts into the page
+      }
+    ],
+    "@nuxt/image", // Image optimization
+    "@nuxtjs/tailwindcss"
+  ],
 
   compatibilityDate: "2024-12-12",
 })

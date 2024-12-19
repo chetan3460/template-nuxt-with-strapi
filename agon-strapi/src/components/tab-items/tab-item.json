@@ -39,8 +39,12 @@
     "btnText": {
       "type": "string"
     },
-    "contentTest": {
-      "type": "blocks"
+    "content": {
+      "type": "customField",
+      "options": {
+        "preset": "defaultMarkdown"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

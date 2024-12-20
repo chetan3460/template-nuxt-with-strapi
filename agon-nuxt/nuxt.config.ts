@@ -4,6 +4,12 @@ export default defineNuxtConfig({
 
 
   devtools: { enabled: false },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   image: {
     strapi: {
       baseURL: 'http://localhost:1337/uploads/'
@@ -31,11 +37,10 @@ export default defineNuxtConfig({
     "~/public/assets/styles/app.min.css",
     "~/public/css/main.css",
     "~/public/assets/styles/tailwind.min.css",
+    // "~/assets/css/tailwind.css",
   ],
+  buildModules: ['@nuxtjs/tailwindcss'],
 
-  // buildModules: [
-  //   "@nuxtjs/tailwindcss", // TailwindCSS integration
-  // ],
   modules: [
     [
       "@nuxtjs/google-fonts",
@@ -53,7 +58,7 @@ export default defineNuxtConfig({
       }
     ],
     "@nuxt/image", // Image optimization
-    "@nuxtjs/tailwindcss"
+    // "@nuxtjs/tailwindcss"
   ],
 
   compatibilityDate: "2024-12-12",

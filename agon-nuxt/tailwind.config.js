@@ -1,8 +1,7 @@
-// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 import plugin from 'tailwindcss/plugin';
 
-export default {
+module.exports = {
   content: [
     './pages/**/*.{vue,js,ts,jsx,tsx}',
     './components/**/*.{vue,js,ts,jsx,tsx}',
@@ -94,11 +93,7 @@ export default {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('@tailwindcss/line-clamp'),
     require('tailwind-scrollbar-hide'),
-    // Make sure this is included
-
   ],
-  // Ensure JIT mode is enabled for the latest TailwindCSS experience
   mode: 'jit',
 }

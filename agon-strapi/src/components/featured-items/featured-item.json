@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_featured_items_featured_items",
+  "info": {
+    "displayName": "Featured Item",
+    "icon": "arrowRight"
+  },
+  "options": {},
+  "attributes": {
+    "featureImg": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "featureTitle": {
+      "type": "string",
+      "required": true
+    },
+    "featureContent": {
+      "type": "text"
+    },
+    "featureBtn": {
+      "type": "string"
+    },
+    "featureLink": {
+      "type": "string"
+    },
+    "featureBackImg": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

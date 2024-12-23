@@ -1,5 +1,33 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface FeaturedItemsFeaturedItem extends Struct.ComponentSchema {
+  collectionName: 'components_featured_items_featured_items';
+  info: {
+    displayName: 'Featured Item';
+    icon: 'arrowRight';
+  };
+  attributes: {
+    featureBackImg: Schema.Attribute.Media<'images'>;
+    featureBtn: Schema.Attribute.String;
+    featureContent: Schema.Attribute.Text;
+    featureImg: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    featureLink: Schema.Attribute.String;
+    featureTitle: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ListsItemsListItems extends Struct.ComponentSchema {
+  collectionName: 'components_lists_items_list_items';
+  info: {
+    displayName: 'List Items';
+    icon: 'apps';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface PartnerItemsPartnerItem extends Struct.ComponentSchema {
   collectionName: 'components_partner_items_partner_items';
   info: {
@@ -9,6 +37,20 @@ export interface PartnerItemsPartnerItem extends Struct.ComponentSchema {
   };
   attributes: {
     Image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+  };
+}
+
+export interface SlidersItemsSliderItems extends Struct.ComponentSchema {
+  collectionName: 'components_sliders_items_slider_items';
+  info: {
+    description: '';
+    displayName: 'Slider Items';
+    icon: 'arrowRight';
+  };
+  attributes: {
+    content: Schema.Attribute.Text;
+    sliderImage: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -42,7 +84,10 @@ export interface TabItemsTabItem extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'featured-items.featured-item': FeaturedItemsFeaturedItem;
+      'lists-items.list-items': ListsItemsListItems;
       'partner-items.partner-item': PartnerItemsPartnerItem;
+      'sliders-items.slider-items': SlidersItemsSliderItems;
       'tab-items.tab-item': TabItemsTabItem;
     }
   }

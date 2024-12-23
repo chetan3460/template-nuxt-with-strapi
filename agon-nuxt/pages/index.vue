@@ -8,8 +8,6 @@
         <SectionsHome1Section6 />
         <SectionsHome1Section7 />
         <SectionsHome1Section8 />
-        <SectionsHome1Section9 />
-        <SectionsHome1Section10 />
     </div>
 </template>
 <script setup>

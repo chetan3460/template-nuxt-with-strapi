@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_lists_items_list_items",
+  "info": {
+    "displayName": "List Items",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

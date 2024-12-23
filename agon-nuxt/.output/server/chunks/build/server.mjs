@@ -621,7 +621,7 @@ const _routes = [
   {
     name: "career",
     path: "/career",
-    component: () => import('./index-BQju-eJG.mjs')
+    component: () => import('./index-DY24BFSN.mjs')
   },
   {
     name: "contact",
@@ -641,7 +641,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-CIFvkltB.mjs')
+    component: () => import('./index-ByP9KL08.mjs')
   },
   {
     name: "services-1",

@@ -601,7 +601,7 @@ const _routes = [
   {
     name: "about-1",
     path: "/about-1",
-    component: () => import('./index-Yw854cFQ.mjs')
+    component: () => import('./index-BMM84ysm.mjs')
   },
   {
     name: "blog-1",
@@ -641,7 +641,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-ByP9KL08.mjs')
+    component: () => import('./index-BQppdQ5-.mjs')
   },
   {
     name: "services-1",
@@ -651,7 +651,7 @@ const _routes = [
   {
     name: "services-2",
     path: "/services-2",
-    component: () => import('./index-2diS6IYv.mjs')
+    component: () => import('./index-B9ipqOQ9.mjs')
   },
   {
     name: "term-conditions",

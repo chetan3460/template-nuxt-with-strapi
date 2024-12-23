@@ -540,6 +540,40 @@ export interface ApiSeeWhyBlockSeeWhyBlock extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiTestimonialBlockTestimonialBlock
+  extends Struct.SingleTypeSchema {
+  collectionName: 'testimonial_blocks';
+  info: {
+    displayName: 'Testimonial Block';
+    pluralName: 'testimonial-blocks';
+    singularName: 'testimonial-block';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    heading: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::testimonial-block.testimonial-block'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    testimonialItems: Schema.Attribute.Component<
+      'testimonial-item.testimonial-items',
+      true
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiWhatWeDoBlockWhatWeDoBlock extends Struct.SingleTypeSchema {
   collectionName: 'what_we_do_blocks';
   info: {
@@ -1119,6 +1153,7 @@ declare module '@strapi/strapi' {
       'api::home.home': ApiHomeHome;
       'api::partner-logo.partner-logo': ApiPartnerLogoPartnerLogo;
       'api::see-why-block.see-why-block': ApiSeeWhyBlockSeeWhyBlock;
+      'api::testimonial-block.testimonial-block': ApiTestimonialBlockTestimonialBlock;
       'api::what-we-do-block.what-we-do-block': ApiWhatWeDoBlockWhatWeDoBlock;
       'api::what-we-offer-block.what-we-offer-block': ApiWhatWeOfferBlockWhatWeOfferBlock;
       'plugin::content-releases.release': PluginContentReleasesRelease;

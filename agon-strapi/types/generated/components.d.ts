@@ -81,6 +81,21 @@ export interface TabItemsTabItem extends Struct.ComponentSchema {
   };
 }
 
+export interface TestimonialItemTestimonialItems
+  extends Struct.ComponentSchema {
+  collectionName: 'components_testimonial_item_testimonial_items';
+  info: {
+    displayName: 'TestimonialItems';
+    icon: 'cloud';
+  };
+  attributes: {
+    company: Schema.Attribute.String;
+    content: Schema.Attribute.RichText;
+    image: Schema.Attribute.Media<'images'>;
+    name: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -89,6 +104,7 @@ declare module '@strapi/strapi' {
       'partner-items.partner-item': PartnerItemsPartnerItem;
       'sliders-items.slider-items': SlidersItemsSliderItems;
       'tab-items.tab-item': TabItemsTabItem;
+      'testimonial-item.testimonial-items': TestimonialItemTestimonialItems;
     }
   }
 }

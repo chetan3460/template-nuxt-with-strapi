@@ -601,27 +601,32 @@ const _routes = [
   {
     name: "about-1",
     path: "/about-1",
-    component: () => import('./index-BMM84ysm.mjs')
+    component: () => import('./index-CPLkTR85.mjs')
   },
   {
     name: "blog-1",
     path: "/blog-1",
-    component: () => import('./index-DU59kM8S.mjs')
+    component: () => import('./index-CsmAic8M.mjs')
   },
   {
     name: "blog-2",
     path: "/blog-2",
-    component: () => import('./index-Dfsq9wa4.mjs')
+    component: () => import('./index-CbjFuQpl.mjs')
+  },
+  {
+    name: "blog-details-slug",
+    path: "/blog-details/:slug(.*)*",
+    component: () => import('./_...slug_-L2tjTHAV.mjs')
   },
   {
     name: "career-details",
     path: "/career-details",
-    component: () => import('./index-3KDocd4-.mjs')
+    component: () => import('./index-CimIVQBW.mjs')
   },
   {
     name: "career",
     path: "/career",
-    component: () => import('./index-DY24BFSN.mjs')
+    component: () => import('./index-ZCaliRc3.mjs')
   },
   {
     name: "contact",
@@ -631,7 +636,7 @@ const _routes = [
   {
     name: "error-404",
     path: "/error-404",
-    component: () => import('./index-DehvJSjs.mjs')
+    component: () => import('./index-BhOIImT4.mjs')
   },
   {
     name: "faqs-1",
@@ -641,7 +646,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-BQppdQ5-.mjs')
+    component: () => import('./index-DUw6JM3K.mjs')
   },
   {
     name: "services-1",
@@ -651,7 +656,7 @@ const _routes = [
   {
     name: "services-2",
     path: "/services-2",
-    component: () => import('./index-B9ipqOQ9.mjs')
+    component: () => import('./index-DZY1ysfK.mjs')
   },
   {
     name: "term-conditions",
@@ -1014,8 +1019,8 @@ const plugins = [
   strapi_liDD6vJf4g
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-Dmu1IHOn.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-BWEeEbxM.mjs'))
+  default: defineAsyncComponent(() => import('./default-eEqINOtU.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-CEdk6FFN.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -1378,5 +1383,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _export_sfc as _, _imports_0 as a, _imports_0$1 as b, useNuxtApp as c, asyncDataDefaults as d, entry$1 as default, createError as e, fetchDefaults as f, useRuntimeConfig as g, useRouter as h, navigateTo as i, nuxtLinkDefaults as n, resolveRouteObject as r, useHead as u };
+export { _export_sfc as _, _imports_0 as a, useNuxtApp as b, _imports_0$1 as c, useRuntimeConfig as d, entry$1 as default, asyncDataDefaults as e, createError as f, fetchDefaults as g, useRouter as h, navigateTo as i, nuxtLinkDefaults as n, resolveRouteObject as r, useHead as u };
 //# sourceMappingURL=server.mjs.map

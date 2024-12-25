@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_testimonial_item_demo_tests",
+  "info": {
+    "displayName": "demoTest",
+    "icon": "brush"
+  },
+  "options": {},
+  "attributes": {
+    "test": {
+      "type": "string"
+    }
+  }
+}

@@ -552,6 +552,34 @@ export interface ApiHomeHome extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiLatestPostLatestPost extends Struct.SingleTypeSchema {
+  collectionName: 'latest_posts';
+  info: {
+    displayName: 'LatestPost';
+    pluralName: 'latest-posts';
+    singularName: 'latest-post';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    heading: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::latest-post.latest-post'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPartnerLogoPartnerLogo extends Struct.SingleTypeSchema {
   collectionName: 'partner_logos';
   info: {
@@ -1230,6 +1258,7 @@ declare module '@strapi/strapi' {
       'api::blog.blog': ApiBlogBlog;
       'api::feature-block.feature-block': ApiFeatureBlockFeatureBlock;
       'api::home.home': ApiHomeHome;
+      'api::latest-post.latest-post': ApiLatestPostLatestPost;
       'api::partner-logo.partner-logo': ApiPartnerLogoPartnerLogo;
       'api::see-why-block.see-why-block': ApiSeeWhyBlockSeeWhyBlock;
       'api::testimonial-block.testimonial-block': ApiTestimonialBlockTestimonialBlock;

@@ -81,6 +81,17 @@ export interface TabItemsTabItem extends Struct.ComponentSchema {
   };
 }
 
+export interface TestimonialItemDemoTest extends Struct.ComponentSchema {
+  collectionName: 'components_testimonial_item_demo_tests';
+  info: {
+    displayName: 'demoTest';
+    icon: 'brush';
+  };
+  attributes: {
+    test: Schema.Attribute.String;
+  };
+}
+
 export interface TestimonialItemTestimonialItems
   extends Struct.ComponentSchema {
   collectionName: 'components_testimonial_item_testimonial_items';
@@ -104,6 +115,7 @@ declare module '@strapi/strapi' {
       'partner-items.partner-item': PartnerItemsPartnerItem;
       'sliders-items.slider-items': SlidersItemsSliderItems;
       'tab-items.tab-item': TabItemsTabItem;
+      'testimonial-item.demo-test': TestimonialItemDemoTest;
       'testimonial-item.testimonial-items': TestimonialItemTestimonialItems;
     }
   }

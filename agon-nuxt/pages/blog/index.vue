@@ -1,6 +1,6 @@
 <template>
     <div>
-        <SectionsBlogSection1 />
+        <!-- <SectionsBlogSection1 /> -->
         <SectionsBlogList />
     </div>
 </template>

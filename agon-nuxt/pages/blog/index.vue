@@ -1,9 +1,7 @@
 <template>
     <div>
-        <SectionsBlog2Section1 />
-        <SectionsBlog2Section2 />
-        <SectionsBlog2Section3 />
-        <SectionsBlog2Section4 />
+        <SectionsBlogSection1 />
+        <SectionsBlogList />
     </div>
 </template>
 <script setup>

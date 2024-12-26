@@ -33,6 +33,8 @@
 </template>
 
 <script setup>
+import { onMounted, onUnmounted, ref } from "vue";
+
 import MarkdownIt from 'markdown-it';
 import RelatedBlogs from './RelatedBlogs.vue';
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
@@ -54,4 +56,19 @@ defineProps({
 
 // Render Markdown
 const renderMarkdown = (content) => markdownParser.render(content);
+
+
+const scroll = ref(false);
+const handleScroll = () => {
+    const scrollCheck = window.scrollY > 100;
+    if (scrollCheck !== scroll.value) {
+        scroll.value = scrollCheck;
+    }
+};
+onMounted(() => {
+    document.addEventListener("scroll", handleScroll);
+});
+onUnmounted(() => {
+    document.removeEventListener("scroll", handleScroll);
+});
 </script>

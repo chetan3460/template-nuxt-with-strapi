@@ -33,7 +33,7 @@
                     </span>
                 </div>
                 <h3 class="text-[20px] font-semibold mt-3">{{ blog.title }}</h3>
-                <p>{{ blog.richText.slice(0, 100) }}...</p>
+                <!-- <p>{{ blog.richText.slice(0, 100) }}...</p> -->
             </NuxtLink>
         </div>
     </div>

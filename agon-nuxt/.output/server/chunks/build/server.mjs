@@ -601,22 +601,17 @@ const _routes = [
   {
     name: "about-1",
     path: "/about-1",
-    component: () => import('./index-CPLkTR85.mjs')
-  },
-  {
-    name: "blog-1",
-    path: "/blog-1",
-    component: () => import('./index-CsmAic8M.mjs')
-  },
-  {
-    name: "blog-2",
-    path: "/blog-2",
-    component: () => import('./index-CbjFuQpl.mjs')
+    component: () => import('./index-DmzHn6fg.mjs')
   },
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-BVDs_P3u.mjs')
+    component: () => import('./_...slug_-q0Mx23Zu.mjs')
+  },
+  {
+    name: "blog",
+    path: "/blog",
+    component: () => import('./index-2Tg3CBNk.mjs')
   },
   {
     name: "career-details",
@@ -626,7 +621,7 @@ const _routes = [
   {
     name: "career",
     path: "/career",
-    component: () => import('./index-ZCaliRc3.mjs')
+    component: () => import('./index-hbPHov6M.mjs')
   },
   {
     name: "contact",
@@ -646,7 +641,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-CTLjjl1l.mjs')
+    component: () => import('./index-Ck_MxKks.mjs')
   },
   {
     name: "services-1",
@@ -661,7 +656,7 @@ const _routes = [
   {
     name: "term-conditions",
     path: "/term-conditions",
-    component: () => import('./index-D1GZVzRo.mjs')
+    component: () => import('./index-EiiZ_7Hm.mjs')
   },
   {
     name: "test",
@@ -1019,8 +1014,8 @@ const plugins = [
   strapi_liDD6vJf4g
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-eEqINOtU.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-CEdk6FFN.mjs'))
+  default: defineAsyncComponent(() => import('./default-B_zmDPDY.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-BxF7tpRh.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",

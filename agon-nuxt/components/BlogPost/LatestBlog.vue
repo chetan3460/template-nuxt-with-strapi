@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import LatestBlogItem from './LatestBlogItem.vue';
+import LatestBlogItem from './RelatedBlogs.vue';
 
 
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;

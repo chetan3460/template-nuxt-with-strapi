@@ -616,7 +616,7 @@ const _routes = [
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-B5OX53Uz.mjs')
+    component: () => import('./_...slug_-BVDs_P3u.mjs')
   },
   {
     name: "career-details",
@@ -646,7 +646,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DUw6JM3K.mjs')
+    component: () => import('./index-CTLjjl1l.mjs')
   },
   {
     name: "services-1",

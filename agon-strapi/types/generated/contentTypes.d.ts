@@ -369,6 +369,37 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAboutPageAboutPage extends Struct.CollectionTypeSchema {
+  collectionName: 'about_pages';
+  info: {
+    description: '';
+    displayName: 'About Page';
+    pluralName: 'about-pages';
+    singularName: 'about-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::about-page.about-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.UID<'title'>;
+  };
+}
+
 export interface ApiBannerBlockBannerBlock extends Struct.SingleTypeSchema {
   collectionName: 'banner_blocks';
   info: {
@@ -487,6 +518,69 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCardsBlockCardsBlock extends Struct.SingleTypeSchema {
+  collectionName: 'cards_blocks';
+  info: {
+    description: '';
+    displayName: 'Cards Block';
+    pluralName: 'cards-blocks';
+    singularName: 'cards-block';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    heading: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cards-block.cards-block'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiContentImageSectionContentImageSection
+  extends Struct.SingleTypeSchema {
+  collectionName: 'content_image_sections';
+  info: {
+    description: '';
+    displayName: 'Content Image Block ';
+    pluralName: 'content-image-sections';
+    singularName: 'content-image-section';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::content-image-section.content-image-section'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    videoUrl: Schema.Attribute.String;
+  };
+}
+
 export interface ApiFeatureBlockFeatureBlock extends Struct.SingleTypeSchema {
   collectionName: 'feature_blocks';
   info: {
@@ -527,24 +621,41 @@ export interface ApiFeatureBlockFeatureBlock extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiHomeHome extends Struct.CollectionTypeSchema {
-  collectionName: 'homes';
+export interface ApiHeroSectionHeroSection extends Struct.SingleTypeSchema {
+  collectionName: 'hero_sections';
   info: {
-    displayName: 'Home';
-    pluralName: 'homes';
-    singularName: 'home';
+    displayName: 'Hero Section';
+    pluralName: 'hero-sections';
+    singularName: 'hero-section';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    AboutImageLarge: Schema.Attribute.Media<'images'>;
+    AboutImageSmall: Schema.Attribute.Media<'images'>;
+    BtnLink: Schema.Attribute.String;
+    BtnText: Schema.Attribute.String;
+    ContactBtnLink: Schema.Attribute.String;
+    ContactBtnText: Schema.Attribute.String;
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultMarkdown';
+        }
+      >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'> &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hero-section.hero-section'
+    > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -639,6 +750,46 @@ export interface ApiSeeWhyBlockSeeWhyBlock extends Struct.SingleTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     SeeWhyBlockItems: Schema.Attribute.Component<'tab-items.tab-item', true> &
       Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSitemapSitemap extends Struct.CollectionTypeSchema {
+  collectionName: 'sitemaps';
+  info: {
+    description: '';
+    displayName: 'Sitemap';
+    pluralName: 'sitemaps';
+    singularName: 'sitemap';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Blocks: Schema.Attribute.DynamicZone<
+      [
+        'page-blocks.hero-about-block',
+        'page-blocks.content-image-block',
+        'page-blocks.cards-block',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sitemap.sitemap'
+    > &
+      Schema.Attribute.Private;
+    PageTitle: Schema.Attribute.String;
+    PageURL: Schema.Attribute.UID<'PageTitle'>;
+    ParentPage: Schema.Attribute.Relation<'oneToOne', 'api::sitemap.sitemap'>;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'share-component.seo', true>;
+    sitemap: Schema.Attribute.Relation<'oneToOne', 'api::sitemap.sitemap'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1253,14 +1404,18 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::about-page.about-page': ApiAboutPageAboutPage;
       'api::banner-block.banner-block': ApiBannerBlockBannerBlock;
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::blog.blog': ApiBlogBlog;
+      'api::cards-block.cards-block': ApiCardsBlockCardsBlock;
+      'api::content-image-section.content-image-section': ApiContentImageSectionContentImageSection;
       'api::feature-block.feature-block': ApiFeatureBlockFeatureBlock;
-      'api::home.home': ApiHomeHome;
+      'api::hero-section.hero-section': ApiHeroSectionHeroSection;
       'api::latest-post.latest-post': ApiLatestPostLatestPost;
       'api::partner-logo.partner-logo': ApiPartnerLogoPartnerLogo;
       'api::see-why-block.see-why-block': ApiSeeWhyBlockSeeWhyBlock;
+      'api::sitemap.sitemap': ApiSitemapSitemap;
       'api::testimonial-block.testimonial-block': ApiTestimonialBlockTestimonialBlock;
       'api::what-we-do-block.what-we-do-block': ApiWhatWeDoBlockWhatWeDoBlock;
       'api::what-we-offer-block.what-we-offer-block': ApiWhatWeOfferBlockWhatWeOfferBlock;

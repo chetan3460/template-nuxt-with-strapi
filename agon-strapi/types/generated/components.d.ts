@@ -16,6 +16,26 @@ export interface FeaturedItemsFeaturedItem extends Struct.ComponentSchema {
   };
 }
 
+export interface HeroComponentHeroComponent extends Struct.ComponentSchema {
+  collectionName: 'components_hero_component_hero_components';
+  info: {
+    description: '';
+    displayName: 'Hero Component';
+    icon: 'arrowRight';
+  };
+  attributes: {
+    btnLink: Schema.Attribute.String;
+    btnText: Schema.Attribute.String;
+    ContactBtnLink: Schema.Attribute.String;
+    ContactBtnText: Schema.Attribute.String;
+    content: Schema.Attribute.Text;
+    imageLeft: Schema.Attribute.Media<'images'>;
+    imageRight: Schema.Attribute.Media<'images'>;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface ListsItemsListItems extends Struct.ComponentSchema {
   collectionName: 'components_lists_items_list_items';
   info: {
@@ -28,6 +48,54 @@ export interface ListsItemsListItems extends Struct.ComponentSchema {
   };
 }
 
+export interface PageBlocksCardsBlock extends Struct.ComponentSchema {
+  collectionName: 'components_page_blocks_cards_blocks';
+  info: {
+    description: '';
+    displayName: 'Cards Block';
+    icon: 'bold';
+  };
+  attributes: {
+    content: Schema.Attribute.Text;
+    ItemRepeater: Schema.Attribute.Component<
+      'share-component.cards-repeater-items',
+      true
+    >;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface PageBlocksContentImageBlock extends Struct.ComponentSchema {
+  collectionName: 'components_page_blocks_content_image_block_s';
+  info: {
+    displayName: 'Content Image Block ';
+    icon: 'code';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'>;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.Text;
+  };
+}
+
+export interface PageBlocksHeroAboutBlock extends Struct.ComponentSchema {
+  collectionName: 'components_page_blocks_hero_about_blocks';
+  info: {
+    displayName: 'Hero About Block';
+  };
+  attributes: {
+    BtnLink: Schema.Attribute.String;
+    btnText: Schema.Attribute.String;
+    ContactBtnLink: Schema.Attribute.String;
+    ContactBtnText: Schema.Attribute.String;
+    content: Schema.Attribute.RichText;
+    imageLeft: Schema.Attribute.Media<'images'>;
+    imageRight: Schema.Attribute.Media<'images'>;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface PartnerItemsPartnerItem extends Struct.ComponentSchema {
   collectionName: 'components_partner_items_partner_items';
   info: {
@@ -37,6 +105,35 @@ export interface PartnerItemsPartnerItem extends Struct.ComponentSchema {
   };
   attributes: {
     Image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+  };
+}
+
+export interface ShareComponentCardsRepeaterItems
+  extends Struct.ComponentSchema {
+  collectionName: 'components_share_component_cards_repeater_items';
+  info: {
+    description: '';
+    displayName: 'Cards Repeater';
+    icon: 'bold';
+  };
+  attributes: {
+    content: Schema.Attribute.String;
+    icon: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ShareComponentSeo extends Struct.ComponentSchema {
+  collectionName: 'components_share_component_seos';
+  info: {
+    displayName: 'Seo';
+    icon: 'bulletList';
+  };
+  attributes: {
+    keywords: Schema.Attribute.RichText;
+    metaDescription: Schema.Attribute.RichText;
+    metaImage: Schema.Attribute.Media<'images'>;
+    metaTitle: Schema.Attribute.String;
   };
 }
 
@@ -81,17 +178,6 @@ export interface TabItemsTabItem extends Struct.ComponentSchema {
   };
 }
 
-export interface TestimonialItemDemoTest extends Struct.ComponentSchema {
-  collectionName: 'components_testimonial_item_demo_tests';
-  info: {
-    displayName: 'demoTest';
-    icon: 'brush';
-  };
-  attributes: {
-    test: Schema.Attribute.String;
-  };
-}
-
 export interface TestimonialItemTestimonialItems
   extends Struct.ComponentSchema {
   collectionName: 'components_testimonial_item_testimonial_items';
@@ -111,11 +197,16 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'featured-items.featured-item': FeaturedItemsFeaturedItem;
+      'hero-component.hero-component': HeroComponentHeroComponent;
       'lists-items.list-items': ListsItemsListItems;
+      'page-blocks.cards-block': PageBlocksCardsBlock;
+      'page-blocks.content-image-block': PageBlocksContentImageBlock;
+      'page-blocks.hero-about-block': PageBlocksHeroAboutBlock;
       'partner-items.partner-item': PartnerItemsPartnerItem;
+      'share-component.cards-repeater-items': ShareComponentCardsRepeaterItems;
+      'share-component.seo': ShareComponentSeo;
       'sliders-items.slider-items': SlidersItemsSliderItems;
       'tab-items.tab-item': TabItemsTabItem;
-      'testimonial-item.demo-test': TestimonialItemDemoTest;
       'testimonial-item.testimonial-items': TestimonialItemTestimonialItems;
     }
   }

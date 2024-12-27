@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_page_blocks_content_image_block_s",
+  "info": {
+    "displayName": "Content Image Block ",
+    "icon": "code"
+  },
+  "options": {},
+  "attributes": {
+    "subtitle": {
+      "type": "string"
+    },
+    "title": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

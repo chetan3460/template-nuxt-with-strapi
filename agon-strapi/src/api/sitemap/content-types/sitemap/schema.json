@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sitemaps",
+  "info": {
+    "singularName": "sitemap",
+    "pluralName": "sitemaps",
+    "displayName": "Sitemap",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "PageTitle": {
+      "type": "string"
+    },
+    "PageURL": {
+      "type": "uid",
+      "targetField": "PageTitle"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": true,
+      "component": "share-component.seo"
+    },
+    "ParentPage": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sitemap.sitemap"
+    },
+    "sitemap": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sitemap.sitemap"
+    },
+    "Blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "page-blocks.hero-about-block",
+        "page-blocks.content-image-block",
+        "page-blocks.cards-block"
+      ]
+    }
+  }
+}

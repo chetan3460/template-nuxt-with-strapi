@@ -599,69 +599,79 @@ async function getRouteRules(url) {
 }
 const _routes = [
   {
-    name: "about-1",
-    path: "/about-1",
-    component: () => import('./index-DmzHn6fg.mjs')
+    name: "slug",
+    path: "/:slug()",
+    component: () => import('./_slug_-CbdnITji.mjs')
+  },
+  {
+    name: "about-backup",
+    path: "/about/backup",
+    component: () => import('./backup-Bbd-zfKM.mjs')
+  },
+  {
+    name: "about",
+    path: "/about",
+    component: () => import('./index-CfZghyjp.mjs')
   },
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-q0Mx23Zu.mjs')
+    component: () => import('./_...slug_-ThCeP-nn.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-CW4b_cU4.mjs')
+    component: () => import('./index-_sTcJ43Y.mjs')
   },
   {
     name: "career-details",
     path: "/career-details",
-    component: () => import('./index-CimIVQBW.mjs')
+    component: () => import('./index-DwKJI08r.mjs')
   },
   {
     name: "career",
     path: "/career",
-    component: () => import('./index-hbPHov6M.mjs')
+    component: () => import('./index-VwClc0L3.mjs')
   },
   {
     name: "contact",
     path: "/contact",
-    component: () => import('./index-gPaIwXaA.mjs')
+    component: () => import('./index-DNJKr61r.mjs')
   },
   {
     name: "error-404",
     path: "/error-404",
-    component: () => import('./index-BhOIImT4.mjs')
+    component: () => import('./index-B_F9XgmK.mjs')
   },
   {
     name: "faqs-1",
     path: "/faqs-1",
-    component: () => import('./index-Bcboed_y.mjs')
+    component: () => import('./index-DiF_GFrg.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-Ck_MxKks.mjs')
+    component: () => import('./index-CYHs1src.mjs')
   },
   {
     name: "services-1",
     path: "/services-1",
-    component: () => import('./index-cszEsLsF.mjs')
+    component: () => import('./index-BNx9eOBq.mjs')
   },
   {
     name: "services-2",
     path: "/services-2",
-    component: () => import('./index-DZY1ysfK.mjs')
+    component: () => import('./index-v8UPz0Og.mjs')
   },
   {
     name: "term-conditions",
     path: "/term-conditions",
-    component: () => import('./index-EiiZ_7Hm.mjs')
+    component: () => import('./index-BtQYobBY.mjs')
   },
   {
     name: "test",
     path: "/test",
-    component: () => import('./index-C1bH6NYm.mjs')
+    component: () => import('./index-x2IugUM_.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -1014,8 +1024,8 @@ const plugins = [
   strapi_liDD6vJf4g
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-B_zmDPDY.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-BxF7tpRh.mjs'))
+  default: defineAsyncComponent(() => import('./default-5OjUMP-1.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-qvZpAUzz.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -1288,8 +1298,8 @@ _sfc_main$2.setup = (props, ctx) => {
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
 const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender]]);
-const _imports_0$1 = publicAssetsURL("/assets/images/404.png");
-const _imports_0 = publicAssetsURL("/assets/images/icons/icon-right.svg");
+const _imports_0 = publicAssetsURL("/assets/images/404.png");
+const _imports_1 = publicAssetsURL("/assets/images/icons/icon-right.svg");
 const _sfc_main$1 = {
   __name: "error",
   __ssrInlineRender: true,
@@ -1300,7 +1310,7 @@ const _sfc_main$1 = {
       }
     });
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "px-[12px] md:px-[36px] xl:px-0 mt-[70px] flex flex-col justify-center items-center text-center lg:mt-[161px]" }, _attrs))}><div class="max-w-[565px] mb-[50px]"><img class="h-full w-full object-cover"${ssrRenderAttr("src", _imports_0$1)} alt="404 image"></div><h1 class="font-chivo text-[35px] leading-[44px] sm:text-[46px] sm:leading-[52px] md:text-heading-1 font-extrabold mb-7"> Whoops! That page doesn’t exist. </h1><h4 class="font-bold font-chivo text-[14px] xl:text-heading-5 text-gray-500 mb-[70px]">The page you requested could not be found </h4><button type="button"><a class="flex items-center z-10 relative transition-all duration-200 group px-[22px] py-[15px] lg:px-[32px] lg:py-[22px] rounded-[50px] bg-gray-900 text-white hover:bg-gray-100 hover:text-gray-900 flex-row-reverse" href="/"><span class="block text-inherit w-full h-full rounded-[50px] text-lg font-chivo font-semibold">Back to Homepage</span><i><img class="mr-4 rotate-180 filter-white w-[12px] group-hover:filter-black"${ssrRenderAttr("src", _imports_0)} alt="arrow right icon"></i></a></button></div>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "px-[12px] md:px-[36px] xl:px-0 mt-[70px] flex flex-col justify-center items-center text-center lg:mt-[161px]" }, _attrs))}><div class="max-w-[565px] mb-[50px]"><img class="h-full w-full object-cover"${ssrRenderAttr("src", _imports_0)} alt="404 image"></div><h1 class="font-chivo text-[35px] leading-[44px] sm:text-[46px] sm:leading-[52px] md:text-heading-1 font-extrabold mb-7"> Whoops! That page doesn’t exist. </h1><h4 class="font-bold font-chivo text-[14px] xl:text-heading-5 text-gray-500 mb-[70px]">The page you requested could not be found </h4><button type="button"><a class="flex items-center z-10 relative transition-all duration-200 group px-[22px] py-[15px] lg:px-[32px] lg:py-[22px] rounded-[50px] bg-gray-900 text-white hover:bg-gray-100 hover:text-gray-900 flex-row-reverse" href="/"><span class="block text-inherit w-full h-full rounded-[50px] text-lg font-chivo font-semibold">Back to Homepage</span><i><img class="mr-4 rotate-180 filter-white w-[12px] group-hover:filter-black"${ssrRenderAttr("src", _imports_1)} alt="arrow right icon"></i></a></button></div>`);
     };
   }
 };
@@ -1378,5 +1388,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _export_sfc as _, _imports_0 as a, useNuxtApp as b, _imports_0$1 as c, useRuntimeConfig as d, entry$1 as default, asyncDataDefaults as e, createError as f, fetchDefaults as g, useRouter as h, navigateTo as i, nuxtLinkDefaults as n, resolveRouteObject as r, useHead as u };
+export { _imports_1 as _, useHead as a, _export_sfc as b, _imports_0 as c, useRuntimeConfig as d, entry$1 as default, asyncDataDefaults as e, createError as f, fetchDefaults as g, useRouter as h, navigateTo as i, nuxtLinkDefaults as n, resolveRouteObject as r, useNuxtApp as u };
 //# sourceMappingURL=server.mjs.map

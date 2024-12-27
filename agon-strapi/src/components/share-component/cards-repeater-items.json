@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_share_component_cards_repeater_items",
+  "info": {
+    "displayName": "Cards Repeater",
+    "icon": "bold",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

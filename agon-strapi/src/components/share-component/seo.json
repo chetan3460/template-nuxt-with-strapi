@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_share_component_seos",
+  "info": {
+    "displayName": "Seo",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "metaTitle": {
+      "type": "string"
+    },
+    "metaDescription": {
+      "type": "richtext"
+    },
+    "metaImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "keywords": {
+      "type": "richtext"
+    }
+  }
+}

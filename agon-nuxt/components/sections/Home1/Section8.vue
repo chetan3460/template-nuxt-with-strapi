@@ -47,20 +47,20 @@ const { data: blogPostDataResponse, error: blogPostDataError, pending: blogPostD
 
 onMounted(() => {
     // Log the data for debugging
-    console.log('Blog Data Response:', blogDataResponse.value);
-    console.log('Blog Post Data Response:', blogPostDataResponse.value);
+    // console.log('Blog Data Response:', blogDataResponse.value);
+    // console.log('Blog Post Data Response:', blogPostDataResponse.value);
 
     // Check and assign the fetched data to the corresponding variables
     if (blogDataResponse.value) {
         blogData.value = blogDataResponse.value.data; // Correcting to use `data` directly
-        console.log('Blog Data:', blogData.value);
+        // console.log('Blog Data:', blogData.value);
     } else if (blogDataError.value) {
         console.error('Error fetching blog data:', blogDataError.value);
     }
 
     if (blogPostDataResponse.value) {
         blogPostData.value = blogPostDataResponse.value.data; // Assign blog post data
-        console.log('Blog Post Data:', blogPostData.value);
+        // console.log('Blog Post Data:', blogPostData.value);
     } else if (blogPostDataError.value) {
         console.error('Error fetching blog post data:', blogPostDataError.value);
     }

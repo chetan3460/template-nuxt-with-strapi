@@ -1,7 +1,11 @@
 import { resolve } from "path"
 
 export default defineNuxtConfig({
-
+  runtimeConfig: {
+    public: {
+      strapiBaseUrl: 'http://localhost:1337', // Replace with your Strapi base URL
+    },
+  },
 
   devtools: { enabled: false },
   postcss: {

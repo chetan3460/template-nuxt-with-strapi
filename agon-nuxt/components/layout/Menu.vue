@@ -1,7 +1,7 @@
 <template>
     <ul class="navbar flex flex-col justify-center font-chivo gap-[34px] lg:flex-row">
 
-        <li v-for="(item, index) in sitemapItems" :key="index" class="flex items-center group">
+        <li v-for="(item, index) in sitemapItems" :key="item.id" class="flex items-center group">
             <NuxtLink :to="`/${item.PageURL}`"
                 class="hover:text-green-900 text-base font-inter menu-link lg:text-heading-6 mr-[7px]">
                 {{ item.PageTitle }}

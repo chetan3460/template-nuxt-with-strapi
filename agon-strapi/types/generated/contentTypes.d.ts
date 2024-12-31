@@ -369,37 +369,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAboutPageAboutPage extends Struct.CollectionTypeSchema {
-  collectionName: 'about_pages';
-  info: {
-    description: '';
-    displayName: 'About Page';
-    pluralName: 'about-pages';
-    singularName: 'about-page';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    content: Schema.Attribute.RichText;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::about-page.about-page'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    url: Schema.Attribute.UID<'title'>;
-  };
-}
-
 export interface ApiBannerBlockBannerBlock extends Struct.SingleTypeSchema {
   collectionName: 'banner_blocks';
   info: {
@@ -1404,7 +1373,6 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::about-page.about-page': ApiAboutPageAboutPage;
       'api::banner-block.banner-block': ApiBannerBlockBannerBlock;
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::blog.blog': ApiBlogBlog;

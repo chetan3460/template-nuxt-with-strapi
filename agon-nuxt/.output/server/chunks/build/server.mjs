@@ -601,37 +601,37 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-CYSutWcl.mjs')
+    component: () => import('./_slug_-BzbWiJCF.mjs')
   },
   {
     name: "about-backup",
     path: "/about/backup",
-    component: () => import('./backup-BUBWB6a7.mjs')
+    component: () => import('./backup-BNiWFc2V.mjs')
   },
   {
-    name: "about",
-    path: "/about",
-    component: () => import('./index-CfZghyjp.mjs')
+    name: "about-index1",
+    path: "/about/index1",
+    component: () => import('./index1-CNfS-E8A.mjs')
   },
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-CmmqB4em.mjs')
+    component: () => import('./_...slug_-Bjb06239.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-VndmPAqN.mjs')
+    component: () => import('./index-DAcuzHMW.mjs')
   },
   {
     name: "career-details",
     path: "/career-details",
-    component: () => import('./index-c1LFYe4-.mjs')
+    component: () => import('./index-Bp7yi0fP.mjs')
   },
   {
     name: "career",
     path: "/career",
-    component: () => import('./index-NKD0wGcO.mjs')
+    component: () => import('./index-D9dMAWla.mjs')
   },
   {
     name: "contact",
@@ -651,7 +651,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DxgScv2r.mjs')
+    component: () => import('./index-Dstpg7Rr.mjs')
   },
   {
     name: "services-1",
@@ -661,7 +661,7 @@ const _routes = [
   {
     name: "services-2",
     path: "/services-2",
-    component: () => import('./index-CGboF_-m.mjs')
+    component: () => import('./index-WHq4F1CE.mjs')
   },
   {
     name: "term-conditions",
@@ -672,6 +672,11 @@ const _routes = [
     name: "test",
     path: "/test",
     component: () => import('./index-x2IugUM_.mjs')
+  },
+  {
+    name: "test-slugbackup",
+    path: "/test/slugbackup",
+    component: () => import('./slugbackup-CfjgpU8K.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -1024,8 +1029,8 @@ const plugins = [
   strapi_liDD6vJf4g
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-BK88Zt4_.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-B0O71OtV.mjs'))
+  default: defineAsyncComponent(() => import('./default-OComuuJo.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-C1-pJ0QR.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -1388,5 +1393,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _imports_0 as _, useHead as a, _export_sfc as b, _imports_0$1 as c, useRuntimeConfig as d, entry$1 as default, asyncDataDefaults as e, createError as f, fetchDefaults as g, useRouter as h, navigateTo as i, nuxtLinkDefaults as n, resolveRouteObject as r, useNuxtApp as u };
+export { _imports_0 as _, useHead as a, _export_sfc as b, _imports_0$1 as c, useRuntimeConfig as d, entry$1 as default, useRouter as e, navigateTo as f, asyncDataDefaults as g, createError as h, fetchDefaults as i, nuxtLinkDefaults as n, resolveRouteObject as r, useNuxtApp as u };
 //# sourceMappingURL=server.mjs.map

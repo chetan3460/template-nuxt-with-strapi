@@ -23,12 +23,9 @@ const sitemap = ref(null);
 const resolveComponent = (componentName) => {
     const componentMap = {
         'page-blocks.hero-about-block': () => import('~/components/sections/About/Hero.vue'),
-        // 'page-blocks.content-about-block': () => import('~/components/sections/About/Content.vue'),
-        // Add other components here as needed
+
     };
 
-    // Return the component if it exists, or a fallback component
-    // return componentMap[componentName]?.() || import('~/components/EmptyBlock.vue');
 };
 
 // Fetch the sitemap data when the component is mounted

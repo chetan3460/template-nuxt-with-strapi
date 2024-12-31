@@ -80,7 +80,7 @@ const fetchData = async (slug) => {
 // Watch for changes in the route and re-fetch data
 watchEffect(() => {
     const slug = route.params.slug;
-    console.log('Slug.vue Current route slug:', slug); // Debug route slug
+    // console.log('Slug.vue Current route slug:', slug); // Debug route slug
 
     if (slug) {
         sitemap.value = null; // Reset sitemap

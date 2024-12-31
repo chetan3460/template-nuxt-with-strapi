@@ -601,7 +601,7 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-BzbWiJCF.mjs')
+    component: () => import('./_slug_-zbmYm4zN.mjs')
   },
   {
     name: "about-backup",

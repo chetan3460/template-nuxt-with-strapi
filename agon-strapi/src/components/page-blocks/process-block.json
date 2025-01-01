@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_page_blocks_process_blocks",
+  "info": {
+    "displayName": "Process Block",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "subtitle": {
+      "type": "string"
+    },
+    "title": {
+      "type": "text"
+    },
+    "ProcessRepeater": {
+      "type": "component",
+      "repeatable": true,
+      "component": "share-component.cards-repeater-items"
+    },
+    "HeadingBlock": {
+      "type": "component",
+      "repeatable": false,
+      "component": "share-component.title-content-block"
+    }
+  }
+}

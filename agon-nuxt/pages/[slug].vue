@@ -1,5 +1,7 @@
 <template>
     <div v-if="sitemap">
+        <!-- <img :src="`/assets/images/about-1-bg.png`" alt=""
+            class="w-full absolute left-0 z-0 object-fill top-[112px] h-[750px]"> -->
         <h1>{{ sitemap.PageTitle }}</h1>
 
         <!-- Debugging: Display raw block data for verification -->
@@ -27,6 +29,8 @@ const resolveComponent = (componentName) => {
     const componentMap = {
         'page-blocks.hero-about-block': defineAsyncComponent(() => import('~/components/sections/About/Hero.vue')),
         'page-blocks.content-image-block': defineAsyncComponent(() => import('~/components/sections/About/Section3.vue')),
+        'page-blocks.cards-block': defineAsyncComponent(() => import('~/components/sections/About/Section4.vue')),
+        'page-blocks.process-block': defineAsyncComponent(() => import('~/components/sections/About/Section5.vue')),
         // Add more block mappings here as needed
     };
 

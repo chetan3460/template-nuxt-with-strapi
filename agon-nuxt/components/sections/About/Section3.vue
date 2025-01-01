@@ -20,8 +20,7 @@
 
             <!-- Dynamically rendered image from Strapi -->
             <div class="relative mx-auto max-w-[1190px]">
-                <!-- <img class="h-full w-full object-cover rounded-2xl" :src="`${strapiBaseUrl}${item.image.url}`"
-                    alt="Hero Image" /> -->
+
 
                 <img class="h-full w-full object-cover rounded-2xl" :src="`${strapiBaseUrl}${item.image.url}`"
                     alt="Agon" />
@@ -74,12 +73,12 @@ watchEffect(async () => {
 
             if (data.value) {
                 // Log the full data response to inspect its structure
-                console.log("Full Data Response:", data.value);
+                // console.log("Full Data Response:", data.value);
 
                 // Filter the hero block data from the response
                 const blocks = data.value.data[0]?.Blocks || [];
                 // Log the blocks to verify the component type
-                console.log("Blocks:", blocks);
+                // console.log("Blocks:", blocks);
 
                 // Filter the blocks to include only the hero blocks
                 contentImageData.value = blocks.filter(block => block.__component === 'page-blocks.content-image-block');  // Adjust this based on your actual block type

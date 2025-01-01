@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_share_component_title_content_blocks",
+  "info": {
+    "displayName": "Title Content Block",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "subtitle": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

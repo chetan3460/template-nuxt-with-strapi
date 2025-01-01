@@ -1,4 +1,4 @@
-import { version, ref, watchEffect, watch, getCurrentInstance, defineAsyncComponent, defineComponent, h, inject, computed, unref, provide, shallowReactive, Suspense, nextTick, Fragment, Transition, hasInjectionContext, mergeProps, useSSRContext, createApp, effectScope, reactive, getCurrentScope, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, isReadonly, withCtx, isRef, isShallow, isReactive, toRaw } from 'vue';
+import { hasInjectionContext, inject, version, ref, watchEffect, watch, getCurrentInstance, defineAsyncComponent, defineComponent, h, computed, unref, provide, shallowReactive, Suspense, nextTick, Fragment, Transition, mergeProps, useSSRContext, createApp, effectScope, reactive, getCurrentScope, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, isReadonly, withCtx, isRef, isShallow, isReactive, toRaw } from 'vue';
 import { $ as $fetch, i as baseURL, j as hasProtocol, k as isScriptProtocol, l as joinURL, w as withQuery, c as createError$1, m as defu, p as publicAssetsURL, s as sanitizeStatusCode, n as getContext, o as createHooks, t as toRouteMatcher, q as createRouter$1 } from '../nitro/nitro.mjs';
 import { CapoPlugin, getActiveHead } from 'unhead';
 import { defineHeadPlugin, composableNames } from '@unhead/shared';
@@ -601,12 +601,12 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-zbmYm4zN.mjs')
+    component: () => import('./_slug_-BoXpQAKx.mjs')
   },
   {
     name: "about-backup",
     path: "/about/backup",
-    component: () => import('./backup-BNiWFc2V.mjs')
+    component: () => import('./backup-C9onWKRf.mjs')
   },
   {
     name: "about-index1",
@@ -616,12 +616,12 @@ const _routes = [
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-Bjb06239.mjs')
+    component: () => import('./_...slug_-DxC3crYr.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-DAcuzHMW.mjs')
+    component: () => import('./index-Dx56v_xc.mjs')
   },
   {
     name: "career-details",
@@ -651,7 +651,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-Dstpg7Rr.mjs')
+    component: () => import('./index-Bc17vdeG.mjs')
   },
   {
     name: "services-1",
@@ -1029,8 +1029,8 @@ const plugins = [
   strapi_liDD6vJf4g
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-OComuuJo.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-C1-pJ0QR.mjs'))
+  default: defineAsyncComponent(() => import('./default-DHWewWgC.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-KMxN__L6.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -1393,5 +1393,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _imports_0 as _, useHead as a, _export_sfc as b, _imports_0$1 as c, useRuntimeConfig as d, entry$1 as default, useRouter as e, navigateTo as f, asyncDataDefaults as g, createError as h, fetchDefaults as i, nuxtLinkDefaults as n, resolveRouteObject as r, useNuxtApp as u };
+export { _imports_0 as _, useHead as a, _export_sfc as b, _imports_0$1 as c, useRuntimeConfig as d, entry$1 as default, useRouter as e, navigateTo as f, useRoute as g, asyncDataDefaults as h, createError as i, fetchDefaults as j, nuxtLinkDefaults as n, resolveRouteObject as r, useNuxtApp as u };
 //# sourceMappingURL=server.mjs.map

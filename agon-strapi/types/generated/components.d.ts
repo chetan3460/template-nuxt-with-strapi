@@ -96,6 +96,27 @@ export interface PageBlocksHeroAboutBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface PageBlocksProcessBlock extends Struct.ComponentSchema {
+  collectionName: 'components_page_blocks_process_blocks';
+  info: {
+    description: '';
+    displayName: 'Process Block';
+    icon: 'apps';
+  };
+  attributes: {
+    HeadingBlock: Schema.Attribute.Component<
+      'share-component.title-content-block',
+      false
+    >;
+    ProcessRepeater: Schema.Attribute.Component<
+      'share-component.cards-repeater-items',
+      true
+    >;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.Text;
+  };
+}
+
 export interface PartnerItemsPartnerItem extends Struct.ComponentSchema {
   collectionName: 'components_partner_items_partner_items';
   info: {
@@ -117,7 +138,7 @@ export interface ShareComponentCardsRepeaterItems
     icon: 'bold';
   };
   attributes: {
-    content: Schema.Attribute.String;
+    content: Schema.Attribute.Text;
     icon: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String;
   };
@@ -134,6 +155,20 @@ export interface ShareComponentSeo extends Struct.ComponentSchema {
     metaDescription: Schema.Attribute.RichText;
     metaImage: Schema.Attribute.Media<'images'>;
     metaTitle: Schema.Attribute.String;
+  };
+}
+
+export interface ShareComponentTitleContentBlock
+  extends Struct.ComponentSchema {
+  collectionName: 'components_share_component_title_content_blocks';
+  info: {
+    displayName: 'Title Content Block';
+    icon: 'grid';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -202,9 +237,11 @@ declare module '@strapi/strapi' {
       'page-blocks.cards-block': PageBlocksCardsBlock;
       'page-blocks.content-image-block': PageBlocksContentImageBlock;
       'page-blocks.hero-about-block': PageBlocksHeroAboutBlock;
+      'page-blocks.process-block': PageBlocksProcessBlock;
       'partner-items.partner-item': PartnerItemsPartnerItem;
       'share-component.cards-repeater-items': ShareComponentCardsRepeaterItems;
       'share-component.seo': ShareComponentSeo;
+      'share-component.title-content-block': ShareComponentTitleContentBlock;
       'sliders-items.slider-items': SlidersItemsSliderItems;
       'tab-items.tab-item': TabItemsTabItem;
       'testimonial-item.testimonial-items': TestimonialItemTestimonialItems;

@@ -39,7 +39,8 @@
       "components": [
         "page-blocks.hero-about-block",
         "page-blocks.content-image-block",
-        "page-blocks.cards-block"
+        "page-blocks.cards-block",
+        "page-blocks.process-block"
       ]
     }
   }

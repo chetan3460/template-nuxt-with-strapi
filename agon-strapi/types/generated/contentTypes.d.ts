@@ -742,6 +742,7 @@ export interface ApiSitemapSitemap extends Struct.CollectionTypeSchema {
         'page-blocks.hero-about-block',
         'page-blocks.content-image-block',
         'page-blocks.cards-block',
+        'page-blocks.process-block',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;

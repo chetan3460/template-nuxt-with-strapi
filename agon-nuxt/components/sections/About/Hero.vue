@@ -1,5 +1,7 @@
 <template>
-    <div v-if="heroData.length" class="full-width banner-hero banner-2">
+
+
+    <div v-if="heroData !== null" class="full-width banner-hero banner-2 bg-[#bee1e6]">
         <div v-for="(item, index) in heroData" :key="item.id"
             class="px-[12px] md:px-[36px] xl:px-0 mt-0 z-10 relative mx-auto py-[60px] max-w-[1320px] lg:flex lg:items-center">
             <div class="lg:w-[60%] lg:mr-[150px]">

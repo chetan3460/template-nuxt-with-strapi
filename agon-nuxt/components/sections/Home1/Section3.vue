@@ -25,9 +25,7 @@
         <div v-for="(item, index) in seeWhyData.SeeWhyBlockItems" :key="item.id"
             :class="['tab-content lg:gap-[30px] lg:flex', selectedTab === index ? (index === 0 ? 'bg-bg-2' : 'bg-bg-3') : '!hidden']">
             <div class="p-5 md:p-[60px] lg:w-1/2">
-                <!-- <h2 class="font-bold font-chivo text-[28px] leading-[32px] md:text-heading-2 mb-[30px]">{{ item.title }}
-                </h2> -->
-                <!-- <div class="text-excerpt mb-[40px]" v-html="item.description"></div> -->
+
                 <div class="prose prose-h2:font-bold prose-h2:font-chivo prose-h2:text-[28px] prose-h2:leading-[32px] prose-h2:mb-[30px] prose-p:text-excerpt prose-p:text-[20px] prose-p:mb-[40px] mb-[60px]"
                     v-html="renderMarkdown(item.description)">
                 </div>

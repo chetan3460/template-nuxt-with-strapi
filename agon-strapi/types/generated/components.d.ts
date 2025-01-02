@@ -78,6 +78,29 @@ export interface PageBlocksContentImageBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface PageBlocksFaqBlock extends Struct.ComponentSchema {
+  collectionName: 'components_page_blocks_faq_blocks';
+  info: {
+    description: '';
+    displayName: 'Faq Block';
+    icon: 'apps';
+  };
+  attributes: {
+    ApproachRepeater: Schema.Attribute.Component<
+      'share-component.title-description-faq',
+      true
+    >;
+    FaqRepeater: Schema.Attribute.Component<
+      'share-component.title-description-faq',
+      true
+    >;
+    HeadingBlock: Schema.Attribute.Component<
+      'share-component.title-content-block',
+      false
+    >;
+  };
+}
+
 export interface PageBlocksHeroAboutBlock extends Struct.ComponentSchema {
   collectionName: 'components_page_blocks_hero_about_blocks';
   info: {
@@ -140,6 +163,7 @@ export interface ShareComponentCardsRepeaterItems
   attributes: {
     content: Schema.Attribute.Text;
     icon: Schema.Attribute.Media<'images'>;
+    shapeImg: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String;
   };
 }
@@ -162,12 +186,33 @@ export interface ShareComponentTitleContentBlock
   extends Struct.ComponentSchema {
   collectionName: 'components_share_component_title_content_blocks';
   info: {
+    description: '';
     displayName: 'Title Content Block';
     icon: 'grid';
   };
   attributes: {
     content: Schema.Attribute.RichText;
     subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ShareComponentTitleDescriptionFaq
+  extends Struct.ComponentSchema {
+  collectionName: 'components_share_component_title_description_faqs';
+  info: {
+    description: '';
+    displayName: 'Title Description Repeater';
+    icon: 'apps';
+  };
+  attributes: {
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultMarkdown';
+        }
+      >;
     title: Schema.Attribute.String;
   };
 }
@@ -236,12 +281,14 @@ declare module '@strapi/strapi' {
       'lists-items.list-items': ListsItemsListItems;
       'page-blocks.cards-block': PageBlocksCardsBlock;
       'page-blocks.content-image-block': PageBlocksContentImageBlock;
+      'page-blocks.faq-block': PageBlocksFaqBlock;
       'page-blocks.hero-about-block': PageBlocksHeroAboutBlock;
       'page-blocks.process-block': PageBlocksProcessBlock;
       'partner-items.partner-item': PartnerItemsPartnerItem;
       'share-component.cards-repeater-items': ShareComponentCardsRepeaterItems;
       'share-component.seo': ShareComponentSeo;
       'share-component.title-content-block': ShareComponentTitleContentBlock;
+      'share-component.title-description-faq': ShareComponentTitleDescriptionFaq;
       'sliders-items.slider-items': SlidersItemsSliderItems;
       'tab-items.tab-item': TabItemsTabItem;
       'testimonial-item.testimonial-items': TestimonialItemTestimonialItems;

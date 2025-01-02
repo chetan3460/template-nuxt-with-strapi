@@ -31,6 +31,7 @@ const resolveComponent = (componentName) => {
         'page-blocks.content-image-block': defineAsyncComponent(() => import('~/components/sections/About/Section3.vue')),
         'page-blocks.cards-block': defineAsyncComponent(() => import('~/components/sections/About/Section4.vue')),
         'page-blocks.process-block': defineAsyncComponent(() => import('~/components/sections/About/Section5.vue')),
+        'page-blocks.faq-block': defineAsyncComponent(() => import('~/components/sections/About/Section6.vue')),
         // Add more block mappings here as needed
     };
 

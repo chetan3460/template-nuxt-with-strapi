@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_page_blocks_faq_blocks",
+  "info": {
+    "displayName": "Faq Block",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "HeadingBlock": {
+      "type": "component",
+      "repeatable": false,
+      "component": "share-component.title-content-block"
+    },
+    "ApproachRepeater": {
+      "type": "component",
+      "repeatable": true,
+      "component": "share-component.title-description-faq"
+    },
+    "FaqRepeater": {
+      "type": "component",
+      "repeatable": true,
+      "component": "share-component.title-description-faq"
+    }
+  }
+}

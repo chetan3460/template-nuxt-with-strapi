@@ -51,10 +51,10 @@ watchEffect(async () => {
 
             if (data.value) {
                 // cardBlockData.value = data.value[0].Blocks;
-                console.log("Full Data Response:", data.value);
+                // console.log("Full Data Response:", data.value);
 
                 const blocks = data.value.data[0]?.Blocks || [];
-                console.log("Blocks:", blocks);
+                // console.log("Blocks:", blocks);
 
                 cardBlockData.value = blocks.filter(block => block.__component === 'page-blocks.cards-block');
 

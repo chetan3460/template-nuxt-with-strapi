@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_share_component_title_description_faqs",
+  "info": {
+    "displayName": "Title Description Repeater",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "defaultMarkdown"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    }
+  }
+}

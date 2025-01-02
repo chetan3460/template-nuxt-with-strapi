@@ -20,6 +20,13 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "shapeImg": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

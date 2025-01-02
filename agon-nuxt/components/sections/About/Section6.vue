@@ -1,849 +1,125 @@
 <template>
-    <div class="px-[12px] md:px-[36px] xl:px-0 mt-[70px] lg:mt-[150px]">
-        <div class="items-center justify-between md:flex mb-[80px] md:mb-[90px]">
-            <div class="mb-8">
-                <h2
-                    class="text-gray-900 font-bold font-chivo mb-5 text-[35px] leading-[44px] md:text-[46px] md:leading-[52px] lg:text-heading-1 md:mb-[30px] max-w-[725px]">
-                    Our Team</h2>
-                <p class="text-quote md:text-lead-lg text-gray-600">Decades of experience in design and development
-                </p>
-            </div>
-            <div class="flex items-center gap-5">
-                <div
-                    class="t1p place-items-center border border-gray-200 bg-gray-100 rounded-full cursor-pointer group transition-colors duration-200 w-[48px] xl:w-[64px] h-[48px] xl:h-[64px] hover:bg-gray-900 team-prev grid">
-                    <img class="group-hover:filter-white" src="/assets/images/icons/icon-prev.svg"
-                        alt="control icon button">
+    <div v-if="faqData?.length">
+        <div v-for="(item, index) in faqData" :key="item.id"
+            class="gap-6 flex flex-col mx-auto px-5 xl:gap-[50px] max-w-[950px] mt-[70px] lg:mt-[98px]">
+
+            <div class="flex-1 mb-[40px]">
+                <div class="text-center mb-[22px]">
+                    <h2 v-if="item.HeadingBlock?.title"
+                        class="font-bold font-chivo mx-auto text-[35px] leading-[44px] md:text-[46px] md:leading-[52px] lg:text-heading-1 text-gray-900 mb-5 md:mb-[30px] max-w-[725px]">
+                        {{ item.HeadingBlock?.title }}</h2>
+                    <p class="text-quote md:text-lead-lg text-gray-600 mx-auto max-w-[976px]"></p>
                 </div>
-                <div
-                    class="t1n place-items-center border border-gray-200 bg-gray-100 rounded-full cursor-pointer group transition-colors duration-200 w-[48px] xl:w-[64px] h-[48px] xl:h-[64px] hover:bg-gray-900 team-next grid">
-                    <img class="group-hover:filter-white" src="/assets/images/icons/icon-next.svg"
-                        alt="control icon button">
+                <p v-if="item.HeadingBlock?.content"
+                    class="text-text text-gray-600 text-center mx-auto mb-[40px] md:w-[55ch]">{{
+                        item.HeadingBlock.content }}</p>
+
+
+                <div class="flex flex-col md:flex-row md:gap-[35px]">
+                    <div v-for="(appraochItem, pIndex) in item.ApproachRepeater" :key="appraochItem.id"
+                        class="mb-[30px] lg:mb-0">
+                        <div class="flex items-center mb-[17px]"><img class="mr-[9px]"
+                                src="/assets/images/icons/icon-leaf.svg" alt="leaf icon">
+                            <h4 v-if="appraochItem.title" class="text-heading-6 font-chivo font-bold">{{
+                                appraochItem.title }}</h4>
+                        </div>
+                        <p v-if="appraochItem.description" class="text-excerpt text-gray-600">
+                            {{ appraochItem.description }}</p>
+                    </div>
+
+
                 </div>
+
+
+
             </div>
+
+            <div class="flex-[1.5]">
+                <div v-for="(faqItem, pindex) in item.FaqRepeater" :key="faqItem.id"
+                    class="relative accordion-item mb-5">
+                    <details>
+                        <summary class="flex justify-between py-5 items-center gap-5 px-[30px]">
+                            <h4 v-if="faqItem.title" class="font-bold font-chivo text-[14px] xl:text-heading-5">{{
+                                faqItem.title }}</h4>
+                        </summary>
+                        <div v-if="faqItem.description"
+                            class="prose prose-p:text-text prose-p:content prose-p:font-chivo prose-p:mt-[30px] prose-p:ml-[30px]"
+                            v-html="renderMarkdown(faqItem.description)">
+
+
+                        </div>
+
+                    </details>
+                </div>
+
+            </div>
+
         </div>
-        <swiper :slides-per-view="1" :space-between="0" :loop="true" :autoplay="{
-            delay: 8000,
-            disableOnInteraction: true,
-        }" :pagination="{
-    el: '.swiper-pagination',
-    clickable: true,
-}" :navigation="{
-    nextEl: '.t1n',
-    prevEl: '.t1p',
-}" :modules="modules" class="team-list">
-            <swiper-slide class="grid-cols-1 !grid gap-x-[30px] gap-y-[48px] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-1.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">UI/UX Designer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darlene Robertson</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-2.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Software Tester</p>
-                            <p class="text-heading-6 font-chivo font-bold">Devon Lane</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-3.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Software Developer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darrell Steward</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-3.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Software Developer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darrell Steward</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-2.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">UI/UX Designer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darlene Robertson</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-2.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">UI/UX Designer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darlene Robertson</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-1.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Software Developer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darrell Steward</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-3.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Project Manager</p>
-                            <p class="text-heading-6 font-chivo font-bold">Courtney Henry</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </swiper-slide>
-            <swiper-slide class="grid-cols-1 !grid gap-x-[30px] gap-y-[48px] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-1.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">UI/UX Designer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darlene Robertson</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-2.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Software Tester</p>
-                            <p class="text-heading-6 font-chivo font-bold">Devon Lane</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-3.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Software Developer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darrell Steward</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-3.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Software Developer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darrell Steward</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-2.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">UI/UX Designer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darlene Robertson</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-2.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">UI/UX Designer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darlene Robertson</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-1.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Software Developer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darrell Steward</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-3.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Project Manager</p>
-                            <p class="text-heading-6 font-chivo font-bold">Courtney Henry</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </swiper-slide>
-            <swiper-slide class="grid-cols-1 !grid gap-x-[30px] gap-y-[48px] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-1.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">UI/UX Designer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darlene Robertson</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-2.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Software Tester</p>
-                            <p class="text-heading-6 font-chivo font-bold">Devon Lane</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-3.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Software Developer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darrell Steward</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-3.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Software Developer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darrell Steward</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-2.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">UI/UX Designer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darlene Robertson</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-2.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">UI/UX Designer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darlene Robertson</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-1.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Software Developer</p>
-                            <p class="text-heading-6 font-chivo font-bold">Darrell Steward</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-[30px]"> <img class="h-full w-full object-cover" src="/assets/images/team-3.png"
-                            alt="team member picture">
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <div class="mb-3">
-                            <p class="text-md mb-2 opacity-50 text-[#0A3361]">Project Manager</p>
-                            <p class="text-heading-6 font-chivo font-bold">Courtney Henry</p>
-                        </div>
-                        <p class="text-excerpt text-gray-600 line-clamp-2 opacity-60 mb-6">Lorem ipsum dolor sit
-                            amet consectetur imp adipiscing elit justo</p>
-                        <div>
-                            <p class="text-md text-gray-600 opacity-40 mb-5">Let’s Connect</p>
-                            <div class="flex items-center gap-4 z-50">
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-facebook-gray.svg" alt="facebook icon"></NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-instagram-gray.svg" alt="instagram icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-twitter-gray.svg" alt="twitter icon">
-                                </NuxtLink>
-                                <NuxtLink class="transition-transform duration-200 w-[26px] h-[26px] hover:-translate-y-1"
-                                    to="#"><img class="h-full w-full object-cover"
-                                        src="/assets/images/icons/icon-linkedin-gray.svg" alt="linkedin icon">
-                                </NuxtLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </swiper-slide>
-        </swiper>
+    </div>
+    <div v-else
+        class="flex items-center p-4 my-10 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 justify-center"
+        role="alert">
+        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+            <span class="font-medium">No data available.</span>
+        </div>
     </div>
 </template>
-<script>
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
-import { Swiper, SwiperSlide } from "swiper/vue"
-export default {
-    components: {
-        Swiper,
-        SwiperSlide,
-    },
-    setup() {
-        return {
-            modules: [Autoplay, Pagination, Navigation],
+<script setup>
+import { ref, watchEffect } from 'vue';
+import qs from 'qs';
+
+const faqData = ref([]);
+const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+const route = useRoute();
+import MarkdownIt from 'markdown-it';
+// Initialize the Markdown parser
+const markdownParser = new MarkdownIt();
+
+// Define a method to render Markdown
+const renderMarkdown = (content) => {
+    return markdownParser.render(content);
+};
+watchEffect(async () => {
+    const slug = route.params.slug;
+    if (slug) {
+        try {
+            // Use the qs library to build the query parameters for the API request
+            const queryParams = qs.stringify({
+                filters: {
+                    PageURL: {
+                        $eq: slug  // Filter for the matching page based on the slug
+                    }
+                },
+                populate: 'Blocks.ApproachRepeater,Blocks.FaqRepeater,Blocks.HeadingBlock'
+                // Include related data (icons and heading blocks)
+            });
+
+
+            const { data, error } = await useFetch(
+                `${strapiBaseUrl}/api/sitemaps?${queryParams}`  // Append the query string to the API endpoint
+            );
+
+
+            if (data.value) {
+                const blocks = data.value.data[0]?.Blocks || [];
+                faqData.value = blocks.filter(
+                    (block) => block.__component === "page-blocks.faq-block"
+                );
+            } else if (error.value) {
+                console.error('Error fetching data:', error.value);
+            }
+        } catch (err) {
+            console.error("Error fetching data:", err);
+
         }
-    },
-}
+    }
+})
+
+
 </script>

@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_page_blocks_service_page_banner_blocks",
+  "info": {
+    "displayName": "Service Page Banner Block",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "btnText": {
+      "type": "string"
+    },
+    "btnLink": {
+      "type": "string"
+    },
+    "btnText2": {
+      "type": "string"
+    },
+    "btnLink2": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "TitleContentItem": {
+      "type": "component",
+      "repeatable": false,
+      "component": "share-component.title-content-block"
+    }
+  }
+}

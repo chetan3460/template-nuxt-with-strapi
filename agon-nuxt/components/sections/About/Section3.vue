@@ -22,7 +22,7 @@
             <div class="relative mx-auto max-w-[1190px]">
 
 
-                <img class="h-full w-full object-cover rounded-2xl" :src="`${strapiBaseUrl}${item.image.url}`"
+                <img class="h-full w-full object-cover rounded-2xl" :src="`${strapiBaseUrl}${item.image?.url}`"
                     alt="Agon" />
 
 

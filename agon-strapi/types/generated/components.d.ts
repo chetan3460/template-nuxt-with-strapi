@@ -119,6 +119,25 @@ export interface PageBlocksHeroAboutBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface PageBlocksPartnerBlock extends Struct.ComponentSchema {
+  collectionName: 'components_page_blocks_partner_blocks';
+  info: {
+    description: '';
+    displayName: 'Partner Block';
+    icon: 'apps';
+  };
+  attributes: {
+    HeadingBlock: Schema.Attribute.Component<
+      'share-component.title-content-block',
+      false
+    >;
+    ImageRepeater: Schema.Attribute.Component<
+      'share-component.image-repeater',
+      true
+    >;
+  };
+}
+
 export interface PageBlocksProcessBlock extends Struct.ComponentSchema {
   collectionName: 'components_page_blocks_process_blocks';
   info: {
@@ -137,6 +156,27 @@ export interface PageBlocksProcessBlock extends Struct.ComponentSchema {
     >;
     subtitle: Schema.Attribute.String;
     title: Schema.Attribute.Text;
+  };
+}
+
+export interface PageBlocksServicePageBannerBlock
+  extends Struct.ComponentSchema {
+  collectionName: 'components_page_blocks_service_page_banner_blocks';
+  info: {
+    description: '';
+    displayName: 'Service Page Banner Block';
+    icon: 'apps';
+  };
+  attributes: {
+    btnLink: Schema.Attribute.String;
+    btnLink2: Schema.Attribute.String;
+    btnText: Schema.Attribute.String;
+    btnText2: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    TitleContentItem: Schema.Attribute.Component<
+      'share-component.title-content-block',
+      false
+    >;
   };
 }
 
@@ -168,6 +208,18 @@ export interface ShareComponentCardsRepeaterItems
   };
 }
 
+export interface ShareComponentImageRepeater extends Struct.ComponentSchema {
+  collectionName: 'components_share_component_image_repeaters';
+  info: {
+    description: '';
+    displayName: 'Image Repeater';
+    icon: 'picture';
+  };
+  attributes: {
+    images: Schema.Attribute.Media<'images'>;
+  };
+}
+
 export interface ShareComponentSeo extends Struct.ComponentSchema {
   collectionName: 'components_share_component_seos';
   info: {
@@ -193,7 +245,13 @@ export interface ShareComponentTitleContentBlock
   attributes: {
     content: Schema.Attribute.RichText;
     subtitle: Schema.Attribute.String;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultMarkdown';
+        }
+      >;
   };
 }
 
@@ -283,9 +341,12 @@ declare module '@strapi/strapi' {
       'page-blocks.content-image-block': PageBlocksContentImageBlock;
       'page-blocks.faq-block': PageBlocksFaqBlock;
       'page-blocks.hero-about-block': PageBlocksHeroAboutBlock;
+      'page-blocks.partner-block': PageBlocksPartnerBlock;
       'page-blocks.process-block': PageBlocksProcessBlock;
+      'page-blocks.service-page-banner-block': PageBlocksServicePageBannerBlock;
       'partner-items.partner-item': PartnerItemsPartnerItem;
       'share-component.cards-repeater-items': ShareComponentCardsRepeaterItems;
+      'share-component.image-repeater': ShareComponentImageRepeater;
       'share-component.seo': ShareComponentSeo;
       'share-component.title-content-block': ShareComponentTitleContentBlock;
       'share-component.title-description-faq': ShareComponentTitleDescriptionFaq;

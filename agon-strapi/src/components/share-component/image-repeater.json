@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_share_component_image_repeaters",
+  "info": {
+    "displayName": "Image Repeater",
+    "icon": "picture",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "images": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

@@ -5,7 +5,7 @@
         <div v-for="(item, index) in heroData" :key="item.id"
             class="px-[12px] md:px-[36px] xl:px-0 mt-0 z-10 relative mx-auto py-[60px] max-w-[1320px] lg:flex lg:items-center">
             <div class="lg:w-[60%] lg:mr-[150px]">
-                <span
+                <span v-if="item.subtitle"
                     class="font-chivo inline-block bg-bg-2 text-orange-900 py-[14px] px-[28px] rounded-[50px] text-[14px] leading-[14px] mb-[29px]">
                     {{ item.subtitle }}
                 </span>

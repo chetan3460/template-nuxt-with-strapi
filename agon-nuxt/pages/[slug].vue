@@ -2,21 +2,22 @@
     <div v-if="sitemap">
         <!-- <img :src="`/assets/images/about-1-bg.png`" alt=""
             class="w-full absolute left-0 z-0 object-fill top-[112px] h-[750px]"> -->
-        <h1>{{ sitemap.PageTitle }}</h1>
+        <!-- <h1>{{ sitemap.PageTitle }}</h1> -->
 
         <!-- Debugging: Display raw block data for verification -->
-        <div v-for="(block, index) in sitemap.Blocks" :key="index" class="mb-4">
-            <pre>{{ block }}</pre> <!-- Debugging: Log raw block data -->
-        </div>
+        <!-- <div v-for="(block, index) in sitemap.Blocks" :key="index" class="mb-4">
+            <pre>{{ block }}</pre>
+        </div> -->
+        <!-- Debugging: Log raw block data -->
 
         <!-- Render valid blocks -->
         <div v-for="block in filteredBlocks" :key="block.id">
             <component :is="resolveComponent(block.__component)" :data="block" />
         </div>
     </div>
-    <div v-else>
+    <!-- <div v-else>
         <p>{{ loadingMessage }}</p>
-    </div>
+    </div> -->
 </template>
 
 <script setup>
@@ -32,6 +33,8 @@ const resolveComponent = (componentName) => {
         'page-blocks.cards-block': defineAsyncComponent(() => import('~/components/sections/About/Section4.vue')),
         'page-blocks.process-block': defineAsyncComponent(() => import('~/components/sections/About/Section5.vue')),
         'page-blocks.faq-block': defineAsyncComponent(() => import('~/components/sections/About/Section6.vue')),
+        'page-blocks.service-page-banner-block': defineAsyncComponent(() => import('~/components/sections/About/Section7.vue')),
+        'page-blocks.partner-block': defineAsyncComponent(() => import('~/components/sections/About/Section8.vue')),
         // Add more block mappings here as needed
     };
 

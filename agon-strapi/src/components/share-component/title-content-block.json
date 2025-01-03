@@ -10,11 +10,15 @@
     "subtitle": {
       "type": "string"
     },
-    "title": {
-      "type": "string"
-    },
     "content": {
       "type": "richtext"
+    },
+    "title": {
+      "type": "customField",
+      "options": {
+        "preset": "defaultMarkdown"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

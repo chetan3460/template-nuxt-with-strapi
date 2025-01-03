@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_page_blocks_two_col_image_content_blocks",
+  "info": {
+    "displayName": "Two Col Image Content Block",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "TwoCardsReapeater": {
+      "type": "component",
+      "repeatable": true,
+      "component": "share-component.cards-repeater-items"
+    }
+  }
+}

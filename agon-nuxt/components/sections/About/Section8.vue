@@ -64,7 +64,7 @@ watchEffect(async () => {
 
             if (data.value) {
                 const blocks = data.value.data[0]?.Blocks || [];
-                console.log("blocks:", blocks);
+                // console.log("blocks:", blocks);
 
                 partnerData.value = blocks.filter(
                     (block) => block.__component === "page-blocks.partner-block"

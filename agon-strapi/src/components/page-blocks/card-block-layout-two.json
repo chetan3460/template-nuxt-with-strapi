@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_page_blocks_card_block_layout_twos",
+  "info": {
+    "displayName": "Card Block Layout Two",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "CardLayoutItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "share-component.cards-repeater-items"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

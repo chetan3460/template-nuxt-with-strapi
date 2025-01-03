@@ -601,12 +601,12 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-BNAwJhB6.mjs')
+    component: () => import('./_slug_-dzseIMNV.mjs')
   },
   {
     name: "about-backup",
     path: "/about/backup",
-    component: () => import('./backup-BgX4iXNG.mjs')
+    component: () => import('./backup-CqREjqJF.mjs')
   },
   {
     name: "about-index1",
@@ -616,22 +616,22 @@ const _routes = [
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-4NCQ-6Gf.mjs')
+    component: () => import('./_...slug_-Bci3D9WS.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-CzuxeDpg.mjs')
+    component: () => import('./index-DoNCmhet.mjs')
   },
   {
     name: "career-details",
     path: "/career-details",
-    component: () => import('./index-DY_uAkAZ.mjs')
+    component: () => import('./index-DgEwr9if.mjs')
   },
   {
     name: "career",
     path: "/career",
-    component: () => import('./index-BKKBuioZ.mjs')
+    component: () => import('./index-BAtfvk5B.mjs')
   },
   {
     name: "contact",
@@ -651,7 +651,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-CQmK_zQJ.mjs')
+    component: () => import('./index-BOQfEhxn.mjs')
   },
   {
     name: "services-1",
@@ -661,7 +661,7 @@ const _routes = [
   {
     name: "services-2",
     path: "/services-2",
-    component: () => import('./index-g9rBY47F.mjs')
+    component: () => import('./index-CUEyBG-S.mjs')
   },
   {
     name: "term-conditions",
@@ -1029,8 +1029,8 @@ const plugins = [
   strapi_liDD6vJf4g
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-BULmaW29.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-C3FVLMI2.mjs'))
+  default: defineAsyncComponent(() => import('./default-DSCzdDtx.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-BSIHJoT2.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -1393,5 +1393,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _imports_0 as _, useHead as a, _export_sfc as b, _imports_0$1 as c, useRuntimeConfig as d, entry$1 as default, useRoute as e, useRouter as f, navigateTo as g, asyncDataDefaults as h, createError as i, fetchDefaults as j, nuxtLinkDefaults as n, resolveRouteObject as r, useNuxtApp as u };
+export { _imports_0 as _, useHead as a, _export_sfc as b, _imports_0$1 as c, useRoute as d, entry$1 as default, useRouter as e, navigateTo as f, useRuntimeConfig as g, asyncDataDefaults as h, createError as i, fetchDefaults as j, nuxtLinkDefaults as n, resolveRouteObject as r, useNuxtApp as u };
 //# sourceMappingURL=server.mjs.map

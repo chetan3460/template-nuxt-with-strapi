@@ -48,6 +48,23 @@ export interface ListsItemsListItems extends Struct.ComponentSchema {
   };
 }
 
+export interface PageBlocksCardBlockLayoutTwo extends Struct.ComponentSchema {
+  collectionName: 'components_page_blocks_card_block_layout_twos';
+  info: {
+    description: '';
+    displayName: 'Card Block Layout Two';
+    icon: 'apps';
+  };
+  attributes: {
+    CardLayoutItems: Schema.Attribute.Component<
+      'share-component.cards-repeater-items',
+      true
+    >;
+    content: Schema.Attribute.RichText;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface PageBlocksCardsBlock extends Struct.ComponentSchema {
   collectionName: 'components_page_blocks_cards_blocks';
   info: {
@@ -176,6 +193,23 @@ export interface PageBlocksServicePageBannerBlock
     TitleContentItem: Schema.Attribute.Component<
       'share-component.title-content-block',
       false
+    >;
+  };
+}
+
+export interface PageBlocksTwoColImageContentBlock
+  extends Struct.ComponentSchema {
+  collectionName: 'components_page_blocks_two_col_image_content_blocks';
+  info: {
+    displayName: 'Two Col Image Content Block';
+    icon: 'apps';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    title: Schema.Attribute.String;
+    TwoCardsReapeater: Schema.Attribute.Component<
+      'share-component.cards-repeater-items',
+      true
     >;
   };
 }
@@ -337,6 +371,7 @@ declare module '@strapi/strapi' {
       'featured-items.featured-item': FeaturedItemsFeaturedItem;
       'hero-component.hero-component': HeroComponentHeroComponent;
       'lists-items.list-items': ListsItemsListItems;
+      'page-blocks.card-block-layout-two': PageBlocksCardBlockLayoutTwo;
       'page-blocks.cards-block': PageBlocksCardsBlock;
       'page-blocks.content-image-block': PageBlocksContentImageBlock;
       'page-blocks.faq-block': PageBlocksFaqBlock;
@@ -344,6 +379,7 @@ declare module '@strapi/strapi' {
       'page-blocks.partner-block': PageBlocksPartnerBlock;
       'page-blocks.process-block': PageBlocksProcessBlock;
       'page-blocks.service-page-banner-block': PageBlocksServicePageBannerBlock;
+      'page-blocks.two-col-image-content-block': PageBlocksTwoColImageContentBlock;
       'partner-items.partner-item': PartnerItemsPartnerItem;
       'share-component.cards-repeater-items': ShareComponentCardsRepeaterItems;
       'share-component.image-repeater': ShareComponentImageRepeater;

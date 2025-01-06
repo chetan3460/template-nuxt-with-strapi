@@ -48,6 +48,9 @@
         "page-blocks.card-block-layout-two",
         "page-blocks.two-col-image-content-block"
       ]
+    },
+    "Order": {
+      "type": "integer"
     }
   }
 }

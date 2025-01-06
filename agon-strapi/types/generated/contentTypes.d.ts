@@ -517,6 +517,39 @@ export interface ApiCardsBlockCardsBlock extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiContactUsFormContactUsForm
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'contact_us_forms';
+  info: {
+    displayName: 'Contact Us Form';
+    pluralName: 'contact-us-forms';
+    singularName: 'contact-us-form';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    CompanyName: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Email: Schema.Attribute.Email & Schema.Attribute.Required;
+    FullName: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact-us-form.contact-us-form'
+    > &
+      Schema.Attribute.Private;
+    Message: Schema.Attribute.Text;
+    PhoneNumber: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiContentImageSectionContentImageSection
   extends Struct.SingleTypeSchema {
   collectionName: 'content_image_sections';
@@ -760,6 +793,7 @@ export interface ApiSitemapSitemap extends Struct.CollectionTypeSchema {
       'api::sitemap.sitemap'
     > &
       Schema.Attribute.Private;
+    Order: Schema.Attribute.Integer;
     PageTitle: Schema.Attribute.String;
     PageURL: Schema.Attribute.UID<'PageTitle'>;
     ParentPage: Schema.Attribute.Relation<'oneToOne', 'api::sitemap.sitemap'>;
@@ -1384,6 +1418,7 @@ declare module '@strapi/strapi' {
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::blog.blog': ApiBlogBlog;
       'api::cards-block.cards-block': ApiCardsBlockCardsBlock;
+      'api::contact-us-form.contact-us-form': ApiContactUsFormContactUsForm;
       'api::content-image-section.content-image-section': ApiContentImageSectionContentImageSection;
       'api::feature-block.feature-block': ApiFeatureBlockFeatureBlock;
       'api::hero-section.hero-section': ApiHeroSectionHeroSection;

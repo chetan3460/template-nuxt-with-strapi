@@ -5,6 +5,10 @@ module.exports = () => ({
             maxDepth: 10,
         },
     },
+    seo: {
+        enabled: true,
+    },
+
 
 
 });

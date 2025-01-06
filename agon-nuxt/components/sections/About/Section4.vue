@@ -16,7 +16,7 @@
                 <div class="lg:flex lg:items-center gap-[30px]">
                     <div v-for="(item2, index) in item.ItemRepeater" :key="item2.id"
                         class="flex items-start gap-5 transition-all duration-300  hover:translate-y-[-3px] border-b border-gray-200 pb-[50px]">
-                        <img class="h-full w-full object-cover max-w-[64px]" :src="`${strapiBaseUrl}${item2.icon.url}`"
+                        <img class="h-full w-full object-cover max-w-[64px]" :src="`${strapiBaseUrl}${item2.icon?.url}`"
                             alt="icon" />
                         <div>
                             <h3 class="font-bold font-chivo text-[20px] leading-[26px] md:text-heading-4 mb-[14px]">{{

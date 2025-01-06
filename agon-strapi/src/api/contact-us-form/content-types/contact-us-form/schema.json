@@ -4,27 +4,28 @@
   "info": {
     "singularName": "contact-us-form",
     "pluralName": "contact-us-forms",
-    "displayName": "Contact Us Form"
+    "displayName": "Contact Us Form",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "FullName": {
+    "name": {
       "type": "string"
     },
-    "CompanyName": {
+    "company": {
       "type": "text"
     },
-    "Email": {
+    "email": {
       "type": "email",
       "required": true
     },
-    "PhoneNumber": {
+    "phone": {
       "type": "string"
     },
-    "Message": {
+    "message": {
       "type": "text"
     }
   }

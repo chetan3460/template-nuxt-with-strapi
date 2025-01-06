@@ -37,6 +37,7 @@ const resolveComponent = (componentName) => {
         'page-blocks.partner-block': defineAsyncComponent(() => import('~/components/sections/About/Section8.vue')),
         'page-blocks.card-block-layout-two': defineAsyncComponent(() => import('~/components/sections/About/Section9.vue')),
         'page-blocks.two-col-image-content-block': defineAsyncComponent(() => import('~/components/sections/About/Section10.vue')),
+        'page-blocks.contact-us': defineAsyncComponent(() => import('~/components/sections/About/ContactForm.vue')),
         // Add more block mappings here as needed
     };
 

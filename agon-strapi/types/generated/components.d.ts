@@ -82,6 +82,20 @@ export interface PageBlocksCardsBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface PageBlocksContactUs extends Struct.ComponentSchema {
+  collectionName: 'components_page_blocks_contact_uses';
+  info: {
+    displayName: 'Contact Us';
+    icon: 'apps';
+  };
+  attributes: {
+    Content: Schema.Attribute.Text;
+    FormTitle: Schema.Attribute.String;
+    SectionTitle: Schema.Attribute.Text;
+    ShowPattern: Schema.Attribute.Boolean;
+  };
+}
+
 export interface PageBlocksContentImageBlock extends Struct.ComponentSchema {
   collectionName: 'components_page_blocks_content_image_block_s';
   info: {
@@ -309,6 +323,57 @@ export interface ShareComponentTitleDescriptionFaq
   };
 }
 
+export interface SharedOpenGraph extends Struct.ComponentSchema {
+  collectionName: 'components_shared_open_graphs';
+  info: {
+    displayName: 'openGraph';
+    icon: 'project-diagram';
+  };
+  attributes: {
+    og_description: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 200;
+      }>;
+    og_image: Schema.Attribute.Media<'images'>;
+    og_title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 70;
+      }>;
+    og_type: Schema.Attribute.String;
+    og_url: Schema.Attribute.String;
+  };
+}
+
+export interface SharedSeo extends Struct.ComponentSchema {
+  collectionName: 'components_shared_seos';
+  info: {
+    displayName: 'seo';
+    icon: 'search';
+  };
+  attributes: {
+    canonicalURL: Schema.Attribute.String;
+    keywords: Schema.Attribute.Text;
+    metaDescription: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 160;
+        minLength: 50;
+      }>;
+    metaImage: Schema.Attribute.Media<'images'>;
+    metaRobots: Schema.Attribute.String;
+    metaTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+    metaViewport: Schema.Attribute.String;
+    openGraph: Schema.Attribute.Component<'shared.open-graph', false>;
+    structuredData: Schema.Attribute.JSON;
+  };
+}
+
 export interface SlidersItemsSliderItems extends Struct.ComponentSchema {
   collectionName: 'components_sliders_items_slider_items';
   info: {
@@ -373,6 +438,7 @@ declare module '@strapi/strapi' {
       'lists-items.list-items': ListsItemsListItems;
       'page-blocks.card-block-layout-two': PageBlocksCardBlockLayoutTwo;
       'page-blocks.cards-block': PageBlocksCardsBlock;
+      'page-blocks.contact-us': PageBlocksContactUs;
       'page-blocks.content-image-block': PageBlocksContentImageBlock;
       'page-blocks.faq-block': PageBlocksFaqBlock;
       'page-blocks.hero-about-block': PageBlocksHeroAboutBlock;
@@ -386,6 +452,8 @@ declare module '@strapi/strapi' {
       'share-component.seo': ShareComponentSeo;
       'share-component.title-content-block': ShareComponentTitleContentBlock;
       'share-component.title-description-faq': ShareComponentTitleDescriptionFaq;
+      'shared.open-graph': SharedOpenGraph;
+      'shared.seo': SharedSeo;
       'sliders-items.slider-items': SlidersItemsSliderItems;
       'tab-items.tab-item': TabItemsTabItem;
       'testimonial-item.testimonial-items': TestimonialItemTestimonialItems;

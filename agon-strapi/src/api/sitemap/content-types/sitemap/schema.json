@@ -46,7 +46,8 @@
         "share-component.title-content-block",
         "page-blocks.partner-block",
         "page-blocks.card-block-layout-two",
-        "page-blocks.two-col-image-content-block"
+        "page-blocks.two-col-image-content-block",
+        "page-blocks.contact-us"
       ]
     },
     "Order": {

@@ -521,6 +521,7 @@ export interface ApiContactUsFormContactUsForm
   extends Struct.CollectionTypeSchema {
   collectionName: 'contact_us_forms';
   info: {
+    description: '';
     displayName: 'Contact Us Form';
     pluralName: 'contact-us-forms';
     singularName: 'contact-us-form';
@@ -529,20 +530,20 @@ export interface ApiContactUsFormContactUsForm
     draftAndPublish: true;
   };
   attributes: {
-    CompanyName: Schema.Attribute.Text;
+    company: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Email: Schema.Attribute.Email & Schema.Attribute.Required;
-    FullName: Schema.Attribute.String;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::contact-us-form.contact-us-form'
     > &
       Schema.Attribute.Private;
-    Message: Schema.Attribute.Text;
-    PhoneNumber: Schema.Attribute.String;
+    message: Schema.Attribute.Text;
+    name: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -580,6 +581,39 @@ export interface ApiContentImageSectionContentImageSection
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     videoUrl: Schema.Attribute.String;
+  };
+}
+
+export interface ApiEmailTemplateEmailTemplate
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'email_templates';
+  info: {
+    displayName: 'Email Template';
+    pluralName: 'email-templates';
+    singularName: 'email-template';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email_type: Schema.Attribute.Enumeration<['contact-details']>;
+    enable_email: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::email-template.email-template'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    reciever_emails: Schema.Attribute.String;
+    subject: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -782,6 +816,7 @@ export interface ApiSitemapSitemap extends Struct.CollectionTypeSchema {
         'page-blocks.partner-block',
         'page-blocks.card-block-layout-two',
         'page-blocks.two-col-image-content-block',
+        'page-blocks.contact-us',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -1420,6 +1455,7 @@ declare module '@strapi/strapi' {
       'api::cards-block.cards-block': ApiCardsBlockCardsBlock;
       'api::contact-us-form.contact-us-form': ApiContactUsFormContactUsForm;
       'api::content-image-section.content-image-section': ApiContentImageSectionContentImageSection;
+      'api::email-template.email-template': ApiEmailTemplateEmailTemplate;
       'api::feature-block.feature-block': ApiFeatureBlockFeatureBlock;
       'api::hero-section.hero-section': ApiHeroSectionHeroSection;
       'api::latest-post.latest-post': ApiLatestPostLatestPost;

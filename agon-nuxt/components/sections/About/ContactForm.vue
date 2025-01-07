@@ -23,44 +23,137 @@
                         <p class="text-text text-gray-600 underline">(239) 555-0108</p>
                         <p class="text-text text-gray-600 underline">contact@agon.com</p>
                     </div>
-                    <form class="flex-1" action="/">
+                    <form class="flex-1" @submit.prevent="submitForm">
                         <div class="flex flex-col gap-6 mb-6 lg:flex-row xl:gap-[30px]">
                             <input
                                 class="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
-                                type="text" placeholder="Enter your name" />
+                                v-model="formData.name" type="text" placeholder="Enter your name" required />
                             <input
                                 class="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
-                                type="text" placeholder="Company (optional)" />
+                                v-model="formData.company" type="text" placeholder="Company (optional)" />
                         </div>
                         <div class="flex flex-col gap-6 mb-6 lg:flex-row xl:gap-[30px]">
                             <input
                                 class="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
-                                type="text" placeholder="Your email" />
+                                v-model="formData.email" type="email" placeholder="Your email" required />
                             <input
                                 class="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
-                                type="text" placeholder="Phone number" />
+                                v-model="formData.phone" type="tel" placeholder="Phone number" />
                         </div>
                         <textarea
                             class="w-full py-5 resize-none outline-0 px-[30px] max-h-[150px] mb-[35px] md:mb-[56px]"
-                            name="" cols="100" rows="10" placeholder="Tell us about yourself"></textarea>
+                            v-model="formData.message" placeholder="Tell us about yourself" required></textarea>
                         <div class="flex flex-col gap-5">
                             <button
                                 class="flex items-center transition-colors duration-200 px-[22px] py-[15px] lg:px-[32px] lg:py-[22px] rounded-[50px] font-chivo font-semibold text-md md:text-lg text-white bg-gray-900 w-fit"
                                 type="submit">
-                                Send Message<i> <img class="ml-[7px] w-[12px] filter-white"
-                                        src="/assets/images/icons/icon-right.svg" alt="arrow right icon" /></i>
+                                Send Message
+                                <i>
+                                    <img class="ml-[7px] w-[12px] filter-white"
+                                        src="/assets/images/icons/icon-right.svg" alt="arrow right icon" />
+                                </i>
                             </button>
-                            <p class="text-md text-gray-500">By clicking contact us button, you agree our terms and
-                                policy,
-                            </p>
+                            <p v-if="formStatus.success === true" class="text-green-500">{{ formStatus.message }}</p>
+                            <p v-if="formStatus.success === false" class="text-red-500">{{ formStatus.message }}</p>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
 </template>
+
 <script setup>
+import { ref, watchEffect } from 'vue';
+import qs from 'qs';
+
+const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+const route = useRoute();
+const contactBlockData = ref([]);
+const formData = ref({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    message: '',
+});
+const formStatus = ref({
+    success: null,
+    message: '',
+});
+
+watchEffect(async () => {
+    const slug = route.params.slug;
+    if (slug) {
+        try {
+            const queryParams = qs.stringify({
+                filters: {
+                    PageURL: {
+                        $eq: slug,
+                    },
+                },
+                populate: [
+                    "Blocks",
+                ]
+            });
+
+            const { data } = await useFetch(
+                `${strapiBaseUrl}/api/sitemaps?${queryParams}`
+            );
+
+            if (data.value) {
+                const blocks = data.value.data[0]?.Blocks || [];
+                contactBlockData.value = blocks.filter(block => block.__component === 'page-blocks.contact-us');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+});
+
+const submitForm = async () => {
+    try {
+        const response = await fetch(`${strapiBaseUrl}/api/contact-us-forms`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: formData.value }), // Strapi expects "data" wrapper
+        });
+
+        if (response.ok) {
+            formStatus.value = {
+                success: true,
+                message: 'Your message has been sent successfully!',
+            };
+
+            // Reset form data
+            formData.value = {
+                name: '',
+                company: '',
+                email: '',
+                phone: '',
+                message: '',
+            };
+        } else {
+            const errorData = await response.json(); // Extract error details
+            console.error('Error response:', errorData);
+            throw new Error('Failed to submit the form.');
+        }
+    } catch (error) {
+        console.error('Form submission error:', error);
+        formStatus.value = {
+            success: false,
+            message: 'An error occurred while sending your message. Please try again later.',
+        };
+    }
+};
+
+</script>
+
+
+<!-- <script setup>
 import { ref, watchEffect } from 'vue';
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 const route = useRoute();
@@ -94,4 +187,4 @@ watchEffect(async () => {
         }
     }
 });
-</script>
+</script> -->

@@ -4,7 +4,7 @@ module.exports = {
 
         try {
             // Example: Save to Strapi or send an email
-            await strapi.query('api::form-submission.form-submission').create({
+            await strapi.query('api::contact-us.contact-us').create({
                 data: { name, company, email, phone, message },
             });
 

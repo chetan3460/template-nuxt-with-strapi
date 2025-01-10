@@ -56,7 +56,7 @@
 
         </div>
     </div>
-    <div v-else
+    <!-- <div v-else
         class="flex items-center p-4 my-10 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 justify-center"
         role="alert">
         <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +68,7 @@
         <div>
             <span class="font-medium">No data available.</span>
         </div>
-    </div>
+    </div> -->
 </template>
 <script setup>
 import { ref, watchEffect } from 'vue';

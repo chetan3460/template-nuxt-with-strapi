@@ -1,13 +1,20 @@
-import { hasInjectionContext, inject, version, ref, watchEffect, watch, getCurrentInstance, defineAsyncComponent, defineComponent, h, computed, unref, provide, shallowReactive, Suspense, nextTick, Fragment, Transition, mergeProps, useSSRContext, createApp, effectScope, reactive, getCurrentScope, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, isReadonly, withCtx, isRef, isShallow, isReactive, toRaw } from 'vue';
-import { $ as $fetch, i as baseURL, j as hasProtocol, k as isScriptProtocol, l as joinURL, w as withQuery, c as createError$1, m as defu, p as publicAssetsURL, s as sanitizeStatusCode, n as getContext, o as createHooks, t as toRouteMatcher, q as createRouter$1 } from '../nitro/nitro.mjs';
-import { CapoPlugin, getActiveHead } from 'unhead';
-import { defineHeadPlugin, composableNames } from '@unhead/shared';
+import { hasInjectionContext, inject, version, ref, watchEffect, watch, getCurrentInstance, defineAsyncComponent, defineComponent, h, computed, unref, provide, shallowReactive, Suspense, nextTick, Fragment, Transition, mergeProps, useSSRContext, createApp, effectScope, reactive, getCurrentScope, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, isReadonly, withCtx, isRef, isShallow, isReactive, toRaw, toValue } from 'vue';
+import { $ as $fetch, F as baseURL, G as hasProtocol, I as isScriptProtocol, J as joinURL, K as withQuery, c as createError$1, L as defu, p as publicAssetsURL, M as sanitizeStatusCode, N as getContext, O as createHooks, P as withoutTrailingSlash, Q as titleCase, R as toRouteMatcher, S as createRouter$1, T as camelCase, A as parseURL, U as withoutBase, V as stringifyQuery, W as withLeadingSlash, X as withBase, w as withTrailingSlash } from '../nitro/nitro.mjs';
+import { getActiveHead, CapoPlugin } from 'unhead';
+import { defineHeadPlugin, composableNames, unpackMeta } from '@unhead/shared';
 import { useRoute as useRoute$1, RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
+import { InferSeoMetaPlugin } from '@unhead/addons';
+import { defineWebSite, defineWebPage, SchemaOrgUnheadPlugin } from '@unhead/schema-org/vue';
+import { parse, stringify } from 'devalue';
 import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs, ssrRenderAttr } from 'vue/server-renderer';
+import 'lru-cache';
+import '@unocss/core';
+import '@unocss/preset-wind';
 import 'node:http';
 import 'node:https';
 import 'node:fs';
 import 'node:path';
+import 'consola/core';
 import 'node:url';
 import 'ipx';
 
@@ -437,6 +444,32 @@ const coreComposableNames = [
 ({
   "@unhead/vue": [...coreComposableNames, ...composableNames]
 });
+function useSeoMeta(input, options) {
+  const { title, titleTemplate, ...meta } = input;
+  return useHead({
+    title,
+    titleTemplate,
+    // @ts-expect-error runtime type
+    _flatMeta: meta
+  }, {
+    ...options,
+    transform(t) {
+      const meta2 = unpackMeta({ ...t._flatMeta });
+      delete t._flatMeta;
+      return {
+        // @ts-expect-error runtime type
+        ...t,
+        meta: meta2
+      };
+    }
+  });
+}
+function useServerHead(input, options = {}) {
+  const head = options.head || injectHead();
+  delete options.head;
+  if (head)
+    return head.push(input, { ...options, mode: "server" });
+}
 [CapoPlugin({ track: true })];
 const unhead_KgADcZ0jPj = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:head",
@@ -468,7 +501,7 @@ function createContext(opts = {}) {
     }
   }
   const _getCurrentInstance = () => {
-    if (als && currentInstance === void 0) {
+    if (als) {
       const instance = als.getStore();
       if (instance !== void 0) {
         return instance;
@@ -601,12 +634,12 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-C7dfhQJB.mjs')
+    component: () => import('./_slug_-8pwT3utN.mjs')
   },
   {
     name: "about-backup",
     path: "/about/backup",
-    component: () => import('./backup-2d7m4O_w.mjs')
+    component: () => import('./backup-DTW2t3x4.mjs')
   },
   {
     name: "about-index1",
@@ -616,67 +649,67 @@ const _routes = [
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-DNIeJ2OP.mjs')
+    component: () => import('./_...slug_-ClvUSDop.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-COrLBlPv.mjs')
+    component: () => import('./index-BmPQB7x4.mjs')
   },
   {
     name: "career-details",
     path: "/career-details",
-    component: () => import('./index-tvQIzHVA.mjs')
+    component: () => import('./index-BTVxcdWh.mjs')
   },
   {
     name: "career",
     path: "/career",
-    component: () => import('./index-eplgjnmZ.mjs')
+    component: () => import('./index-5aOoYR9S.mjs')
   },
   {
     name: "contact",
     path: "/contact",
-    component: () => import('./index-Ccp2YWfM.mjs')
+    component: () => import('./index-Ca4vETkr.mjs')
   },
   {
     name: "error-404",
     path: "/error-404",
-    component: () => import('./index-Chr6YEB2.mjs')
+    component: () => import('./index-DAHo4uOx.mjs')
   },
   {
     name: "faqs-1",
     path: "/faqs-1",
-    component: () => import('./index-DiF_GFrg.mjs')
+    component: () => import('./index-CzTe7fsi.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DJ-CGZNt.mjs')
+    component: () => import('./index-DAVnwRy2.mjs')
   },
   {
     name: "services-1",
     path: "/services-1",
-    component: () => import('./index-BNx9eOBq.mjs')
+    component: () => import('./index-BBt0hPMR.mjs')
   },
   {
     name: "services-2",
     path: "/services-2",
-    component: () => import('./index-CeE_KD_j.mjs')
+    component: () => import('./index-zTZ5Bcd7.mjs')
   },
   {
     name: "term-conditions",
     path: "/term-conditions",
-    component: () => import('./index-BtQYobBY.mjs')
+    component: () => import('./index-CFyIAJ3r.mjs')
   },
   {
     name: "test",
     path: "/test",
-    component: () => import('./index-x2IugUM_.mjs')
+    component: () => import('./index-BrUPG_MU.mjs')
   },
   {
     name: "test-slugbackup",
     path: "/test/slugbackup",
-    component: () => import('./slugbackup-CfjgpU8K.mjs')
+    component: () => import('./slugbackup-Duh_uQON.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -992,11 +1025,68 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
     return { provide: { router } };
   }
 });
+const useStateKeyPrefix = "$s";
+function useState(...args) {
+  const autoKey = typeof args[args.length - 1] === "string" ? args.pop() : void 0;
+  if (typeof args[0] !== "string") {
+    args.unshift(autoKey);
+  }
+  const [_key, init] = args;
+  if (!_key || typeof _key !== "string") {
+    throw new TypeError("[nuxt] [useState] key must be a string: " + _key);
+  }
+  if (init !== void 0 && typeof init !== "function") {
+    throw new Error("[nuxt] [useState] init must be a function: " + init);
+  }
+  const key = useStateKeyPrefix + _key;
+  const nuxtApp = useNuxtApp();
+  const state = toRef(nuxtApp.payload.state, key);
+  if (state.value === void 0 && init) {
+    const initialValue = init();
+    if (isRef(initialValue)) {
+      nuxtApp.payload.state[key] = initialValue;
+      return initialValue;
+    }
+    state.value = initialValue;
+  }
+  return state;
+}
+function useRequestEvent(nuxtApp = useNuxtApp()) {
+  var _a;
+  return (_a = nuxtApp.ssrContext) == null ? void 0 : _a.event;
+}
+function useRequestFetch() {
+  var _a;
+  return ((_a = useRequestEvent()) == null ? void 0 : _a.$fetch) || globalThis.$fetch;
+}
 function definePayloadReducer(name, reduce) {
   {
     useNuxtApp().ssrContext._payloadReducers[name] = reduce;
   }
 }
+const _0_siteConfig_jtc2qNDx4l = /* @__PURE__ */ defineNuxtPlugin({
+  name: "nuxt-site-config:init",
+  enforce: "pre",
+  async setup(nuxtApp) {
+    var _a;
+    const state = useState("site-config");
+    {
+      const context = (_a = useRequestEvent()) == null ? void 0 : _a.context;
+      nuxtApp.hooks.hook("app:rendered", () => {
+        state.value = context == null ? void 0 : context.siteConfig.get({
+          debug: (/* @__PURE__ */ useRuntimeConfig())["nuxt-site-config"].debug,
+          resolveRefs: true
+        });
+      });
+    }
+    let stack = {};
+    return {
+      provide: {
+        nuxtSiteConfig: stack
+      }
+    };
+  }
+});
 const reducers = [
   ["NuxtError", (data) => isNuxtError(data) && data.toJSON()],
   ["EmptyShallowRef", (data) => isRef(data) && isShallow(data) && !data.value && (typeof data.value === "bigint" ? "0n" : JSON.stringify(data.value) || "_")],
@@ -1006,6 +1096,9 @@ const reducers = [
   ["Ref", (data) => isRef(data) && data.value],
   ["Reactive", (data) => isReactive(data) && toRaw(data)]
 ];
+{
+  reducers.push(["Island", (data) => data && (data == null ? void 0 : data.__nuxt_island)]);
+}
 const revive_payload_server_eJ33V7gbc6 = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:revive-payload:server",
   setup() {
@@ -1017,20 +1110,629 @@ const revive_payload_server_eJ33V7gbc6 = /* @__PURE__ */ defineNuxtPlugin({
 const components_plugin_KR1HBZs4kY = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:global-components"
 });
+function useSiteConfig(options) {
+  var _a;
+  let stack;
+  stack = (_a = useRequestEvent()) == null ? void 0 : _a.context.siteConfig.get(defu({ resolveRefs: true }, options));
+  return stack || {};
+}
+const siteConfig_JRId4KOeUL = /* @__PURE__ */ defineNuxtPlugin(() => {
+  const head = injectHead();
+  if (!head)
+    return;
+  const siteConfig = useSiteConfig();
+  const input = {
+    meta: [],
+    templateParams: {
+      site: siteConfig,
+      // support legacy
+      siteUrl: siteConfig.url,
+      siteName: siteConfig.name
+    }
+  };
+  if (siteConfig.separator)
+    input.templateParams.separator = siteConfig.separator;
+  if (siteConfig.titleSeparator)
+    input.templateParams.titleSeparator = siteConfig.titleSeparator;
+  if (siteConfig.description) {
+    input.templateParams.siteDescription = siteConfig.description;
+    input.meta.push(
+      {
+        name: "description",
+        content: "%site.description"
+      }
+    );
+  }
+  head.push(input, { tagPriority: 150 });
+});
+const inferSeoMetaPlugin_JSh5nGhzCz = /* @__PURE__ */ defineNuxtPlugin(() => {
+  const head = injectHead();
+  if (!head)
+    return;
+  head.use(InferSeoMetaPlugin());
+});
+const titles_eoILE7jqvj = /* @__PURE__ */ defineNuxtPlugin({
+  name: "nuxt-seo:fallback-titles",
+  env: {
+    islands: false
+  },
+  setup() {
+    const route = useRoute();
+    const title = computed(() => {
+      var _a, _b;
+      if (typeof ((_a = route.meta) == null ? void 0 : _a.title) === "string")
+        return (_b = route.meta) == null ? void 0 : _b.title;
+      const path = withoutTrailingSlash(route.path || "/");
+      const lastSegment = path.split("/").pop();
+      return lastSegment ? titleCase(lastSegment) : null;
+    });
+    const minimalPriority = {
+      // give nuxt.config values higher priority
+      tagPriority: 101
+    };
+    useHead({ title: () => title.value }, minimalPriority);
+  }
+});
+function useSchemaOrgConfig() {
+  const runtimeConfig = /* @__PURE__ */ useRuntimeConfig();
+  return defu(runtimeConfig["nuxt-schema-org"], {
+    scriptAttributes: {}
+  });
+}
+function useSchemaOrg(input) {
+  const config = useSchemaOrgConfig();
+  const script = {
+    type: "application/ld+json",
+    key: "schema-org-graph",
+    nodes: input,
+    tagPriority: "high",
+    ...config.scriptAttributes
+  };
+  {
+    return useServerHead({
+      script: [script]
+    });
+  }
+}
+function resolveSitePath(pathOrUrl, options) {
+  let path = pathOrUrl;
+  if (hasProtocol(pathOrUrl, { strict: false, acceptRelative: true })) {
+    const parsed = parseURL(pathOrUrl);
+    path = parsed.pathname;
+  }
+  const base = withLeadingSlash(options.base || "/");
+  if (base !== "/" && path.startsWith(base)) {
+    path = path.slice(base.length);
+  }
+  let origin = withoutTrailingSlash(options.absolute ? options.siteUrl : "");
+  if (base !== "/" && origin.endsWith(base)) {
+    origin = origin.slice(0, origin.indexOf(base));
+  }
+  const baseWithOrigin = options.withBase ? withBase(base, origin || "/") : origin;
+  const resolvedUrl = withBase(path, baseWithOrigin);
+  return path === "/" && !options.withBase ? withTrailingSlash(resolvedUrl) : fixSlashes(options.trailingSlash, resolvedUrl);
+}
+function isPathFile(path) {
+  var _a;
+  const lastSegment = path.split("/").pop();
+  return !!((_a = (lastSegment || path).match(/\.[0-9a-z]+$/i)) == null ? void 0 : _a[0]);
+}
+function fixSlashes(trailingSlash, pathOrUrl) {
+  const $url = parseURL(pathOrUrl);
+  if (isPathFile($url.pathname))
+    return pathOrUrl;
+  const fixedPath = trailingSlash ? withTrailingSlash($url.pathname) : withoutTrailingSlash($url.pathname);
+  return `${$url.protocol ? `${$url.protocol}//` : ""}${$url.host || ""}${fixedPath}${$url.search || ""}${$url.hash || ""}`;
+}
+function useNitroOrigin(e) {
+  var _a;
+  {
+    e = e || useRequestEvent();
+    return ((_a = e == null ? void 0 : e.context) == null ? void 0 : _a.siteConfigNitroOrigin) || "";
+  }
+}
+function createSitePathResolver(options = {}) {
+  const siteConfig = useSiteConfig();
+  const nitroOrigin = useNitroOrigin();
+  const nuxtBase = (/* @__PURE__ */ useRuntimeConfig()).app.baseURL || "/";
+  return (path) => {
+    return computed(() => resolveSitePath(unref(path), {
+      absolute: unref(options.absolute),
+      withBase: unref(options.withBase),
+      siteUrl: unref(options.canonical) !== false || false ? siteConfig.url : nitroOrigin,
+      trailingSlash: siteConfig.trailingSlash,
+      base: nuxtBase
+    }));
+  };
+}
+function withSiteUrl(path, options = {}) {
+  const siteConfig = useSiteConfig();
+  const nitroOrigin = useNitroOrigin();
+  const base = (/* @__PURE__ */ useRuntimeConfig()).app.baseURL || "/";
+  return computed(() => {
+    return resolveSitePath(unref(path), {
+      absolute: true,
+      siteUrl: unref(options.canonical) !== false || false ? siteConfig.url : nitroOrigin,
+      trailingSlash: siteConfig.trailingSlash,
+      base,
+      withBase: unref(options.withBase)
+    });
+  });
+}
+function initPlugin(nuxtApp) {
+  const head = injectHead();
+  const config = useSchemaOrgConfig();
+  const route = useRoute();
+  const siteConfig = useSiteConfig();
+  const resolvePath = createSitePathResolver({
+    absolute: false,
+    withBase: true
+  });
+  const resolveUrl = createSitePathResolver({
+    canonical: true,
+    absolute: true,
+    withBase: true
+  });
+  const schemaOrg = computed(() => {
+    var _a;
+    return {
+      ...((_a = route.meta) == null ? void 0 : _a.schemaOrg) || {},
+      ...siteConfig,
+      url: resolveUrl(route.path),
+      host: withoutTrailingSlash(siteConfig.url),
+      inLanguage: siteConfig.currentLocale || siteConfig.defaultLocale,
+      path: resolvePath(route.path)
+    };
+  });
+  head.push({ templateParams: { schemaOrg } });
+  head.use(
+    SchemaOrgUnheadPlugin({}, async () => {
+      const meta = {};
+      await nuxtApp.hooks.callHook("schema-org:meta", meta);
+      return meta;
+    }, {
+      minify: config.minify,
+      trailingSlash: siteConfig.trailingSlash
+    })
+  );
+}
+function maybeAddIdentitySchemaOrg() {
+  const config = useSchemaOrgConfig();
+  const siteConfig = useSiteConfig();
+  if (config.identity || siteConfig.identity) {
+    const identity = config.identity || siteConfig.identity;
+    let identityPayload = {
+      name: siteConfig.name,
+      url: siteConfig.url
+    };
+    let identityType;
+    if (typeof identity !== "string") {
+      identityPayload = defu(identity, identityPayload);
+      identityType = identity.type;
+      delete identityPayload.type;
+    } else {
+      identityType = identity;
+    }
+    if (siteConfig.twitter) {
+      const id = siteConfig.twitter.startsWith("@") ? siteConfig.twitter.slice(1) : siteConfig.twitter;
+      identityPayload.sameAs = [
+        `https://twitter.com/${id}`
+      ];
+    }
+    identityPayload._resolver = identityPayload._resolver || camelCase(identityType);
+    useSchemaOrg([identityPayload]);
+  }
+}
+const defaults_ejC916ejE3 = /* @__PURE__ */ defineNuxtPlugin({
+  name: "nuxt-schema-org:defaults",
+  dependsOn: [
+    "nuxt-schema-org:init"
+  ],
+  setup() {
+    const siteConfig = useSiteConfig();
+    useSchemaOrg([
+      defineWebSite({
+        name: (siteConfig == null ? void 0 : siteConfig.name) || "",
+        inLanguage: (siteConfig == null ? void 0 : siteConfig.currentLocale) || "",
+        description: (siteConfig == null ? void 0 : siteConfig.description) || ""
+      }),
+      defineWebPage()
+    ]);
+    maybeAddIdentitySchemaOrg();
+  }
+});
+const init_8zxuXEdLTw = /* @__PURE__ */ defineNuxtPlugin({
+  name: "nuxt-schema-org:init",
+  setup(nuxtApp) {
+    initPlugin(nuxtApp);
+  }
+});
+const componentNames = [{ "hash": "eQ6ZSzmuSi", "pascalName": "BrandedLogo", "kebabName": "branded-logo", "category": "community", "credits": "Full Stack Heroes <https://fullstackheroes.com/>" }, { "hash": "urK4vBHedV", "pascalName": "Frame", "kebabName": "frame", "category": "community", "credits": "@arashsheyda <https://github.com/arashsheyda>" }, { "hash": "25HYRU2CwN", "pascalName": "Nuxt", "kebabName": "nuxt", "category": "community", "credits": "NuxtLabs <https://nuxtlabs.com/>" }, { "hash": "QQP0wDr3q7", "pascalName": "NuxtSeo", "kebabName": "nuxt-seo", "category": "community", "credits": "Nuxt SEO <https://nuxtseo.com/>" }, { "hash": "Ti15ewGcfK", "pascalName": "Pergel", "kebabName": "pergel", "category": "community", "credits": "Pergel <https://nuxtlabs.com/>" }, { "hash": "mpvrSL80TM", "pascalName": "SimpleBlog", "kebabName": "simple-blog", "category": "community", "credits": "Full Stack Heroes <https://fullstackheroes.com/>" }, { "hash": "PdTiW3yQ0N", "pascalName": "UnJs", "kebabName": "un-js", "category": "community", "credits": "UnJS <https://unjs.io/>" }, { "hash": "dxElbCCT8d", "pascalName": "Wave", "kebabName": "wave", "category": "community", "credits": "Full Stack Heroes <https://fullstackheroes.com/>" }, { "hash": "GANho8xkgv", "pascalName": "WithEmoji", "kebabName": "with-emoji", "category": "community", "credits": "Full Stack Heroes <https://fullstackheroes.com/>" }];
+function isInternalRoute(path) {
+  return path.startsWith("/_") || path.startsWith("@");
+}
+function filterIsOgImageOption(key) {
+  const keys = [
+    "url",
+    "extension",
+    "width",
+    "height",
+    "fonts",
+    "alt",
+    "props",
+    "renderer",
+    "html",
+    "component",
+    "renderer",
+    "emojis",
+    "_query",
+    "satori",
+    "resvg",
+    "sharp",
+    "screenshot",
+    "cacheMaxAgeSeconds"
+  ];
+  return keys.includes(key);
+}
+function separateProps(options, ignoreKeys = []) {
+  options = options || {};
+  const _props = defu(options.props, Object.fromEntries(
+    Object.entries({ ...options }).filter(([k]) => !filterIsOgImageOption(k) && !ignoreKeys.includes(k))
+  ));
+  const props = {};
+  Object.entries(_props).forEach(([key, val]) => {
+    props[key.replace(/-([a-z])/g, (g) => g[1].toUpperCase())] = val;
+  });
+  return {
+    ...Object.fromEntries(
+      Object.entries({ ...options }).filter(([k]) => filterIsOgImageOption(k) || ignoreKeys.includes(k))
+    ),
+    props
+  };
+}
+function withoutQuery(path) {
+  return path.split("?")[0];
+}
+function getExtension(path) {
+  path = withoutQuery(path);
+  const lastSegment = path.split("/").pop() || path;
+  return lastSegment.split(".").pop() || lastSegment;
+}
+function generateMeta(url, resolvedOptions) {
+  let urlExtension = getExtension(url) || resolvedOptions.extension;
+  if (urlExtension === "jpg")
+    urlExtension = "jpeg";
+  const meta = [
+    { property: "og:image", content: url },
+    { property: "og:image:type", content: `image/${urlExtension}` },
+    { name: "twitter:card", content: "summary_large_image" },
+    // we don't need this but avoids issue when using useSeoMeta({ twitterImage })
+    { name: "twitter:image", content: url },
+    { name: "twitter:image:src", content: url }
+  ];
+  if (resolvedOptions.width) {
+    meta.push({ property: "og:image:width", content: resolvedOptions.width });
+    meta.push({ name: "twitter:image:width", content: resolvedOptions.width });
+  }
+  if (resolvedOptions.height) {
+    meta.push({ property: "og:image:height", content: resolvedOptions.height });
+    meta.push({ name: "twitter:image:height", content: resolvedOptions.height });
+  }
+  if (resolvedOptions.alt) {
+    meta.push({ property: "og:image:alt", content: resolvedOptions.alt });
+    meta.push({ name: "twitter:image:alt", content: resolvedOptions.alt });
+  }
+  return meta;
+}
+function getOgImagePath(pagePath, _options) {
+  const baseURL2 = (/* @__PURE__ */ useRuntimeConfig()).app.baseURL;
+  const options = defu(_options, useOgImageRuntimeConfig().defaults);
+  const path = joinURL("/", baseURL2, `__og-image__/${"image"}`, pagePath, `og.${options.extension}`);
+  if (Object.keys(options._query || {}).length) {
+    return withQuery(path, options._query);
+  }
+  return path;
+}
+function useOgImageRuntimeConfig() {
+  const c = /* @__PURE__ */ useRuntimeConfig();
+  return {
+    ...c["nuxt-og-image"],
+    app: {
+      baseURL: c.app.baseURL
+    }
+  };
+}
+function createOgImageMeta(src, input, resolvedOptions, ssrContext) {
+  const _input = separateProps(defu(input, ssrContext._ogImagePayload));
+  let url = src || input.url || resolvedOptions.url;
+  if (!url)
+    return;
+  if (input._query && Object.keys(input._query).length && url)
+    url = withQuery(url, { _query: input._query });
+  const meta = generateMeta(url, resolvedOptions);
+  ssrContext._ogImageInstances = ssrContext._ogImageInstances || [];
+  const script = [];
+  if (src) {
+    script.push({
+      id: "nuxt-og-image-options",
+      type: "application/json",
+      processTemplateParams: true,
+      innerHTML: () => {
+        const payload = resolveUnrefHeadInput(_input);
+        if (typeof payload.props.title === "undefined")
+          payload.props.title = "%s";
+        delete payload.url;
+        if (payload._query && Object.keys(payload._query).length === 0) {
+          delete payload._query;
+        }
+        return stringify(payload);
+      },
+      // we want this to be last in our head
+      tagPosition: "bodyClose"
+    });
+  }
+  const instance = useServerHead({
+    script,
+    meta
+  }, {
+    tagPriority: 35
+  });
+  ssrContext._ogImagePayload = _input;
+  ssrContext._ogImageInstances.push(instance);
+}
+function normaliseOptions(_options) {
+  var _a;
+  const options = { ...unref(_options) };
+  if (!options)
+    return options;
+  if (options.component && componentNames) {
+    const originalName = options.component;
+    for (const component of componentNames) {
+      if (component.pascalName.endsWith(originalName) || component.kebabName.endsWith(originalName)) {
+        options.component = component.pascalName;
+        break;
+      }
+    }
+  } else if (!options.component) {
+    options.component = (_a = componentNames[0]) == null ? void 0 : _a.pascalName;
+  }
+  return options;
+}
+function ogImageCanonicalUrls(nuxtApp) {
+  nuxtApp.hooks.hook("app:rendered", async (ctx) => {
+    const { ssrContext } = ctx;
+    const e = useRequestEvent();
+    const path = parseURL(e.path).pathname;
+    if (isInternalRoute(path))
+      return;
+    ssrContext == null ? void 0 : ssrContext.head.use({
+      key: "nuxt-og-image:overrides-and-canonical-urls",
+      hooks: {
+        "tags:resolve": async (ctx2) => {
+          var _a;
+          const hasPrimaryPayload = ctx2.tags.some((tag) => tag.tag === "script" && tag.props.id === "nuxt-og-image-options");
+          let overrides;
+          for (const tag of ctx2.tags) {
+            if (tag.tag === "script" && tag.props.id === "nuxt-og-image-overrides") {
+              if (hasPrimaryPayload) {
+                overrides = separateProps(parse(tag.innerHTML || "{}"));
+                delete ctx2.tags[ctx2.tags.indexOf(tag)];
+              } else {
+                tag.props.id = "nuxt-og-image-options";
+                tag.innerHTML = stringify(separateProps(parse(tag.innerHTML || "{}")));
+                tag._d = "script:id:nuxt-og-image-options";
+              }
+              break;
+            }
+          }
+          ctx2.tags = ctx2.tags.filter(Boolean);
+          for (const tag of ctx2.tags) {
+            if (tag.tag === "meta" && (tag.props.property === "og:image" || ["twitter:image:src", "twitter:image"].includes(tag.props.name))) {
+              if (!tag.props.content) {
+                tag.props = {};
+                continue;
+              }
+              if (!((_a = tag.props.content) == null ? void 0 : _a.startsWith("https"))) {
+                await nuxtApp.runWithContext(() => {
+                  tag.props.content = toValue(withSiteUrl(tag.props.content, {
+                    withBase: true
+                  }));
+                });
+              }
+            } else if (overrides && tag.tag === "script" && tag.props.id === "nuxt-og-image-options") {
+              tag.innerHTML = stringify(defu(overrides, parse(tag.innerHTML)));
+            }
+          }
+        }
+      }
+    });
+  });
+}
+function routeRuleOgImage(nuxtApp) {
+  nuxtApp.hooks.hook("app:rendered", async (ctx) => {
+    var _a, _b, _c, _d, _e, _f;
+    const { ssrContext } = ctx;
+    const e = useRequestEvent();
+    const path = parseURL(e.path).pathname;
+    if (isInternalRoute(path))
+      return;
+    const _routeRulesMatcher = toRouteMatcher(
+      createRouter$1({ routes: (_b = (_a = ssrContext == null ? void 0 : ssrContext.runtimeConfig) == null ? void 0 : _a.nitro) == null ? void 0 : _b.routeRules })
+    );
+    let routeRules = defu({}, ..._routeRulesMatcher.matchAll(
+      withoutBase(path.split("?")[0], (_c = ssrContext == null ? void 0 : ssrContext.runtimeConfig) == null ? void 0 : _c.app.baseURL)
+    ).reverse()).ogImage;
+    if (typeof routeRules === "undefined")
+      return;
+    const ogImageInstances = nuxtApp.ssrContext._ogImageInstances || [];
+    if (routeRules === false) {
+      ogImageInstances == null ? void 0 : ogImageInstances.forEach((e2) => {
+        e2.dispose();
+      });
+      nuxtApp.ssrContext._ogImagePayload = void 0;
+      nuxtApp.ssrContext._ogImageInstances = void 0;
+      return;
+    }
+    const { defaults } = useOgImageRuntimeConfig();
+    routeRules = normaliseOptions(defu((_f = (_e = (_d = nuxtApp.ssrContext) == null ? void 0 : _d.event.context._nitro) == null ? void 0 : _e.routeRules) == null ? void 0 : _f.ogImage, routeRules, {
+      component: defaults.component
+    }));
+    const resolvedOptions = normaliseOptions(defu(routeRules, defaults));
+    const src = getOgImagePath(ssrContext.url, resolvedOptions);
+    createOgImageMeta(src, routeRules, resolvedOptions, nuxtApp.ssrContext);
+  });
+}
+const og_image_canonical_urls_server_QnQwHpoQ3t = /* @__PURE__ */ defineNuxtPlugin({
+  setup: ogImageCanonicalUrls
+});
+const route_rule_og_image_server_svhvDKOpur = /* @__PURE__ */ defineNuxtPlugin({
+  setup: routeRuleOgImage
+});
+const robot_meta_server_8htXH4OkuR = /* @__PURE__ */ defineNuxtPlugin({
+  setup() {
+    var _a;
+    const event = useRequestEvent();
+    const ctx = (_a = event == null ? void 0 : event.context) == null ? void 0 : _a.robots;
+    if (!ctx)
+      return;
+    const config = /* @__PURE__ */ useRuntimeConfig();
+    useServerHead({
+      meta: [
+        {
+          "name": "robots",
+          "content": () => ctx.rule || "",
+          "data-hint": () => {
+            var _a2, _b;
+            return ((_a2 = config["nuxt-robots"]) == null ? void 0 : _a2.debug) ? (_b = ctx.debug) == null ? void 0 : _b.source : void 0;
+          }
+        }
+      ]
+    });
+  }
+});
 const strapi_liDD6vJf4g = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
   const strapiBaseUrl = (/* @__PURE__ */ useRuntimeConfig()).STRAPI_BASE_URL || "http://localhost:1337";
   nuxtApp.provide("strapiBaseUrl", strapiBaseUrl);
 });
+const _1_absoluteImageUrls_server_zDt3Q5SdZ4 = /* @__PURE__ */ defineNuxtPlugin({
+  enforce: "post",
+  setup() {
+    const head = injectHead();
+    if (!head)
+      return;
+    const resolver = createSitePathResolver({
+      withBase: true,
+      absolute: true,
+      canonical: true
+    });
+    head.use({
+      hooks: {
+        "tags:resolve": async ({ tags }) => {
+          for (const tag of tags) {
+            if (tag.tag !== "meta")
+              continue;
+            if (tag.props.property !== "og:image:url" && tag.props.property !== "og:image" && tag.props.name !== "twitter:image")
+              continue;
+            if (typeof tag.props.content !== "string" || !tag.props.content.trim() || tag.props.content.startsWith("http") || tag.props.content.startsWith("//"))
+              continue;
+            tag.props.content = unref(resolver(tag.props.content));
+          }
+        }
+      }
+    });
+  }
+});
+const _0_routeRules_server_3qJ8nyBJBb = /* @__PURE__ */ defineNuxtPlugin({
+  enforce: "post",
+  async setup() {
+    const head = injectHead();
+    if (!head)
+      return;
+    const event = useRequestEvent();
+    if (event.context._nitro.routeRules.head)
+      head.push(event.context._nitro.routeRules.head, { mode: "server", tagPriority: -9 });
+    if (event.context._nitro.routeRules.seoMeta) {
+      const meta = unpackMeta({ ...event.context._nitro.routeRules.seoMeta });
+      head.push({
+        meta
+      }, { mode: "server", tagPriority: -9 });
+    }
+  }
+});
+function applyDefaults(i18n) {
+  const { canonicalQueryWhitelist } = (/* @__PURE__ */ useRuntimeConfig()).public["seo-utils"];
+  const siteConfig = useSiteConfig();
+  const route = useRoute();
+  const resolveUrl = createSitePathResolver({ withBase: true, absolute: true });
+  const canonicalUrl = computed(() => {
+    const { query } = route;
+    const url = resolveUrl(route.path || "/").value || route.path;
+    const filteredQuery = Object.fromEntries(
+      Object.entries(query).filter(([key]) => canonicalQueryWhitelist.includes(key))
+    );
+    return Object.keys(filteredQuery).length ? `${url}?${stringifyQuery(filteredQuery)}` : url;
+  });
+  const minimalPriority = {
+    // give nuxt.config values higher priority
+    tagPriority: 101
+  };
+  useHead({
+    htmlAttrs: { lang: i18n.locale },
+    templateParams: { site: siteConfig, siteName: siteConfig.name || "" },
+    titleTemplate: "%s %separator %siteName",
+    link: [{ rel: "canonical", href: () => canonicalUrl.value }]
+  }, minimalPriority);
+  const seoMeta = {
+    ogType: "website",
+    ogUrl: () => canonicalUrl.value,
+    ogLocale: () => i18n.locale.value,
+    ogSiteName: siteConfig.name
+  };
+  if (siteConfig.description)
+    seoMeta.description = siteConfig.description;
+  if (siteConfig.twitter) {
+    const id = siteConfig.twitter.startsWith("@") ? siteConfig.twitter : `@${siteConfig.twitter}`;
+    seoMeta.twitterCreator = id;
+    seoMeta.twitterSite = id;
+  }
+  useSeoMeta(seoMeta, minimalPriority);
+}
+const defaults_M8ptihKv0z = /* @__PURE__ */ defineNuxtPlugin({
+  name: "nuxt-seo:defaults",
+  order: 999,
+  env: {
+    islands: false
+  },
+  setup() {
+    const siteConfig = useSiteConfig();
+    const locale = ref(siteConfig.currentLocale || siteConfig.defaultLocale);
+    applyDefaults({
+      locale
+    });
+  }
+});
 const plugins = [
   unhead_KgADcZ0jPj,
   plugin,
+  _0_siteConfig_jtc2qNDx4l,
   revive_payload_server_eJ33V7gbc6,
   components_plugin_KR1HBZs4kY,
-  strapi_liDD6vJf4g
+  siteConfig_JRId4KOeUL,
+  inferSeoMetaPlugin_JSh5nGhzCz,
+  titles_eoILE7jqvj,
+  defaults_ejC916ejE3,
+  init_8zxuXEdLTw,
+  og_image_canonical_urls_server_QnQwHpoQ3t,
+  route_rule_og_image_server_svhvDKOpur,
+  robot_meta_server_8htXH4OkuR,
+  strapi_liDD6vJf4g,
+  _1_absoluteImageUrls_server_zDt3Q5SdZ4,
+  _0_routeRules_server_3qJ8nyBJBb,
+  defaults_M8ptihKv0z
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-DSCzdDtx.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-BSIHJoT2.mjs'))
+  default: defineAsyncComponent(() => import('./default-CkSSs2UG.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-CPzGB0Sj.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -1329,7 +2031,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const IslandRenderer = () => null;
+    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-El620vcz.mjs').then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
     nuxtApp.ssrContext.url;
@@ -1393,5 +2095,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _imports_2 as _, useHead as a, _export_sfc as b, _imports_0 as c, useRoute as d, entry$1 as default, useRouter as e, navigateTo as f, useRuntimeConfig as g, asyncDataDefaults as h, createError as i, fetchDefaults as j, nuxtLinkDefaults as n, resolveRouteObject as r, useNuxtApp as u };
+export { _imports_2 as _, useHead as a, _export_sfc as b, createError as c, _imports_0 as d, entry$1 as default, useRouter as e, navigateTo as f, useRuntimeConfig as g, asyncDataDefaults as h, injectHead as i, fetchDefaults as j, useRequestFetch as k, useRequestEvent as l, useOgImageRuntimeConfig as m, nuxtLinkDefaults as n, useSiteConfig as o, useRoute as p, resolveRouteObject as r, useNuxtApp as u };
 //# sourceMappingURL=server.mjs.map

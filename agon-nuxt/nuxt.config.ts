@@ -28,6 +28,8 @@ export default defineNuxtConfig({
     head: {
       meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }],
       title: "Agon - Multipurpose Agency TailwindCSS NuxtJS Template",
+      titleTemplate: '%s', // This will prevent appending | nuxt-app
+
       script: [],
     },
   },
@@ -45,25 +47,23 @@ export default defineNuxtConfig({
   ],
   buildModules: ['@nuxtjs/tailwindcss'],
 
-  modules: [
-    [
-      "@nuxtjs/google-fonts",
-      {
-        families: {
-          Chivo: {
-            wght: [400, 700, 900], // Font weights
-          },
-          "Noto Sans": {
-            wght: [400, 500, 600, 700, 800], // Font weights for Noto Sans
-          },
+  modules: [[
+    "@nuxtjs/google-fonts",
+    {
+      families: {
+        Chivo: {
+          wght: [400, 700, 900], // Font weights
         },
-        download: true, // Allows font download for better performance
-        inject: true,   // Injects the fonts into the page
-      }
-    ],
-    "@nuxt/image", // Image optimization
-    // "@nuxtjs/tailwindcss"
-  ],
+        "Noto Sans": {
+          wght: [400, 500, 600, 700, 800], // Font weights for Noto Sans
+        },
+      },
+      download: true, // Allows font download for better performance
+      inject: true,   // Injects the fonts into the page
+    }
+  ], // Image optimization
+  // "@nuxtjs/tailwindcss"
+  "@nuxt/image", "@nuxtjs/seo"],
 
   compatibilityDate: "2024-12-12",
 })

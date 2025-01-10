@@ -833,7 +833,7 @@ export interface ApiSitemapSitemap extends Struct.CollectionTypeSchema {
     PageURL: Schema.Attribute.UID<'PageTitle'>;
     ParentPage: Schema.Attribute.Relation<'oneToOne', 'api::sitemap.sitemap'>;
     publishedAt: Schema.Attribute.DateTime;
-    seo: Schema.Attribute.Component<'share-component.seo', true>;
+    seo: Schema.Attribute.Component<'share-component.seo', false>;
     sitemap: Schema.Attribute.Relation<'oneToOne', 'api::sitemap.sitemap'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

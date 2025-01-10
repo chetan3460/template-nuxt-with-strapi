@@ -15,15 +15,15 @@
             <component :is="resolveComponent(block.__component)" :data="block" />
         </div>
     </div>
-    <!-- <div v-else>
-        <p>{{ loadingMessage }}</p>
-    </div> -->
+
 </template>
 
 <script setup>
+import { useNuxtApp } from '#app';
 import { ref, watchEffect, computed, defineAsyncComponent } from 'vue';
 import { useRoute } from 'vue-router';
-import { useNuxtApp } from '#app';
+import { useSeoMeta } from '#app';
+
 
 // Dynamic component resolver for Strapi block components
 const resolveComponent = (componentName) => {
@@ -57,20 +57,35 @@ const filteredBlocks = computed(() => {
     );
 });
 
-// Fetch data for the page based on the route's slug
+
+
 const fetchData = async (slug) => {
     try {
         const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
-        const response = await fetch(`${strapiBaseUrl}/api/sitemaps?populate=Blocks`);
+        const response = await fetch(
+            `${strapiBaseUrl}/api/sitemaps?filters[PageURL][$eq]=${slug}&populate[seo][populate][ogImage]=true&populate[Blocks]=true`
+        );
+        // const response = await fetch(`${strapiBaseUrl}/api/sitemaps?populate=Blocks`);
         const data = await response.json();
 
-        // console.log('Fetched data from Strapi:', data); // Debug fetched data
+        // Check if response is valid
+        if (!response.ok) {
+            throw new Error(`Failed to fetch data: ${response.statusText}`);
+        }
+
+
+        // Debugging fetched data
+        // console.log('Fetched data from Strapi:', data);
 
         if (data?.data) {
+
             // Find page by slug
             const pageData = data.data.find(
                 (item) => item.PageURL?.trim().toLowerCase() === slug.trim().toLowerCase()
             );
+
+
+            // const pageData = data.data[0];
 
             if (!pageData) {
                 console.error(`Page with slug "${slug}" not found.`);
@@ -78,7 +93,9 @@ const fetchData = async (slug) => {
                 return;
             }
 
-            sitemap.value = pageData; // Set the sitemap data
+            sitemap.value = pageData;
+
+
         } else {
             loadingMessage.value = 'No data received from API.';
         }
@@ -89,6 +106,7 @@ const fetchData = async (slug) => {
 };
 
 // Watch for changes in the route and re-fetch data
+
 watchEffect(() => {
     const slug = route.params.slug;
     // console.log('Slug.vue Current route slug:', slug); // Debug route slug
@@ -98,4 +116,28 @@ watchEffect(() => {
         fetchData(slug); // Fetch new data
     }
 });
+
+// Watch sitemap and set SEO metadata
+watchEffect(() => {
+    const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+    const metadata = sitemap.value?.seo || {};
+    const title = metadata.metaTitle || 'Default Title';
+    const description = metadata.metaDescription || 'Default Description';
+    const ogImageUrl = metadata.ogImage?.url ? `${strapiBaseUrl}${metadata.ogImage.url}` : '/default-og-image.jpg';
+
+    useSeoMeta({
+        title,
+        description,
+        keywords: metadata.keywords || 'default, keywords',
+        ogTitle: title, // Open Graph title
+        ogDescription: description, // Open Graph description
+        ogImage: ogImageUrl,
+        ogSiteName: 'Agon',
+        twitterCard: 'summary_large_image', // Default Twitter card type
+        twitterTitle: title, // Explicit Twitter title
+        twitterDescription: description, // Explicit Twitter description
+        twitterImage: ogImageUrl, // Explicit Twitter image
+    });
+});
+
 </script>

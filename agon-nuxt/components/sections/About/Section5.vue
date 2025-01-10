@@ -42,7 +42,7 @@
 
         </div>
     </div>
-    <div v-else class="text-center text-gray-500 mt-10">No data available.</div>
+    <!-- <div v-else class="text-center text-gray-500 mt-10">No data available.</div> -->
 </template>
 
 

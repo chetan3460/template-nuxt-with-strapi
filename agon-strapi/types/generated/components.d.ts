@@ -271,14 +271,15 @@ export interface ShareComponentImageRepeater extends Struct.ComponentSchema {
 export interface ShareComponentSeo extends Struct.ComponentSchema {
   collectionName: 'components_share_component_seos';
   info: {
+    description: '';
     displayName: 'Seo';
     icon: 'bulletList';
   };
   attributes: {
     keywords: Schema.Attribute.RichText;
     metaDescription: Schema.Attribute.RichText;
-    metaImage: Schema.Attribute.Media<'images'>;
     metaTitle: Schema.Attribute.String;
+    ogImage: Schema.Attribute.Media<'images'>;
   };
 }
 

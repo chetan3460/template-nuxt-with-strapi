@@ -43,6 +43,12 @@ const resolveComponent = (componentName) => {
 
     return componentMap[componentName] || null; // Return null for unmapped components
 };
+// Dynamic component resolver for Strapi block components
+
+
+
+
+
 
 // Reactive states
 const sitemap = ref(null);
@@ -117,27 +123,31 @@ watchEffect(() => {
     }
 });
 
-// Watch sitemap and set SEO metadata
-watchEffect(() => {
-    const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
-    const metadata = sitemap.value?.seo || {};
-    const title = metadata.metaTitle || 'Default Title';
-    const description = metadata.metaDescription || 'Default Description';
-    const ogImageUrl = metadata.ogImage?.url ? `${strapiBaseUrl}${metadata.ogImage.url}` : '/default-og-image.jpg';
 
-    useSeoMeta({
-        title,
-        description,
+// Computed SEO metadata
+const seoMetadata = computed(() => {
+    const metadata = sitemap.value?.seo || {};
+    const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+
+    return {
+        title: metadata.metaTitle || 'Default Title',
+        description: metadata.metaDescription || 'Default Description',
         keywords: metadata.keywords || 'default, keywords',
-        ogTitle: title, // Open Graph title
-        ogDescription: description, // Open Graph description
-        ogImage: ogImageUrl,
+        ogTitle: metadata.metaTitle || 'Default Title',
+        ogDescription: metadata.metaDescription || 'Default Description',
+        ogImage: metadata.ogImage?.url ? `${strapiBaseUrl}${metadata.ogImage.url}` : '/default-og-image.jpg',
         ogSiteName: 'Agon',
-        twitterCard: 'summary_large_image', // Default Twitter card type
-        twitterTitle: title, // Explicit Twitter title
-        twitterDescription: description, // Explicit Twitter description
-        twitterImage: ogImageUrl, // Explicit Twitter image
-    });
+        twitterCard: 'summary_large_image',
+        twitterTitle: metadata.metaTitle || 'Default Title',
+        twitterDescription: metadata.metaDescription || 'Default Description',
+        twitterImage: metadata.ogImage?.url ? `${strapiBaseUrl}${metadata.ogImage.url}` : '/default-og-image.jpg',
+    };
 });
 
+// Update SEO metadata dynamically
+watchEffect(() => {
+    if (sitemap.value) {
+        useSeoMeta(seoMetadata.value);
+    }
+});
 </script>

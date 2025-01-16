@@ -1,37 +1,27 @@
-import { resolve } from "path"
+import { resolve } from "path";
 
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      strapiBaseUrl: 'http://localhost:1337', // Replace with your Strapi base URL
+      strapiBaseUrl: process.env.STRAPI_BASE_URL || 'http://localhost:1337', // Ensure the Strapi URL is set correctly
     },
   },
-
-  devtools: { enabled: false },
+  image: {
+    strapi: {
+      baseURL: process.env.STRAPI_BASE_URL + '/uploads/',
+    },
+    formats: ['webp', 'avif'],
+  },
+  devtools: { enabled: true },
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-  image: {
-    strapi: {
-      baseURL: 'http://localhost:1337/uploads/'
-    },
-    formats: ['webp', 'avif'],
-  },
+
   alias: {
-    "@": resolve(__dirname, "/"),
-  },
-
-  app: {
-    head: {
-      meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }],
-      title: "Agon - Multipurpose Agency TailwindCSS NuxtJS Template",
-      titleTemplate: '%s', // This will prevent appending | nuxt-app
-
-      script: [],
-    },
+    "@": resolve(__dirname, "./"),
   },
 
   css: [
@@ -43,27 +33,78 @@ export default defineNuxtConfig({
     "~/public/assets/styles/app.min.css",
     "~/public/css/main.css",
     "~/public/assets/styles/tailwind.min.css",
-    // "~/assets/css/tailwind.css",
   ],
   buildModules: ['@nuxtjs/tailwindcss'],
 
-  modules: [[
-    "@nuxtjs/google-fonts",
-    {
-      families: {
-        Chivo: {
-          wght: [400, 700, 900], // Font weights
+  modules: [
+    [
+      "@nuxtjs/google-fonts",
+      {
+        families: {
+          Chivo: { wght: [400, 700, 900] },
+          "Noto Sans": { wght: [400, 500, 600, 700, 800] },
         },
-        "Noto Sans": {
-          wght: [400, 500, 600, 700, 800], // Font weights for Noto Sans
-        },
+        download: true,
+        inject: true,
+      }
+    ],
+    "@nuxt/image", 
+    "@nuxtjs/seo", 
+    '@nuxtjs/sitemap'
+  ],
+
+  app: {
+    head: {
+      meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }],
+      title: "Agon - Multipurpose Agency TailwindCSS NuxtJS Template",
+      titleTemplate: '%s %seperator %siteName',
+      templateParams: {
+        seperator: '—',
+        siteName: 'MySite'
       },
-      download: true, // Allows font download for better performance
-      inject: true,   // Injects the fonts into the page
-    }
-  ], // Image optimization
-  // "@nuxtjs/tailwindcss"
-  "@nuxt/image", "@nuxtjs/seo"],
+    },
+  },
+
+  sitemap: {
+    hostname: 'http://localhost:3000',
+    async routes() {
+      const strapiBaseUrl = process.env.STRAPI_BASE_URL || 'http://localhost:1337';
+      const response = await fetch(`${strapiBaseUrl}/api/sitemaps?filters[PageURL][$ne]=null&populate=PageURL`);
+      const data = await response.json();
+
+      if (!data?.data) {
+        console.error('Error: No data returned from Strapi API');
+        return [];
+      }
+
+      // Log the raw data for debugging
+      console.log('Raw Data from API:', data);
+
+      // Extract slugs from the response
+      const slugs = data.data.map(item => `/${item.PageURL}`);
+
+      // Log the generated slugs for debugging
+      console.log('Generated Slugs:', slugs);
+
+      return slugs; // Return the array of slugs
+    },
+  },
+  seo: {
+    robots: {
+      rules: [
+        {
+          UserAgent: '*',
+          Disallow: process.env.NODE_ENV === 'production' ? '' : '/', // Allow indexing in production
+        },
+      ],
+      Sitemap: process.env.BASE_URL + '/sitemap.xml',
+    },
+  },
+
+  site: { 
+    url: 'http://localhost:3000/', 
+    name: 'My Awesome Website' 
+  },
 
   compatibilityDate: "2024-12-12",
 })

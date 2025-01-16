@@ -634,12 +634,12 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-8pwT3utN.mjs')
+    component: () => import('./_slug_-YzAzxu1j.mjs')
   },
   {
     name: "about-backup",
     path: "/about/backup",
-    component: () => import('./backup-DTW2t3x4.mjs')
+    component: () => import('./backup-CLMdzf6G.mjs')
   },
   {
     name: "about-index1",
@@ -649,67 +649,42 @@ const _routes = [
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-ClvUSDop.mjs')
+    component: () => import('./_...slug_-B4XPT_eN.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-BmPQB7x4.mjs')
-  },
-  {
-    name: "career-details",
-    path: "/career-details",
-    component: () => import('./index-BTVxcdWh.mjs')
-  },
-  {
-    name: "career",
-    path: "/career",
-    component: () => import('./index-5aOoYR9S.mjs')
+    component: () => import('./index-BNN2saf4.mjs')
   },
   {
     name: "contact",
     path: "/contact",
-    component: () => import('./index-Ca4vETkr.mjs')
+    component: () => import('./index-rV9RjCh3.mjs')
   },
   {
     name: "error-404",
     path: "/error-404",
-    component: () => import('./index-DAHo4uOx.mjs')
-  },
-  {
-    name: "faqs-1",
-    path: "/faqs-1",
-    component: () => import('./index-CzTe7fsi.mjs')
+    component: () => import('./index-3frdQhbU.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DAVnwRy2.mjs')
-  },
-  {
-    name: "services-1",
-    path: "/services-1",
-    component: () => import('./index-BBt0hPMR.mjs')
-  },
-  {
-    name: "services-2",
-    path: "/services-2",
-    component: () => import('./index-zTZ5Bcd7.mjs')
+    component: () => import('./index-DRO6A0J-.mjs')
   },
   {
     name: "term-conditions",
     path: "/term-conditions",
-    component: () => import('./index-CFyIAJ3r.mjs')
+    component: () => import('./index-DXgo2uPb.mjs')
   },
   {
     name: "test",
     path: "/test",
-    component: () => import('./index-BrUPG_MU.mjs')
+    component: () => import('./index-BKIKJEE9.mjs')
   },
   {
     name: "test-slugbackup",
     path: "/test/slugbackup",
-    component: () => import('./slugbackup-Duh_uQON.mjs')
+    component: () => import('./slugbackup-RH-6qrcu.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -1731,8 +1706,8 @@ const plugins = [
   defaults_M8ptihKv0z
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-CkSSs2UG.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-CPzGB0Sj.mjs'))
+  default: defineAsyncComponent(() => import('./default-DTqVoHDK.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-B-KrhzGr.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -2031,7 +2006,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-El620vcz.mjs').then((r) => r.default || r));
+    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-BULPb4hH.mjs').then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
     nuxtApp.ssrContext.url;
@@ -2095,5 +2070,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _imports_2 as _, useHead as a, _export_sfc as b, createError as c, _imports_0 as d, entry$1 as default, useRouter as e, navigateTo as f, useRuntimeConfig as g, asyncDataDefaults as h, injectHead as i, fetchDefaults as j, useRequestFetch as k, useRequestEvent as l, useOgImageRuntimeConfig as m, nuxtLinkDefaults as n, useSiteConfig as o, useRoute as p, resolveRouteObject as r, useNuxtApp as u };
+export { _imports_2 as _, useSeoMeta as a, useHead as b, createError as c, _export_sfc as d, entry$1 as default, _imports_0 as e, useOgImageRuntimeConfig as f, useSiteConfig as g, useRouter as h, injectHead as i, navigateTo as j, useRuntimeConfig as k, asyncDataDefaults as l, fetchDefaults as m, nuxtLinkDefaults as n, useRequestFetch as o, useRequestEvent as p, useRoute as q, resolveRouteObject as r, useNuxtApp as u };
 //# sourceMappingURL=server.mjs.map

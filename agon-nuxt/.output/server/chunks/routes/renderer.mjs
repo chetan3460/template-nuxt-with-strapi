@@ -80,7 +80,7 @@ const unheadPlugins = true ? [CapoPlugin({ track: true })] : [];
 
 const renderSSRHeadOptions = {"omitLineBreaks":false};
 
-const appHead = {"link":[],"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"property":"og:type","content":"website"}],"style":[],"script":[],"noscript":[],"title":"Agon - Multipurpose Agency TailwindCSS NuxtJS Template","titleTemplate":"%s","htmlAttrs":{}};
+const appHead = {"link":[],"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"property":"og:type","content":"website"}],"style":[],"script":[],"noscript":[],"title":"Agon - Multipurpose Agency TailwindCSS NuxtJS Template","titleTemplate":"%s %seperator %siteName","templateParams":{"seperator":"—","siteName":"MySite"},"htmlAttrs":{}};
 
 const appRootTag = "div";
 

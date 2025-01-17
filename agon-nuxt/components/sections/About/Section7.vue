@@ -34,9 +34,9 @@
                     :src="`${strapiBaseUrl}${item.image?.url}`" alt="Agon" /></div>
         </div>
     </div>
-    <div v-else>
+    <!-- <div v-else>
         <Alert :class="`text-base`" />
-    </div>
+    </div> -->
 </template>
 <script setup>
 import { ref, watchEffect } from 'vue';

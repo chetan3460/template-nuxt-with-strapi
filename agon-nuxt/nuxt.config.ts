@@ -1,9 +1,11 @@
 import { resolve } from "path";
+const fs = require('fs');
+const path = require('path');
 
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      strapiBaseUrl: process.env.STRAPI_BASE_URL || 'http://localhost:1337', // Ensure the Strapi URL is set correctly
+      strapiBaseUrl: process.env.STRAPI_BASE_URL || 'http://localhost:1337',
     },
   },
   image: {
@@ -50,7 +52,7 @@ export default defineNuxtConfig({
     ],
     "@nuxt/image", 
     "@nuxtjs/seo", 
-    '@nuxtjs/sitemap'
+    // '@nuxtjs/sitemap'
   ],
 
   app: {
@@ -65,30 +67,6 @@ export default defineNuxtConfig({
     },
   },
 
-  sitemap: {
-    hostname: 'http://localhost:3000',
-    async routes() {
-      const strapiBaseUrl = process.env.STRAPI_BASE_URL || 'http://localhost:1337';
-      const response = await fetch(`${strapiBaseUrl}/api/sitemaps?filters[PageURL][$ne]=null&populate=PageURL`);
-      const data = await response.json();
-
-      if (!data?.data) {
-        console.error('Error: No data returned from Strapi API');
-        return [];
-      }
-
-      // Log the raw data for debugging
-      console.log('Raw Data from API:', data);
-
-      // Extract slugs from the response
-      const slugs = data.data.map(item => `/${item.PageURL}`);
-
-      // Log the generated slugs for debugging
-      console.log('Generated Slugs:', slugs);
-
-      return slugs; // Return the array of slugs
-    },
-  },
   seo: {
     robots: {
       rules: [
@@ -105,6 +83,30 @@ export default defineNuxtConfig({
     url: 'http://localhost:3000/', 
     name: 'My Awesome Website' 
   },
+  // sitemap: {
+  //   sources: [
+  //     '/api/sitemaps',
+  //     '/api/blogs', // This should match the path where your sitemap handler is located
+  //   ],
+  // },
+  sitemap: {
+    hostname: 'http://localhost:3000/',
+    sitemaps: [
+      {
+        path: '/sitemap.xml',
+        routes: [
+          '/api/sitemaps',
+          '/api/blogs',
+        ]
+      },
+      // {
+      //   path: '/__sitemap__/general.xml', // Explicitly set this path if you need it
+      //   routes: [
+      //     '/api/sitemaps',
+      //   ]
+      // }
+    ]
+  },
 
   compatibilityDate: "2024-12-12",
-})
+});

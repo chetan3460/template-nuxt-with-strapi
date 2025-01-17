@@ -1,5 +1,5 @@
 import { hasInjectionContext, inject, version, ref, watchEffect, watch, getCurrentInstance, defineAsyncComponent, defineComponent, h, computed, unref, provide, shallowReactive, Suspense, nextTick, Fragment, Transition, mergeProps, useSSRContext, createApp, effectScope, reactive, getCurrentScope, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, isReadonly, withCtx, isRef, isShallow, isReactive, toRaw, toValue } from 'vue';
-import { $ as $fetch, F as baseURL, G as hasProtocol, I as isScriptProtocol, J as joinURL, K as withQuery, c as createError$1, L as defu, p as publicAssetsURL, M as sanitizeStatusCode, N as getContext, O as createHooks, P as withoutTrailingSlash, Q as titleCase, R as toRouteMatcher, S as createRouter$1, T as camelCase, A as parseURL, U as withoutBase, V as stringifyQuery, W as withLeadingSlash, X as withBase, w as withTrailingSlash } from '../nitro/nitro.mjs';
+import { $ as $fetch, W as baseURL, X as hasProtocol, Y as isScriptProtocol, o as joinURL, Z as withQuery, c as createError$1, n as defu, p as publicAssetsURL, _ as sanitizeStatusCode, a0 as getContext, a1 as createHooks, B as withoutTrailingSlash, a2 as titleCase, a3 as toRouteMatcher, a4 as createRouter$1, a5 as camelCase, Q as parseURL, a6 as withoutBase, a7 as stringifyQuery, a8 as withLeadingSlash, a9 as withBase, M as withTrailingSlash } from '../nitro/nitro.mjs';
 import { getActiveHead, CapoPlugin } from 'unhead';
 import { defineHeadPlugin, composableNames, unpackMeta } from '@unhead/shared';
 import { useRoute as useRoute$1, RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
@@ -630,21 +630,12 @@ async function getRouteRules(url) {
     return defu({}, ..._routeRulesMatcher.matchAll(url).reverse());
   }
 }
+const component_45stubqIZOrkGupM = {};
 const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-YzAzxu1j.mjs')
-  },
-  {
-    name: "about-backup",
-    path: "/about/backup",
-    component: () => import('./backup-CLMdzf6G.mjs')
-  },
-  {
-    name: "about-index1",
-    path: "/about/index1",
-    component: () => import('./index1-CNfS-E8A.mjs')
+    component: () => import('./_slug_-B1oDUmWw.mjs')
   },
   {
     name: "blog-details-slug",
@@ -679,12 +670,17 @@ const _routes = [
   {
     name: "test",
     path: "/test",
-    component: () => import('./index-BKIKJEE9.mjs')
+    component: () => import('./index-CCG9jvfS.mjs')
   },
   {
     name: "test-slugbackup",
     path: "/test/slugbackup",
-    component: () => import('./slugbackup-RH-6qrcu.mjs')
+    component: () => import('./slugbackup-DAdnOp7D.mjs')
+  },
+  {
+    name: void 0 ,
+    path: "/sitemap.xml",
+    component: component_45stubqIZOrkGupM
   }
 ];
 const _wrapIf = (component, props, slots) => {

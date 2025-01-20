@@ -1,5 +1,5 @@
 import { hasInjectionContext, inject, version, ref, watchEffect, watch, getCurrentInstance, defineAsyncComponent, defineComponent, h, computed, unref, provide, shallowReactive, Suspense, nextTick, Fragment, Transition, mergeProps, useSSRContext, createApp, effectScope, reactive, getCurrentScope, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, isReadonly, withCtx, isRef, isShallow, isReactive, toRaw, toValue } from 'vue';
-import { $ as $fetch, W as baseURL, X as hasProtocol, Y as isScriptProtocol, o as joinURL, Z as withQuery, c as createError$1, n as defu, p as publicAssetsURL, _ as sanitizeStatusCode, a0 as getContext, a1 as createHooks, B as withoutTrailingSlash, a2 as titleCase, a3 as toRouteMatcher, a4 as createRouter$1, a5 as camelCase, Q as parseURL, a6 as withoutBase, a7 as stringifyQuery, a8 as withLeadingSlash, a9 as withBase, M as withTrailingSlash } from '../nitro/nitro.mjs';
+import { $ as $fetch, G as baseURL, I as hasProtocol, J as isScriptProtocol, K as joinURL, L as withQuery, c as createError$1, M as defu, p as publicAssetsURL, N as sanitizeStatusCode, O as getContext, P as createHooks, Q as withoutTrailingSlash, R as titleCase, S as toRouteMatcher, T as createRouter$1, U as camelCase, B as parseURL, V as withoutBase, W as stringifyQuery, X as withLeadingSlash, Y as withBase, w as withTrailingSlash } from '../nitro/nitro.mjs';
 import { getActiveHead, CapoPlugin } from 'unhead';
 import { defineHeadPlugin, composableNames, unpackMeta } from '@unhead/shared';
 import { useRoute as useRoute$1, RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
@@ -630,7 +630,6 @@ async function getRouteRules(url) {
     return defu({}, ..._routeRulesMatcher.matchAll(url).reverse());
   }
 }
-const component_45stubqIZOrkGupM = {};
 const _routes = [
   {
     name: "slug",
@@ -676,11 +675,6 @@ const _routes = [
     name: "test-slugbackup",
     path: "/test/slugbackup",
     component: () => import('./slugbackup-DAdnOp7D.mjs')
-  },
-  {
-    name: void 0 ,
-    path: "/sitemap.xml",
-    component: component_45stubqIZOrkGupM
   }
 ];
 const _wrapIf = (component, props, slots) => {

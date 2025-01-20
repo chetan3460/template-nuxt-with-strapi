@@ -52,7 +52,7 @@ export default defineNuxtConfig({
     ],
     "@nuxt/image", 
     "@nuxtjs/seo", 
-    // '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap'
   ],
 
   app: {
@@ -90,23 +90,7 @@ export default defineNuxtConfig({
   //   ],
   // },
   sitemap: {
-    hostname: 'http://localhost:3000/',
-    sitemaps: [
-      {
-        path: '/sitemap.xml',
-        routes: [
-          '/api/sitemaps',
-          '/api/blogs',
-        ]
-      },
-      // {
-      //   path: '/__sitemap__/general.xml', // Explicitly set this path if you need it
-      //   routes: [
-      //     '/api/sitemaps',
-      //   ]
-      // }
-    ]
+    sources: ['/api/__sitemap__/urls'],
   },
-
   compatibilityDate: "2024-12-12",
 });

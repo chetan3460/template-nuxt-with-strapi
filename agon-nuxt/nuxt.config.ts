@@ -38,22 +38,17 @@ export default defineNuxtConfig({
   ],
   buildModules: ['@nuxtjs/tailwindcss'],
 
-  modules: [
-    [
-      "@nuxtjs/google-fonts",
-      {
-        families: {
-          Chivo: { wght: [400, 700, 900] },
-          "Noto Sans": { wght: [400, 500, 600, 700, 800] },
-        },
-        download: true,
-        inject: true,
-      }
-    ],
-    "@nuxt/image", 
-    "@nuxtjs/seo", 
-    '@nuxtjs/sitemap'
-  ],
+  modules: [[
+    "@nuxtjs/google-fonts",
+    {
+      families: {
+        Chivo: { wght: [400, 700, 900] },
+        "Noto Sans": { wght: [400, 500, 600, 700, 800] },
+      },
+      download: true,
+      inject: true,
+    }
+  ], "@nuxt/image", "@nuxtjs/seo", '@nuxtjs/sitemap', '@nuxtjs/robots'],
 
   app: {
     head: {
@@ -69,6 +64,7 @@ export default defineNuxtConfig({
 
   seo: {
     robots: {
+      blockNonSeoBots: true,
       rules: [
         {
           UserAgent: '*',
@@ -77,18 +73,22 @@ export default defineNuxtConfig({
       ],
       Sitemap: process.env.BASE_URL + '/sitemap.xml',
     },
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "WebSite",  // The type of the website (can be changed based on your content)
+      "name": "Agon",
+      "url": "https://yourwebsite.com",
+      "sameAs": [
+        "https://facebook.com/yourprofile",
+        "https://twitter.com/yourprofile"
+      ]
+    },
   },
 
   site: { 
     url: 'http://localhost:3000/', 
     name: 'My Awesome Website' 
   },
-  // sitemap: {
-  //   sources: [
-  //     '/api/sitemaps',
-  //     '/api/blogs', // This should match the path where your sitemap handler is located
-  //   ],
-  // },
   sitemap: {
     sources: ['/api/__sitemap__/urls'],
   },

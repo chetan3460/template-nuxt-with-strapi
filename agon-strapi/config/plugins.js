@@ -9,6 +9,11 @@ module.exports = () => ({
         enabled: true,
     },
 
-
+    navigation: {
+        enabled: true,
+        config: {
+            allowedContentTypes: ['api::sitemap.sitemap'], // Allow linking to the Sitemap collection type
+        },
+    },
 
 });

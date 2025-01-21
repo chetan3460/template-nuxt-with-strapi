@@ -28,16 +28,16 @@ import { useNuxtApp, useSeoMeta } from '#app';
 // Dynamic component resolver for Strapi block components
 const resolveComponent = (componentName) => {
     const componentMap = {
-        'page-blocks.hero-about-block': defineAsyncComponent(() => import('~/components/sections/About/Hero.vue')),
-        'page-blocks.content-image-block': defineAsyncComponent(() => import('~/components/sections/About/Section3.vue')),
-        'page-blocks.cards-block': defineAsyncComponent(() => import('~/components/sections/About/Section4.vue')),
-        'page-blocks.process-block': defineAsyncComponent(() => import('~/components/sections/About/Section5.vue')),
-        'page-blocks.faq-block': defineAsyncComponent(() => import('~/components/sections/About/Section6.vue')),
-        'page-blocks.service-page-banner-block': defineAsyncComponent(() => import('~/components/sections/About/Section7.vue')),
-        'page-blocks.partner-block': defineAsyncComponent(() => import('~/components/sections/About/Section8.vue')),
-        'page-blocks.card-block-layout-two': defineAsyncComponent(() => import('~/components/sections/About/Section9.vue')),
-        'page-blocks.two-col-image-content-block': defineAsyncComponent(() => import('~/components/sections/About/Section10.vue')),
-        'page-blocks.contact-us': defineAsyncComponent(() => import('~/components/sections/About/ContactForm.vue')),
+        'page-blocks.hero-about-block': defineAsyncComponent(() => import('~/components/sections/About/HeroAboutBlock.vue')),
+        'page-blocks.content-image-block': defineAsyncComponent(() => import('~/components/sections/About/ContentImageBlock.vue')),
+        'page-blocks.cards-block': defineAsyncComponent(() => import('~/components/sections/About/CardsBlock.vue')),
+        'page-blocks.process-block': defineAsyncComponent(() => import('~/components/sections/About/ProcessBlock.vue')),
+        'page-blocks.faq-block': defineAsyncComponent(() => import('~/components/sections/About/FaqBlock.vue')),
+        'page-blocks.service-page-banner-block': defineAsyncComponent(() => import('~/components/sections/About/ServicePageBannerBlock.vue')),
+        'page-blocks.partner-block': defineAsyncComponent(() => import('~/components/sections/About/PartnerBlock.vue')),
+        'page-blocks.card-block-layout-two': defineAsyncComponent(() => import('~/components/sections/About/CardBlockLayoutTwo.vue')),
+        'page-blocks.two-col-image-content-block': defineAsyncComponent(() => import('~/components/sections/About/TwoColImageContentBlock.vue')),
+        'page-blocks.contact-us': defineAsyncComponent(() => import('~/components/sections/About/ContactUs.vue')),
         // Add more block mappings here as needed
     };
 

@@ -1,54 +1,52 @@
 <template>
     <div v-if="sitemap">
-        <!-- <img :src="`/assets/images/about-1-bg.png`" alt=""
-            class="w-full absolute left-0 z-0 object-fill top-[112px] h-[750px]"> -->
-        <!-- <h1>{{ sitemap.PageTitle }}</h1> -->
-
-        <!-- Debugging: Display raw block data for verification -->
-        <!-- <div v-for="(block, index) in sitemap.Blocks" :key="index" class="mb-4">
-            <pre>{{ block }}</pre>
-        </div> -->
-        <!-- Debugging: Log raw block data -->
-
         <!-- Render valid blocks -->
         <div v-for="block in filteredBlocks" :key="block.id">
             <component :is="resolveComponent(block.__component)" :data="block" />
         </div>
     </div>
 
+    <!-- <div v-else>
+        <div class="flex items-center justify-center space-x-2">
+            <div class="w-8 h-8 border-4 border-t-4 border-blue-500 rounded-full animate-spin"></div>
+            <p class="text-gray-500">{{ loadingMessage }}</p>
+        </div>
+    </div> -->
 </template>
 
+
 <script setup>
-import { useNuxtApp } from '#app';
-import { ref, watchEffect, computed, defineAsyncComponent } from 'vue';
+import { ref, computed, watchEffect, defineAsyncComponent } from 'vue';
+// import { useHead } from '#imports'; // Import useHead
 import { useRoute } from 'vue-router';
 import { useSeoMeta } from '#app';
+import { useNuxtApp } from '#app';
 
-
-// Dynamic component resolver for Strapi block components
+// Dynamically resolve components from Strapi block components
 const resolveComponent = (componentName) => {
-    const componentMap = {
-        'page-blocks.hero-about-block': defineAsyncComponent(() => import('~/components/sections/About/Hero.vue')),
-        'page-blocks.content-image-block': defineAsyncComponent(() => import('~/components/sections/About/Section3.vue')),
-        'page-blocks.cards-block': defineAsyncComponent(() => import('~/components/sections/About/Section4.vue')),
-        'page-blocks.process-block': defineAsyncComponent(() => import('~/components/sections/About/Section5.vue')),
-        'page-blocks.faq-block': defineAsyncComponent(() => import('~/components/sections/About/Section6.vue')),
-        'page-blocks.service-page-banner-block': defineAsyncComponent(() => import('~/components/sections/About/Section7.vue')),
-        'page-blocks.partner-block': defineAsyncComponent(() => import('~/components/sections/About/Section8.vue')),
-        'page-blocks.card-block-layout-two': defineAsyncComponent(() => import('~/components/sections/About/Section9.vue')),
-        'page-blocks.two-col-image-content-block': defineAsyncComponent(() => import('~/components/sections/About/Section10.vue')),
-        'page-blocks.contact-us': defineAsyncComponent(() => import('~/components/sections/About/ContactForm.vue')),
-        // Add more block mappings here as needed
-    };
+    if (!componentName) return null;
 
-    return componentMap[componentName] || null; // Return null for unmapped components
+    // Dynamically import all Vue files from the folder
+    const components = import.meta.glob('~/components/sections/About/**/*.vue');
+
+    // Convert Strapi component name to file path
+    const formattedName = componentName
+        .replace('page-blocks.', '') // Remove prefix
+        .split('-') // Split by hyphen
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1)) // Convert to PascalCase
+        .join(''); // Join back to form file name
+    const path = `/components/sections/About/${formattedName}.vue`;
+
+    // Find and return the matching component
+    const matchedComponent = components[path];
+
+    if (matchedComponent) {
+        return defineAsyncComponent(matchedComponent);
+    } else {
+        console.error(`Component not found for: ${componentName}. Expected path: ${path}`);
+        return null;
+    }
 };
-// Dynamic component resolver for Strapi block components
-
-
-
-
-
 
 // Reactive states
 const sitemap = ref(null);
@@ -63,15 +61,13 @@ const filteredBlocks = computed(() => {
     );
 });
 
-
-
+// Fetch data from the API
 const fetchData = async (slug) => {
     try {
         const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
         const response = await fetch(
             `${strapiBaseUrl}/api/sitemaps?filters[PageURL][$eq]=${slug}&populate[seo][populate][ogImage]=true&populate[Blocks]=true`
         );
-        // const response = await fetch(`${strapiBaseUrl}/api/sitemaps?populate=Blocks`);
         const data = await response.json();
 
         // Check if response is valid
@@ -79,19 +75,11 @@ const fetchData = async (slug) => {
             throw new Error(`Failed to fetch data: ${response.statusText}`);
         }
 
-
-        // Debugging fetched data
-        // console.log('Fetched data from Strapi:', data);
-
         if (data?.data) {
-
             // Find page by slug
             const pageData = data.data.find(
                 (item) => item.PageURL?.trim().toLowerCase() === slug.trim().toLowerCase()
             );
-
-
-            // const pageData = data.data[0];
 
             if (!pageData) {
                 console.error(`Page with slug "${slug}" not found.`);
@@ -100,8 +88,6 @@ const fetchData = async (slug) => {
             }
 
             sitemap.value = pageData;
-
-
         } else {
             loadingMessage.value = 'No data received from API.';
         }
@@ -112,17 +98,15 @@ const fetchData = async (slug) => {
 };
 
 // Watch for changes in the route and re-fetch data
-
 watchEffect(() => {
     const slug = route.params.slug;
-    // console.log('Slug.vue Current route slug:', slug); // Debug route slug
+    console.log("Current Route Slug:", slug); // Debugging
 
     if (slug) {
         sitemap.value = null; // Reset sitemap
         fetchData(slug); // Fetch new data
     }
 });
-
 
 // Computed SEO metadata
 const seoMetadata = computed(() => {
@@ -150,4 +134,32 @@ watchEffect(() => {
         useSeoMeta(seoMetadata.value);
     }
 });
+
+useHead({
+    bodyAttrs: {
+        class: "overflow-x-hidden w-screen relative"
+
+    },
+})
+// Dynamically generate the page class based on the URL or title
+// const dynamicClass = computed(() => {
+//     if (!sitemap.value || !sitemap.value?.seo?.metaTitle) return '';
+//     const pageTitle = sitemap.value?.seo?.metaTitle || '';
+//     return `page-${pageTitle.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}-template`;
+// });
+
+// // Watch for changes in the route and update the body class
+// watchEffect(() => {
+//     const pageClass = dynamicClass.value;
+
+//     // Only update the body class if there is a valid class
+//     if (pageClass) {
+//         useHead({
+//             bodyAttrs: {
+//                 class: `overflow-x-hidden w-screen relative ${pageClass}`,
+//             },
+//         });
+//     }
+// });
+
 </script>

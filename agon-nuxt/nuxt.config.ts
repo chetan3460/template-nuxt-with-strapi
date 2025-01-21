@@ -48,7 +48,7 @@ export default defineNuxtConfig({
       download: true,
       inject: true,
     }
-  ], "@nuxt/image", "@nuxtjs/seo", '@nuxtjs/sitemap', '@nuxtjs/robots'],
+  ], "@nuxt/image", "@nuxtjs/seo"],
 
   app: {
     head: {

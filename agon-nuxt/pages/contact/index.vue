@@ -9,6 +9,7 @@
 useHead({
     bodyAttrs: {
         class: "overflow-x-hidden w-screen relative contact-page"
+
     },
 })
 </script>

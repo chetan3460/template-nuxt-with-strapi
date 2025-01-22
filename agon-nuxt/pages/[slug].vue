@@ -1,17 +1,19 @@
 <template>
     <div v-if="sitemap">
+        <div class="full-width bg-gray-100">
+            <div class="text-center px-5 pt-[74px] pb-[90px]">
+                <Breadcrumbs :items="breadcrumbItems" />
+                <h1
+                    class="font-chivo font-bold lg:text-display-3 md:text-[45px] md:leading-[52px] text-[35px] leading-[42px] m-0">
+                    {{ sitemap.PageTitle }}</h1>
+            </div>
+        </div>
         <!-- Render valid blocks -->
         <div v-for="block in filteredBlocks" :key="block.id">
             <component :is="resolveComponent(block.__component)" :data="block" />
         </div>
     </div>
 
-    <!-- <div v-else>
-        <div class="flex items-center justify-center space-x-2">
-            <div class="w-8 h-8 border-4 border-t-4 border-blue-500 rounded-full animate-spin"></div>
-            <p class="text-gray-500">{{ loadingMessage }}</p>
-        </div>
-    </div> -->
 </template>
 
 
@@ -21,6 +23,11 @@ import { ref, computed, watchEffect, defineAsyncComponent } from 'vue';
 import { useRoute } from 'vue-router';
 import { useSeoMeta } from '#app';
 import { useNuxtApp } from '#app';
+import Breadcrumbs from '~/components/elements/Breadcrumbs.vue';
+
+
+
+
 
 // Dynamically resolve components from Strapi block components
 const resolveComponent = (componentName) => {
@@ -100,7 +107,7 @@ const fetchData = async (slug) => {
 // Watch for changes in the route and re-fetch data
 watchEffect(() => {
     const slug = route.params.slug;
-    console.log("Current Route Slug:", slug); // Debugging
+    // console.log("Current Route Slug:", slug); // Debugging
 
     if (slug) {
         sitemap.value = null; // Reset sitemap
@@ -141,25 +148,6 @@ useHead({
 
     },
 })
-// Dynamically generate the page class based on the URL or title
-// const dynamicClass = computed(() => {
-//     if (!sitemap.value || !sitemap.value?.seo?.metaTitle) return '';
-//     const pageTitle = sitemap.value?.seo?.metaTitle || '';
-//     return `page-${pageTitle.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}-template`;
-// });
 
-// // Watch for changes in the route and update the body class
-// watchEffect(() => {
-//     const pageClass = dynamicClass.value;
-
-//     // Only update the body class if there is a valid class
-//     if (pageClass) {
-//         useHead({
-//             bodyAttrs: {
-//                 class: `overflow-x-hidden w-screen relative ${pageClass}`,
-//             },
-//         });
-//     }
-// });
 
 </script>

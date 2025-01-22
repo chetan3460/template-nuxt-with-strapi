@@ -2,7 +2,7 @@
     <div v-if="sitemap">
         <!-- <img :src="`/assets/images/about-1-bg.png`" alt=""
             class="w-full absolute left-0 z-0 object-fill top-[112px] h-[750px]"> -->
-        <!-- <h1>{{ sitemap.PageTitle }}</h1> -->
+        <h1>{{ sitemap.PageTitle }}</h1>
 
         <!-- Debugging: Display raw block data for verification -->
         <!-- <div v-for="(block, index) in sitemap.Blocks" :key="index" class="mb-4">

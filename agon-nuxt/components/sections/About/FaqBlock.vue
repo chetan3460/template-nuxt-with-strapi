@@ -18,7 +18,8 @@
                 <div class="flex flex-col md:flex-row md:gap-[35px]">
                     <div v-for="(appraochItem, pIndex) in item.ApproachRepeater" :key="appraochItem.id"
                         class="mb-[30px] lg:mb-0">
-                        <div class="flex items-center mb-[17px]"><img class="mr-[9px]"
+                        <div class="flex items-center mb-[17px]">
+                            <img class="mr-[9px]"
                                 src="/assets/images/icons/icon-leaf.svg" alt="leaf icon">
                             <h4 v-if="appraochItem.title" class="text-heading-6 font-chivo font-bold">{{
                                 appraochItem.title }}</h4>

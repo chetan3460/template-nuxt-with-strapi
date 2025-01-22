@@ -4,7 +4,8 @@
         <li v-for="(item, index) in navigationItems" :key="item.id" class="flex items-center group">
             <!-- Internal Links -->
             <NuxtLink v-if="item.type === 'INTERNAL'" :to="`/${item.path}`"
-                class="hover:text-green-900 text-base font-inter menu-link lg:text-heading-6 mr-[7px]">
+                class="hover:text-green-900 text-base font-inter menu-link lg:text-heading-6 mr-[7px]"
+                active-class="text-green-900" exact>
                 {{ item.title }}
             </NuxtLink>
 
@@ -22,20 +23,29 @@
     </ul>
 </template>
 
+
+
 <script setup>
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 
-// Initialize reactive variables for navigation items and loading state
 const navigationItems = ref([]);
 const loading = ref(true);
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 
-// Use async data to fetch menu data
+// Get current route
+const route = useRoute();
+
+// Method to check if the current route matches the item's path
+const isActive = (path) => {
+    return route.path === `/${path}`;
+};
+
+// Fetch navigation items
 const { data, error } = await useAsyncData('menuData', () => {
     return $fetch(`${strapiBaseUrl}/api/navigation/render/navigation`);
 });
 
-// Set navigationItems based on the fetched data
 if (data.value && data.value.length > 0) {
     navigationItems.value = data.value.map((item) => ({
         id: item.id,

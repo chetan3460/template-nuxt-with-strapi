@@ -53,7 +53,8 @@ watchEffect(async () => {
                 },
                 populate: [
                     "Blocks.HeadingBlock",
-                    "Blocks.ImageRepeater.images", // Populate partner images
+                    "Blocks.ImageRepeater.images", 
+                    "*"// Populate partner images
                 ].join(","),
             });
 

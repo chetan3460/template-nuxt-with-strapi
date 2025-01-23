@@ -26,7 +26,7 @@ const { data, pending, error, refresh } = await useFetch(`${strapiBaseUrl}/api/l
 
 if (data.value) {
     latestBlogData.value = data.value.data;
-    console.log(latestBlogData.value);
+    // console.log(latestBlogData.value);
 } else if (error.value) {
     console.log(error.value);
 } else {

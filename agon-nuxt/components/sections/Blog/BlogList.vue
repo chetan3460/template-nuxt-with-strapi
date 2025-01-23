@@ -104,7 +104,8 @@ onMounted(() => {
     if (error.value) {
         console.error('Error fetching blog data:', error.value); // Log error for debugging
     } else if (data.value) {
-        console.log('Fetched data:', data.value); // Log data to check if it's correct
+        // console.log('Fetched data:', data.value); 
+        // Log data to check if it's correct
         blogPostData.value = data.value.data || []; // Store the fetched blog data
     } else {
         console.log('Loading...');
@@ -113,8 +114,10 @@ onMounted(() => {
 
 // Filtered blog posts based on search query
 const filteredBlogs = computed(() => {
-    console.log('Search Query:', searchQuery.value); // Log search query
-    console.log('Blog Data:', blogPostData.value); // Log blog data to inspect structure
+    // console.log('Search Query:', searchQuery.value); 
+    // // Log search query
+    // console.log('Blog Data:', blogPostData.value); 
+    // Log blog data to inspect structure
 
     if (!searchQuery.value) {
         return blogPostData.value; // If search is empty, return all blogs

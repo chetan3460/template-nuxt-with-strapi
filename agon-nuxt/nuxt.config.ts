@@ -92,5 +92,12 @@ export default defineNuxtConfig({
   sitemap: {
     sources: ['/api/__sitemap__/urls'],
   },
+  redirects: [
+    {
+        from: '/',
+        to: '/homepage',
+    },
+],
+
   compatibilityDate: "2024-12-12",
 });

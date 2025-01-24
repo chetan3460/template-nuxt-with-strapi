@@ -8,6 +8,7 @@ export default defineNuxtConfig({
       strapiBaseUrl: process.env.STRAPI_BASE_URL || 'http://localhost:1337',
     },
   },
+  ssr: true, 
   image: {
     strapi: {
       baseURL: process.env.STRAPI_BASE_URL + '/uploads/',
@@ -73,16 +74,16 @@ export default defineNuxtConfig({
       ],
       Sitemap: process.env.BASE_URL + '/sitemap.xml',
     },
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "WebSite",  // The type of the website (can be changed based on your content)
-      "name": "Agon",
-      "url": "https://yourwebsite.com",
-      "sameAs": [
-        "https://facebook.com/yourprofile",
-        "https://twitter.com/yourprofile"
-      ]
-    },
+    // schema: {
+    //   "@context": "https://schema.org",
+    //   "@type": "WebSite",  // The type of the website (can be changed based on your content)
+    //   "name": "Agon",
+    //   "url": "https://yourwebsite.com",
+    //   "sameAs": [
+    //     "https://facebook.com/yourprofile",
+    //     "https://twitter.com/yourprofile"
+    //   ]
+    // },
   },
 
   site: { 
@@ -92,12 +93,17 @@ export default defineNuxtConfig({
   sitemap: {
     sources: ['/api/__sitemap__/urls'],
   },
-  redirects: [
-    {
-        from: '/',
-        to: '/homepage',
-    },
-],
+//   redirects: [
+//     {
+//         from: '/',
+//         to: '/homepage',
+//     },
+
+// ],
+pageTransition: {
+  name: 'fade',
+  mode: 'out-in',
+},
 
   compatibilityDate: "2024-12-12",
 });

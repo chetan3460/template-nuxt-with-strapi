@@ -6,4 +6,6 @@ export default defineNuxtPlugin(nuxtApp => {
 
     // Provide globally so it can be accessed in components
     nuxtApp.provide('strapiBaseUrl', strapiBaseUrl);
+    console.log('Runtime Config:', useRuntimeConfig());
+
 });

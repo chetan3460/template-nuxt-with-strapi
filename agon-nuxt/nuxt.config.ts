@@ -100,10 +100,15 @@ export default defineNuxtConfig({
 //     },
 
 // ],
-pageTransition: {
-  name: 'fade',
-  mode: 'out-in',
+// pageTransition: {
+//   name: 'fade',
+//   mode: 'out-in',
+// },
+nitro: {
+  preset: 'node-server',
 },
-
+publicRuntimeConfig: {
+  fetchWithSSR: true,
+},
   compatibilityDate: "2024-12-12",
 });

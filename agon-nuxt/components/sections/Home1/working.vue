@@ -60,7 +60,7 @@ const bannerImageUrl = ref('');
 
 
 
-const { data, error } = await useFetch('http://localhost:1337/api/banner-block?populate=bannerImage');
+const { data, error } = await useFetch('https://agon-cms-strapi.onrender.com/api/banner-block?populate=bannerImage');
 
 
 // Handle data and errors

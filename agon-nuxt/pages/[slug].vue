@@ -1,7 +1,7 @@
 <template>
     <transition name="fade" mode="out-in">
-        <!-- Render content only if sitemap exists and filtered blocks are present -->
-        <div v-if="sitemap && filteredBlocks.length">
+        <!-- Only render once data is available -->
+        <div v-if="sitemap && filteredBlocks.length" :key="route.fullPath">
             <div class="full-width bg-gray-100">
                 <div class="text-center px-5 pt-[74px] pb-[90px]">
                     <Breadcrumbs />
@@ -11,8 +11,6 @@
                     </h1>
                 </div>
             </div>
-
-            <!-- Render dynamic blocks with keep-alive to improve performance -->
             <div v-for="block in filteredBlocks" :key="block.id">
                 <keep-alive>
                     <component :is="resolveComponent(block.__component)" :data="block" />
@@ -26,7 +24,17 @@
 import Breadcrumbs from '~/components/elements/Breadcrumbs.vue';
 import { useDynamicComponents } from '~/composables/useDynamicComponents';
 
-const { sitemap, filteredBlocks, resolveComponent } = useDynamicComponents('/api/sitemaps');
+const { sitemap, filteredBlocks, resolveComponent, fetchData, route } = useDynamicComponents('/api/sitemaps');
+
+// Watch for route changes to fetch data dynamically
+watchEffect(() => {
+    const slug = route.params.slug;
+    if (slug && (!sitemap.value || sitemap.value.PageURL !== slug)) {
+        sitemap.value = null; // Reset sitemap only if slug changes
+        fetchData(slug);
+    }
+});
+
 </script>
 
 <style scoped>

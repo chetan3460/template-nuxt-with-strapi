@@ -1,0 +1,26 @@
+.home-page-2 {
+    .address {
+        display: block !important;
+        color: white;
+        background-color: var(--gray-900);
+
+        .contact {
+            color: var(--orange-900);
+        }
+    }
+}
+
+.home-page-3,
+.home-page-8,
+.career-page,
+.career-details-page {
+    .address {
+        display: block !important;
+        color: white;
+        background-color: var(--green-900);
+
+        .contact {
+            color: var(--green-100);
+        }
+    }
+}

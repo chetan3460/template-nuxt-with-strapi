@@ -1,0 +1,163 @@
+.slick-slider {
+    &.dots {
+        .slick-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 33px;
+
+            .slick-active {
+                background-color: var(--green-900);
+            }
+
+            li {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background-color: var(--gray-300);
+                margin-left: 8px;
+                cursor: pointer;
+            }
+
+            button {
+                visibility: hidden;
+            }
+        }
+    }
+}
+
+.number-dots {
+    .slick-dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        .slick-active {
+            background-color: var(--green-900);
+            color: white;
+        }
+
+        li {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--gray-200);
+            margin-left: 8px;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            color: var(--gray-500);
+            transition: all 0.2s;
+
+            button {
+                font-weight: bold;
+            }
+        }
+
+        li:hover {
+            background-color: var(--green-900);
+            color: white;
+            transition: all 0.2s;
+        }
+    }
+}
+
+.slick-track {
+    display: flex !important;
+}
+
+.slick-slide {
+    height: auto;
+}
+
+.product-nav {
+    @media screen and (min-width: 1024px) {
+        .slick-track {
+            display: flex !important;
+            flex-direction: column;
+            width: 100% !important;
+            transform: translate3d(0, 0, 0) !important;
+            gap: 24px;
+
+            div {
+                width: 100% !important;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+input[type='range'] {
+    box-sizing: border-box;
+    appearance: none;
+    width: 274px;
+    margin: 0;
+    padding: 0 2px;
+    /* Add some L/R padding to ensure box shadow of handle is shown */
+    overflow: hidden;
+    border: 0;
+    border-radius: 1px;
+    outline: none;
+    background: linear-gradient(#e4e7ec, #e4e7ec) no-repeat center;
+    /* Use a linear gradient to generate only the 2px height background */
+    background-size: 100% 6px;
+    pointer-events: none;
+
+    &#lower {
+        // height: 6px;
+        background: linear-gradient(#e4e7ec, #e4e7ec) no-repeat center;
+        background-size: 100% 6px;
+    }
+
+    &#upper {
+        // height: 6px;
+        background: linear-gradient(to right, #e4e7ec 8%, var(--green-900) 8% 98%, #e4e7ec 98%) no-repeat center;
+        background-size: 100% 6px;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    &:active,
+    &:focus {
+        outline: none;
+    }
+
+    &::-webkit-slider-thumb {
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background-color: var(--green-900);
+        position: relative;
+        margin: 5px 0;
+        /* Add some margin to ensure box shadow is shown */
+        cursor: pointer;
+        appearance: none;
+        pointer-events: all;
+        box-shadow: 0 1px 4px 0.5px rgba(0, 0, 0, 0.25);
+        z-index: 999999999;
+    }
+}
+
+.multi-range {
+    position: relative;
+    height: 50px;
+
+    input[type='range'] {
+        position: absolute;
+
+        &:nth-child(1) {
+            &::-webkit-slider-thumb::before {
+                background-color: var(--green-900);
+            }
+        }
+
+        &:nth-child(2) {
+            background: none;
+
+            &::-webkit-slider-thumb::before {
+                background-color: var(--green-900);
+            }
+        }
+    }
+}

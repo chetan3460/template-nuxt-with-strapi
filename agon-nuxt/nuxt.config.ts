@@ -5,7 +5,7 @@ const path = require('path');
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      strapiBaseUrl: process.env.STRAPI_BASE_URL || 'http://localhost:1337',
+      strapiBaseUrl: process.env.STRAPI_BASE_URL || 'https://agon-cms-strapi.onrender.com',
     },
   },
   ssr: true, 

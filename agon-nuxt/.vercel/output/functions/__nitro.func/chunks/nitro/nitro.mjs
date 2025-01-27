@@ -4602,7 +4602,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "d228e61a-fcab-4252-8eff-2e62d27663ec",
+    "buildId": "97a52c2e-3ed9-42e7-b300-1e1a973a456c",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -5421,11 +5421,11 @@ async function dispose(driver) {
 const _assets = {
   ["nuxt-og-image:fonts:Inter-400.ttf.base64"]: {
     import: () => import('../raw/Inter-400.ttf.mjs').then(r => r.default || r),
-    meta: {"type":"text/plain; charset=utf-8","etag":"\"652cc-qEeSD1DXCSV8gPP2rnBA6ePGdZ4\"","mtime":"2025-01-27T05:51:57.355Z"}
+    meta: {"type":"text/plain; charset=utf-8","etag":"\"652cc-qEeSD1DXCSV8gPP2rnBA6ePGdZ4\"","mtime":"2025-01-27T06:17:30.322Z"}
   },
   ["nuxt-og-image:fonts:Inter-700.ttf.base64"]: {
     import: () => import('../raw/Inter-700.ttf.mjs').then(r => r.default || r),
-    meta: {"type":"text/plain; charset=utf-8","etag":"\"674f0-FZReUXHhPTnY0HmYVn2iPpKm9ds\"","mtime":"2025-01-27T05:51:57.355Z"}
+    meta: {"type":"text/plain; charset=utf-8","etag":"\"674f0-FZReUXHhPTnY0HmYVn2iPpKm9ds\"","mtime":"2025-01-27T06:17:30.322Z"}
   }
 };
 

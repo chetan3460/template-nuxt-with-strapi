@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     },
   },
   ssr: true, 
+  target: 'server',
   image: {
     strapi: {
       baseURL: process.env.STRAPI_BASE_URL + '/uploads/',

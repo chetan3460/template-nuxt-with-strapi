@@ -1,5 +1,4 @@
 {
-  "root": "agon-nuxt",
   "build": {
     "command": "npm run build",
     "outputDirectory": ".output/public"

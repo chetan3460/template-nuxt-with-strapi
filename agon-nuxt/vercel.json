@@ -1,6 +1,10 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/.output/server/index.mjs" }
-    ]
-  }
-  
+  "root": "agon-nuxt",
+  "build": {
+    "command": "npm run build",
+    "outputDirectory": ".output"
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/.output/server/index.mjs" }
+  ]
+}

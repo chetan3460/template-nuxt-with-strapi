@@ -1,5 +1,6 @@
 export const fetchSitemap = async () => {
     const { $config } = useNuxtApp();
+    // const strapiBaseUrl = $config.public.strapiBaseUrl || 'http://localhost:1337';
     const strapiBaseUrl = $config.public.strapiBaseUrl || 'https://agon-cms-strapi.onrender.com';
 
     try {

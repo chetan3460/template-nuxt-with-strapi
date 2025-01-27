@@ -3,16 +3,14 @@ const fs = require('fs');
 const path = require('path');
 
 export default defineNuxtConfig({
-  // runtimeConfig: {
-  //   public: {
-  //     strapiBaseUrl: process.env.STRAPI_BASE_URL || "https://agon-cms-strapi.onrender.com",
-  //   },
-  // },
   runtimeConfig: {
     public: {
       strapiBaseUrl: process.env.STRAPI_BASE_URL || 'https://agon-cms-strapi.onrender.com',
     }
   },
+  // runtimeConfig: {
+  //   STRAPI_BASE_URL: process.env.STRAPI_BASE_URL || 'https://agon-cms-strapi.onrender.com',
+  // },
   ssr: true, 
   target: 'server',
   image: {

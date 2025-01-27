@@ -2,7 +2,7 @@
   "root": "agon-nuxt",
   "build": {
     "command": "npm run build",
-    "outputDirectory": ".output"
+    "outputDirectory": ".output/public"
   },
   "rewrites": [
     { "source": "/(.*)", "destination": "/.output/server/index.mjs" }

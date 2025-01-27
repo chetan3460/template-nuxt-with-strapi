@@ -67,6 +67,7 @@ export default defineNuxtConfig({
         siteName: 'MySite'
       },
     },
+    baseURL: '/'
   },
 
   seo: {

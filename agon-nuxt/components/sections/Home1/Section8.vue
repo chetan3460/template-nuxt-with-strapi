@@ -31,7 +31,7 @@
     </div>
 </template>
 
-<script setup>
+<!-- <script setup>
 import { ref, onMounted } from 'vue';
 import BlogItem from '~/components/BlogPost/BlogItem.vue';
 
@@ -44,6 +44,49 @@ const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 
 const { data: blogDataResponse, error: blogDataError, pending: blogDataPending } = await useFetch(`${strapiBaseUrl}/api/blog-post`);
 const { data: blogPostDataResponse, error: blogPostDataError, pending: blogPostDataPending } = await useFetch(`${strapiBaseUrl}/api/blogs?populate=*`);
+
+onMounted(() => {
+    // Log the data for debugging
+    // console.log('Blog Data Response:', blogDataResponse.value);
+    // console.log('Blog Post Data Response:', blogPostDataResponse.value);
+
+    // Check and assign the fetched data to the corresponding variables
+    if (blogDataResponse.value) {
+        blogData.value = blogDataResponse.value.data; // Correcting to use `data` directly
+        // console.log('Blog Data:', blogData.value);
+    } else if (blogDataError.value) {
+        console.error('Error fetching blog data:', blogDataError.value);
+    }
+
+    if (blogPostDataResponse.value) {
+        blogPostData.value = blogPostDataResponse.value.data; // Assign blog post data
+        // console.log('Blog Post Data:', blogPostData.value);
+    } else if (blogPostDataError.value) {
+        console.error('Error fetching blog post data:', blogPostDataError.value);
+    }
+});
+</script> -->
+
+
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import BlogItem from '~/components/BlogPost/BlogItem.vue';
+import qs from 'qs'; // Import qs for query string serialization
+
+// Initialize data for blog posts and other data
+const blogData = ref(null); // For the blog data (heading, description, etc.)
+const blogPostData = ref([]);  // For blog posts data
+
+// Fetch data from both endpoints using qs
+const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+
+// Prepare query strings (if needed)
+const blogQuery = qs.stringify({ populate: '*' });  // Add any query parameters for the blog data
+const blogPostQuery = qs.stringify({ populate: '*' });  // Add any query parameters for the blog posts
+
+const { data: blogDataResponse, error: blogDataError, pending: blogDataPending } = await useFetch(`${strapiBaseUrl}/api/blog-post?${blogQuery}`);
+const { data: blogPostDataResponse, error: blogPostDataError, pending: blogPostDataPending } = await useFetch(`${strapiBaseUrl}/api/blogs?${blogPostQuery}`);
 
 onMounted(() => {
     // Log the data for debugging

@@ -8,9 +8,11 @@ import type { SitemapUrl } from '#sitemap/types';
 export default defineSitemapEventHandler(async () => {
   try {
     // Fetch data for blogs and pages
+    const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+
     const [posts, pages] = await Promise.all([
       // Fetch blogs
-      $fetch('http://localhost:1337/api/blogs?populate=*')
+      $fetch(`${strapiBaseUrl}/api/blogs?populate=*`)
         .then(response => {
           const data = response.data;  // Access the array within 'data'
           return data.map(blog => ({
@@ -21,7 +23,7 @@ export default defineSitemapEventHandler(async () => {
         }),
     
       // Fetch pages
-      $fetch('http://localhost:1337/api/sitemaps')
+      $fetch(`${strapiBaseUrl}/api/sitemaps`)
         .then(response => {
           const data = response.data;  // Access the array within 'data'
           return data.map(page => ({

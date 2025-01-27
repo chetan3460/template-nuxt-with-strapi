@@ -17,7 +17,7 @@
 </template>
 
 
-<script setup>
+<!-- <script setup>
 import { ref } from "vue";
 
 // Base URL for Strapi images
@@ -28,6 +28,42 @@ const partnerItems = ref([]);
 
 // Fetch partner items
 const { data, error } = await useFetch(`${strapiBaseUrl}/api/partner-logo?populate=partnerItems.Image`);
+
+// Log the data to verify the structure
+// console.log(data.value);
+
+// Handle data and errors
+if (data.value) {
+    partnerItems.value = data.value?.data?.partnerItems || []; // Safely access the partnerItems array
+} else if (error.value) {
+    console.error("Error fetching data:", error.value);
+}
+</script> -->
+
+<script setup>
+import { ref } from "vue";
+import qs from "qs"; // Import qs for query string handling
+
+// Base URL for Strapi images
+const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+
+// State to hold partnerItems data
+const partnerItems = ref([]);
+
+// Define the query string to populate the partnerItems.Image field
+const query = qs.stringify(
+    {
+        populate: {
+            partnerItems: {
+                populate: "Image", // Populate the Image field within partnerItems
+            },
+        },
+    },
+    { encode: false } // Prevent encoding for better readability
+);
+
+// Fetch partner items
+const { data, error } = await useFetch(`${strapiBaseUrl}/api/partner-logo?${query}`);
 
 // Log the data to verify the structure
 // console.log(data.value);

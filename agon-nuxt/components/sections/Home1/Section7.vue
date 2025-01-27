@@ -72,7 +72,7 @@
         </swiper>
     </div>
 </template>
-<script setup>
+<!-- <script setup>
 import { ref } from 'vue';
 import { Autoplay, Navigation, Pagination, Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -89,6 +89,44 @@ const { data, pending, error, refresh } = await useFetch(`${strapiBaseUrl}/api/t
 if (data.value) {
     testimonialData.value = data.value.data;
     // console.log(testimonialData.value);
+} else if (error.value) {
+    console.log(error.value);
+} else {
+    console.log('Loading...');
+}
+</script> -->
+
+
+<script setup>
+import { ref } from 'vue';
+import { Autoplay, Navigation, Pagination, Virtual } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import qs from 'qs'; // Import qs for query string handling
+// Declare components directly in script setup
+const modules = [Autoplay, Pagination, Navigation, Virtual];
+
+const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+
+const testimonialData = ref([]);
+
+// Define the query string to populate testimonialItems.image field
+const query = qs.stringify(
+    {
+        populate: {
+            testimonialItems: {
+                populate: ['image'], // Only populate the image field inside testimonialItems
+            },
+        },
+    },
+    { encode: false } // Prevent encoding for better readability
+);
+
+// Fetch the testimonial-block data
+const { data, pending, error, refresh } = await useFetch(`${strapiBaseUrl}/api/testimonial-block?${query}`);
+
+if (data.value) {
+    testimonialData.value = data.value.data;
+    // You can access testimonialItems and their images in your template
 } else if (error.value) {
     console.log(error.value);
 } else {

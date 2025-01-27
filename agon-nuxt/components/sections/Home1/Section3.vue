@@ -62,7 +62,8 @@
     </div>
     <modal-video :channel="videoChannel" :videoId="videoId" v-model:isOpen="videoIsOpen" />
 </template>
-<script setup>
+<!-- <script setup>
+
 import { ref, computed } from 'vue'
 import ModalVideo from '../components/elements/ModalVideo.vue'
 import MarkdownIt from 'markdown-it';
@@ -97,15 +98,84 @@ if (data.value) {
     console.warn("No data or error received.");
 }
 
+// Defining reactive variables using ref
+// `selectedTab` keeps track of the currently selected tab
+const selectedTab = ref(0)
+
+// `videoIsOpen` controls whether the video modal is open or closed
+const videoIsOpen = ref(false)
+
+// Method to change the selected tab based on the index passed
+const selectTab = (index) => {
+    selectedTab.value = index // Update the selected tab's value
+}
+
+// Method to toggle the video modal's open/close state
+const openVideo = () => {
+    videoIsOpen.value = !videoIsOpen.value // Invert the current state of `videoIsOpen`
+}
+
+// Computed property to determine the video channel (e.g., YouTube, Vimeo)
+// In this case, it always returns 'youtube', but you can implement logic here to extract it from a URL
+const videoChannel = computed(() => {
+    return 'youtube'
+})
+
+// Computed property to extract the video ID from a URL
+// Here, it is hardcoded, but you can implement logic to parse a URL and retrieve the ID dynamically
+const videoId = computed(() => {
+    return 'QiqQoqtnHrk'
+})
+</script> -->
 
 
 
+<script setup>
+import { ref, computed } from 'vue'
+import ModalVideo from '../components/elements/ModalVideo.vue'
+import MarkdownIt from 'markdown-it';
+import qs from 'qs'; // Import qs for query string handling
 
+// Initialize the Markdown parser
+const markdownParser = new MarkdownIt();
 
+// Define a method to render Markdown
+const renderMarkdown = (content) => {
+    return markdownParser.render(content);
+};
 
+// Base URL for Strapi images
+const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 
+// State to hold seeWhyData
+const seeWhyData = ref([]);
 
+// Define the query string to populate the SeeWhyBlockItems.image field
+const query = qs.stringify(
+    {
+        populate: {
+            SeeWhyBlockItems: {
+                populate: "image", // Populate the image field within SeeWhyBlockItems
+            },
+        },
+    },
+    { encode: false } // Prevent encoding for better readability
+);
 
+// Fetch see-why block data
+const { data, error } = await useFetch(`${strapiBaseUrl}/api/see-why-block?${query}`);
+// console.log(data.value);
+
+// Handle data and errors
+if (data.value) {
+    seeWhyData.value = data.value?.data || []; // Safely access the seeWhyData
+} else if (error.value) {
+    // Log the error details for debugging
+    console.error("Error fetching data:", error.value);
+} else {
+    // Optional: Handle cases where both data and error are undefined
+    console.warn("No data or error received.");
+}
 
 // Defining reactive variables using ref
 // `selectedTab` keeps track of the currently selected tab

@@ -38,7 +38,7 @@
         </div>
     </div>
 </template>
-<script setup>
+<!-- <script setup>
 import { ref } from 'vue';
 // Base URL for Strapi images
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
@@ -58,4 +58,42 @@ if (data.value) {
     console.log('Loading...');
 }
 
+</script> -->
+
+
+
+<script setup>
+import { ref } from 'vue';
+import qs from 'qs'; // Import qs for query string handling
+
+// Base URL for Strapi images
+const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+
+// State to hold featureItems data
+const featureItemData = ref([]);
+
+// Define the query string to populate featureBlockItems.featureImg and featureBlockItems.featureBackImg
+const query = qs.stringify(
+    {
+        populate: {
+            featureBlockItems: {
+                populate: ['featureImg', 'featureBackImg'], // Populate both image fields
+            },
+        },
+    },
+    { encode: false } // Prevent encoding for better readability
+);
+
+// Fetch feature-block data
+const { data, error, pending, refresh } = await useFetch(`${strapiBaseUrl}/api/feature-block?${query}`);
+
+if (data.value) {
+    featureItemData.value = data.value.data;
+    // console.log(featureItemData.value);
+
+} else if (error.value) {
+    console.log(error.value);
+} else {
+    console.log('Loading...');
+}
 </script>

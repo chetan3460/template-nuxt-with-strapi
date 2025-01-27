@@ -33,7 +33,7 @@
     </div>
 </template>
 
-<script setup>
+<!-- <script setup>
 import { ref } from 'vue';
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 const whatWeDoData = ref([]);
@@ -49,4 +49,37 @@ if (data.value) {
     console.log('Loading...');
 }
 
+</script> -->
+<script setup>
+import { ref } from 'vue';
+import qs from 'qs'; // Import qs for query string handling
+
+// Base URL for Strapi images
+const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+
+// State to hold the data
+const whatWeDoData = ref([]);
+
+// Define the query string to populate only Image and ListItems fields
+const query = qs.stringify(
+    {
+        populate: {
+            Image: { fields: ['url'] }, // Get only the URL of the image
+            ListItems: '*', // Populate all fields within ListItems
+        },
+    },
+    { encode: false } // Prevent encoding for better readability
+);
+
+// Fetch the what-we-do-block data
+const { data, pending, error, refresh } = await useFetch(`${strapiBaseUrl}/api/what-we-do-block?${query}`);
+
+if (data.value) {
+    whatWeDoData.value = data.value.data;
+    // You can access Image URL and ListItems in your template
+} else if (error.value) {
+    console.log(error.value);
+} else {
+    console.log('Loading...');
+}
 </script>

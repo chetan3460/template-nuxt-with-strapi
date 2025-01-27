@@ -60,6 +60,7 @@
         </div>
     </div>
 </template>
+<!-- 
 <script setup>
 
 
@@ -84,4 +85,41 @@ if (data.value) {
     console.log('Loading...');
 }
 
+</script> -->
+
+<script setup>
+import { Autoplay, Navigation, Pagination, Virtual } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { ref } from "vue";
+import qs from "qs"; // Import qs for query string handling
+
+// Declare components directly in script setup
+const modules = [Autoplay, Pagination, Navigation, Virtual];
+
+const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+const whatWeOfferData = ref([]);
+
+// Define the query string to populate SliderItems.sliderImage
+const query = qs.stringify(
+    {
+        populate: {
+            SliderItems: {
+                populate: 'sliderImage' // Ensure only sliderImage is populated
+            }
+        }
+    },
+    { encode: false }
+);
+
+// Fetch the what-we-offer-block data
+const { data, pending, error, refresh } = await useFetch(`${strapiBaseUrl}/api/what-we-offer-block?${query}`);
+
+if (data.value) {
+    whatWeOfferData.value = data.value.data;
+    // console.log(whatWeOfferData.value);
+} else if (error.value) {
+    console.log(error.value);
+} else {
+    console.log('Loading...');
+}
 </script>

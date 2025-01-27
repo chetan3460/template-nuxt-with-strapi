@@ -58,7 +58,7 @@
 
 </template>
 
-
+<!-- 
 <script setup>
 import { ref, computed } from 'vue';
 import ModalVideo from "../components/elements/ModalVideo.vue";
@@ -113,6 +113,66 @@ const videoChannel = computed(() => {
 
 const videoId = computed(() => {
     // Logic to extract based on URL (use appropriate logic here)
+    return "QiqQoqtnHrk";
+});
+</script> -->
+<script setup>
+import { ref, computed } from 'vue';
+import qs from 'qs'; // Import qs for query string handling
+import ModalVideo from "../components/elements/ModalVideo.vue";
+import MarkdownIt from 'markdown-it';
+
+// Initialize the Markdown parser
+const markdownParser = new MarkdownIt();
+
+// Method to render Markdown content
+const renderMarkdown = (content) => {
+    return markdownParser.render(content);
+};
+
+// Fetch the Strapi base URL dynamically from the Nuxt app instance
+const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+
+// Define reactive state for the banner data
+const bannerBlock = ref(null);
+
+// Define the query string using qs to populate specific fields
+const query = qs.stringify(
+    {
+        populate: {
+            bannerImage: true, // Populate 'bannerImage'
+            videoImg: true,    // Populate 'videoImg'
+        },
+    },
+    { encode: false } // Prevent encoding for better readability
+);
+
+// Fetch data using useFetch
+const { data, error } = await useFetch(`${strapiBaseUrl}/api/banner-block?${query}`);
+
+// Handle data and errors
+if (data.value) {
+    bannerBlock.value = data.value.data;
+} else if (error.value) {
+    console.error("Error fetching data:", error.value);
+}
+
+// Define a reactive state for the video open/close status
+const videoIsOpen = ref(false);
+
+// Method to toggle video state
+const openVideo = () => {
+    videoIsOpen.value = !videoIsOpen.value;
+};
+
+// Computed properties to extract video channel and video ID
+const videoChannel = computed(() => {
+    // Replace with logic to extract the channel from the video URL if needed
+    return "youtube";
+});
+
+const videoId = computed(() => {
+    // Replace with logic to extract the video ID from the video URL if needed
     return "QiqQoqtnHrk";
 });
 </script>

@@ -14,9 +14,10 @@ import 'ipx';
 
 const urls = defineSitemapEventHandler(async () => {
   try {
+    const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
     const [posts, pages] = await Promise.all([
       // Fetch blogs
-      $fetch("http://localhost:1337/api/blogs?populate=*").then((response) => {
+      $fetch(`${strapiBaseUrl}/api/blogs?populate=*`).then((response) => {
         const data = response.data;
         return data.map((blog) => ({
           loc: `/blog/${blog.slug}`,
@@ -25,7 +26,7 @@ const urls = defineSitemapEventHandler(async () => {
         }));
       }),
       // Fetch pages
-      $fetch("http://localhost:1337/api/sitemaps").then((response) => {
+      $fetch(`${strapiBaseUrl}/api/sitemaps`).then((response) => {
         const data = response.data;
         return data.map((page) => ({
           loc: `/${page.PageURL}`,

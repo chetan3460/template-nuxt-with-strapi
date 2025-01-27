@@ -78,7 +78,7 @@ out
 # Nuxt.js
 .nuxt
 dist
-.output/server
+# .output/server
 
 # VuePress
 .vuepress/dist

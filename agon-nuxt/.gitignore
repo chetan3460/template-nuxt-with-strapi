@@ -111,4 +111,3 @@ dist
 .pnp.*
 .vercel
 
-plugins/strapi.js

@@ -30,7 +30,7 @@
                 <div class="absolute w-full left-20 animate-hero-thumb-sm-animation bottom-[-60px] max-w-[526px]">
 
 
-                    <img :src="`${strapiBaseUrl}${bannerBlock.bannerImage?.url}`" class="h-full w-full object-cover"
+                    <img :src="`${strapiBaseUrl}${bannerBlock.bannerImage.url}`" class="h-full w-full object-cover"
                         alt="image" />
 
 

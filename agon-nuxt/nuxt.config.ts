@@ -12,10 +12,10 @@ export default defineNuxtConfig({
   //   STRAPI_BASE_URL: process.env.STRAPI_BASE_URL || 'https://agon-cms-strapi.onrender.com',
   // },
   ssr: true, 
-  target: 'server',
+  // target: 'server',
   image: {
     strapi: {
-      baseURL: process.env.STRAPI_BASE_URL + '/uploads/',
+      strapiBaseUrl: process.env.STRAPI_BASE_URL + '/uploads/',
     },
     formats: ['webp', 'avif'],
   },

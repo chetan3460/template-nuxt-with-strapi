@@ -634,17 +634,17 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-Ci8OQnmW.mjs')
+    component: () => import('./_slug_-BPpSZ9aJ.mjs')
   },
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-CL_M_1vo.mjs')
+    component: () => import('./_...slug_-CyDNr3DH.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-DaUk739S.mjs')
+    component: () => import('./index-5J-FQwzT.mjs')
   },
   {
     name: "error-404",
@@ -654,7 +654,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-BnnUOJ6V.mjs')
+    component: () => import('./index-lrxjv6qV.mjs')
   },
   {
     name: "term-conditions",
@@ -664,12 +664,12 @@ const _routes = [
   {
     name: "test",
     path: "/test",
-    component: () => import('./index-CaKPv8A6.mjs')
+    component: () => import('./index-Drd-_j_8.mjs')
   },
   {
     name: "test-slugbackup",
     path: "/test/slugbackup",
-    component: () => import('./slugbackup-0VgwM1--.mjs')
+    component: () => import('./slugbackup-Gj-Tmp8h.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {

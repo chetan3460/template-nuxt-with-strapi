@@ -654,7 +654,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DtqNI9p7.mjs')
+    component: () => import('./index-ByVdBN7u.mjs')
   },
   {
     name: "term-conditions",
@@ -1575,7 +1575,7 @@ const robot_meta_server_8htXH4OkuR = /* @__PURE__ */ defineNuxtPlugin({
   }
 });
 const strapi_liDD6vJf4g = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
-  const strapiBaseUrl = (/* @__PURE__ */ useRuntimeConfig()).STRAPI_BASE_URL || "https://agon-cms-strapi.onrender.com";
+  const strapiBaseUrl = (/* @__PURE__ */ useRuntimeConfig()).STRAPI_BASE_URL || ("https://agon-cms-strapi.onrender.com");
   nuxtApp.provide("strapiBaseUrl", strapiBaseUrl);
 });
 const _1_absoluteImageUrls_server_zDt3Q5SdZ4 = /* @__PURE__ */ defineNuxtPlugin({

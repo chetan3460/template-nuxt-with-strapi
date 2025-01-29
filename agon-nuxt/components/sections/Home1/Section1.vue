@@ -42,7 +42,7 @@
                     <div class="relative bg-green-900 bg-opacity-80 rounded-2xl grid place-items-center">
 
 
-                        <img class="h-full w-full object-cover" :src="`${strapiBaseUrl}${bannerBlock.videoImg?.url}`"
+                        <img class="h-full w-full object-cover" :src="getImageUrl(bannerBlock.videoImg?.url)"
                             alt="Agon">
 
                         <p class="text-heading-4 absolute text-white font-chivo font-bold ml-[49px]">Watch intro video

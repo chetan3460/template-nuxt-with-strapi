@@ -4602,7 +4602,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "1f7c30be-554d-4bca-85ce-5a3f839a9649",
+    "buildId": "488a728c-9f42-4ef4-a55f-f189209299b4",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -4656,7 +4656,7 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "strapiBaseUrl": "https://agon-cms-strapi.onrender.com",
+    "strapiBaseUrl": "http://localhost:1337",
     "seo-utils": {
       "canonicalQueryWhitelist": [
         "page",
@@ -5421,11 +5421,11 @@ async function dispose(driver) {
 const _assets = {
   ["nuxt-og-image:fonts:Inter-400.ttf.base64"]: {
     import: () => import('../raw/Inter-400.ttf.mjs').then(r => r.default || r),
-    meta: {"type":"text/plain; charset=utf-8","etag":"\"652cc-qEeSD1DXCSV8gPP2rnBA6ePGdZ4\"","mtime":"2025-01-29T04:44:01.228Z"}
+    meta: {"type":"text/plain; charset=utf-8","etag":"\"652cc-qEeSD1DXCSV8gPP2rnBA6ePGdZ4\"","mtime":"2025-01-29T05:09:54.263Z"}
   },
   ["nuxt-og-image:fonts:Inter-700.ttf.base64"]: {
     import: () => import('../raw/Inter-700.ttf.mjs').then(r => r.default || r),
-    meta: {"type":"text/plain; charset=utf-8","etag":"\"674f0-FZReUXHhPTnY0HmYVn2iPpKm9ds\"","mtime":"2025-01-29T04:44:01.228Z"}
+    meta: {"type":"text/plain; charset=utf-8","etag":"\"674f0-FZReUXHhPTnY0HmYVn2iPpKm9ds\"","mtime":"2025-01-29T05:09:54.263Z"}
   }
 };
 

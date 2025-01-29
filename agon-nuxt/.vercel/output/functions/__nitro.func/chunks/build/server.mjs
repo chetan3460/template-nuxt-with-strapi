@@ -634,17 +634,17 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-BPpSZ9aJ.mjs')
+    component: () => import('./_slug_-D3QIBFo5.mjs')
   },
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-CyDNr3DH.mjs')
+    component: () => import('./_...slug_-smpvX91x.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-5J-FQwzT.mjs')
+    component: () => import('./index-DY2SG0XB.mjs')
   },
   {
     name: "error-404",
@@ -654,7 +654,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-EK3yTjvR.mjs')
+    component: () => import('./index-DtqNI9p7.mjs')
   },
   {
     name: "term-conditions",
@@ -664,12 +664,12 @@ const _routes = [
   {
     name: "test",
     path: "/test",
-    component: () => import('./index-Drd-_j_8.mjs')
+    component: () => import('./index-DQIUQwkS.mjs')
   },
   {
     name: "test-slugbackup",
     path: "/test/slugbackup",
-    component: () => import('./slugbackup-Gj-Tmp8h.mjs')
+    component: () => import('./slugbackup-DfopYajm.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -1575,7 +1575,7 @@ const robot_meta_server_8htXH4OkuR = /* @__PURE__ */ defineNuxtPlugin({
   }
 });
 const strapi_liDD6vJf4g = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
-  const strapiBaseUrl = (/* @__PURE__ */ useRuntimeConfig()).STRAPI_BASE_URL || "https://agon-cms-strapi.onrender.com";
+  const strapiBaseUrl = (/* @__PURE__ */ useRuntimeConfig()).STRAPI_BASE_URL || "http://localhost:1337";
   nuxtApp.provide("strapiBaseUrl", strapiBaseUrl);
 });
 const _1_absoluteImageUrls_server_zDt3Q5SdZ4 = /* @__PURE__ */ defineNuxtPlugin({
@@ -1695,8 +1695,8 @@ const plugins = [
   defaults_M8ptihKv0z
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-BZjSkUgL.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-EcJaCB8N.mjs'))
+  default: defineAsyncComponent(() => import('./default-DfqOGAoe.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-Cl1gHeAX.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -1995,7 +1995,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-oijugvJF.mjs').then((r) => r.default || r));
+    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-DL986iyI.mjs').then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
     nuxtApp.ssrContext.url;
@@ -2059,5 +2059,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _export_sfc as _, useRouter as a, createSitePathResolver as b, createError as c, useSchemaOrg as d, entry$1 as default, useNuxtApp as e, _imports_0 as f, useHead as g, _imports_0$1 as h, injectHead as i, useRoute as j, useSeoMeta as k, useOgImageRuntimeConfig as l, navigateTo as m, nuxtLinkDefaults as n, useRuntimeConfig as o, fetchDefaults as p, useRequestFetch as q, resolveRouteObject as r, useRequestEvent as s, asyncDataDefaults as t, useSiteConfig as u };
+export { _export_sfc as _, useRouter as a, createSitePathResolver as b, createError as c, useSchemaOrg as d, entry$1 as default, useNuxtApp as e, _imports_0 as f, useHead as g, _imports_0$1 as h, injectHead as i, useRuntimeConfig as j, useRoute as k, useSeoMeta as l, useOgImageRuntimeConfig as m, nuxtLinkDefaults as n, navigateTo as o, fetchDefaults as p, useRequestFetch as q, resolveRouteObject as r, useRequestEvent as s, asyncDataDefaults as t, useSiteConfig as u };
 //# sourceMappingURL=server.mjs.map

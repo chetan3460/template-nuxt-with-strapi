@@ -32,7 +32,9 @@
 
                     <!-- <img :src="`${strapiBaseUrl}${bannerBlock.bannerImage.url}`" class="h-full w-full object-cover"
                         alt="image" /> -->
-                    <img :src="bannerBlock?.bannerImage?.url" class="h-full w-full object-cover" alt="image" />
+                    <!-- <img :src="bannerBlock?.bannerImage?.url" class="h-full w-full object-cover" alt="image" /> -->
+                    <img :src="getImageUrl(bannerBlock?.bannerImage?.url)" class="h-full w-full object-cover"
+                        alt="image" />
 
 
                 </div>
@@ -59,70 +61,13 @@
 
 </template>
 
-<!-- 
 <script setup>
-import { ref, computed } from 'vue';
-import ModalVideo from "../components/elements/ModalVideo.vue";
-import MarkdownIt from 'markdown-it';
-// Initialize the Markdown parser
-const markdownParser = new MarkdownIt();
 
-// Store the fetched content
-
-
-
-// Define a method to render Markdown
-const renderMarkdown = (content) => {
-    return markdownParser.render(content);
-};
-
-const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
-
-// console.log(strapiBaseUrl); // Logs the value of STRAPI_BASE_URL
-
-
-// Define a reactive state for the banner data
-const bannerBlock = ref(null);
-
-const { data, error } = await useFetch(`${strapiBaseUrl}/api/banner-block?populate=*`);
-
-
-
-
-// Handle data and errors
-if (data.value) {
-    bannerBlock.value = data.value.data;
-
-} else if (error.value) {
-    console.error("Error fetching data:", error.value);
-}
-
-
-// Define a reactive state for the video open/close status
-const videoIsOpen = ref(false);
-
-// Method to toggle video state
-const openVideo = () => {
-    videoIsOpen.value = !videoIsOpen.value;
-};
-
-// Computed properties to extract video channel and video ID
-const videoChannel = computed(() => {
-    // Logic to extract based on URL (use appropriate logic here)
-    return "youtube";
-});
-
-const videoId = computed(() => {
-    // Logic to extract based on URL (use appropriate logic here)
-    return "QiqQoqtnHrk";
-});
-</script> -->
-<script setup>
 import { ref, computed } from 'vue';
 import qs from 'qs'; // Import qs for query string handling
 import ModalVideo from "../components/elements/ModalVideo.vue";
 import MarkdownIt from 'markdown-it';
-
+import { getImageUrl } from './utils/getImageUrl';
 // Initialize the Markdown parser
 const markdownParser = new MarkdownIt();
 

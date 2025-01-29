@@ -61,7 +61,7 @@
 
 
                 <NuxtImg class="h-full w-full object-cover max-w-[55px] max-h-[55px] mb-[22px]"
-                    :src="`${strapiBaseUrl}${item.image.url}`" :alt="item.image.alternativeText"
+                    :src="getImageUrl(item.image?.url)" :alt="item.image.alternativeText"
                     :width="item.image.width || 50" :height="item.image.height || 50" format="webp" />
 
                 <p class="text-heading-6 font-chivo font-bold mb-[6px]">{{ item.name }}</p>
@@ -72,32 +72,11 @@
         </swiper>
     </div>
 </template>
-<!-- <script setup>
-import { ref } from 'vue';
-import { Autoplay, Navigation, Pagination, Virtual } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/vue";
 
-// Declare components directly in script setup
-const modules = [Autoplay, Pagination, Navigation, Virtual];
-
-const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
-
-const testimonialData = ref([]);
-
-const { data, pending, error, refresh } = await useFetch(`${strapiBaseUrl}/api/testimonial-block?populate=testimonialItems.image`);
-
-if (data.value) {
-    testimonialData.value = data.value.data;
-    // console.log(testimonialData.value);
-} else if (error.value) {
-    console.log(error.value);
-} else {
-    console.log('Loading...');
-}
-</script> -->
 
 
 <script setup>
+import { getImageUrl } from '~/utils/getImageUrl';
 import { ref } from 'vue';
 import { Autoplay, Navigation, Pagination, Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";

@@ -10,7 +10,7 @@
             <div v-for="(item, index) in featureItemData.featureBlockItems" :key="item.id"
                 class="rounded-2xl p-[30px] md:py-[53px] md:px-[48px] relative mb-5 flex flex-col justify-between transition-all duration-300 bg-bg-5 hover:translate-y-[-2px]">
                 <div>
-                    <NuxtImg :src="`${strapiBaseUrl}${item.featureImg.url}`"
+                    <NuxtImg :src="getImageUrl(item.featureImg?.url)"
                         class="h-full w-full object-cover mb-[30px] max-w-[80px] max-h-[80px]" />
 
                     <h2 class="font-bold font-chivo text-[28px] leading-[32px] md:text-heading-2 mb-[30px]">
@@ -28,7 +28,7 @@
                                 src="/assets/images/icons/icon-right.svg" alt="arrow right icon" /></i></NuxtLink>
                 </button>
 
-                <NuxtImg :src="`${strapiBaseUrl}${item.featureBackImg.url}`" :alt="item.featureBackImg.alternativeText"
+                <NuxtImg :src="getImageUrl(item.featureBackImg?.url)" :alt="item.featureBackImg.alternativeText"
                     :width="item.featureBackImg.width || 150" :height="item.featureBackImg.height || 75" format="webp"
                     class="absolute bottom-0 right-0 z-0 max-w-[90px] md:max-w-[144px] max-h-[90px] md:max-h-[144px] translate-x-[20%] translate-y-[20%] xl:translate-x-0 xl:translate-y-0" />
 
@@ -38,32 +38,11 @@
         </div>
     </div>
 </template>
-<!-- <script setup>
-import { ref } from 'vue';
-// Base URL for Strapi images
-const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
-
-// State to hold featureItems data
-const featureItemData = ref([]);
-
-const { data, pending, error, refresh } = await useFetch(`${strapiBaseUrl}/api/feature-block?populate[0]=featureBlockItems.featureImg&populate[1]=featureBlockItems.featureBackImg`);
-
-if (data.value) {
-    featureItemData.value = data.value.data;
-    // console.log(featureItemData.value);
-
-} else if (error.value) {
-    console.log(error.value);
-} else {
-    console.log('Loading...');
-}
-
-</script> -->
-
 
 
 <script setup>
 import { ref } from 'vue';
+import { getImageUrl } from '~/utils/getImageUrl';
 import qs from 'qs'; // Import qs for query string handling
 
 // Base URL for Strapi images

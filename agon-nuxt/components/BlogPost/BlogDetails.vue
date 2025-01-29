@@ -3,7 +3,7 @@
         <!-- Blog Header -->
         <div class="full-width relative">
             <div class="aspect-[384/91] h-[350px] md:h-[455px]">
-                <NuxtImg :src="`${strapiBaseUrl}${blogDetails.featuredImage.url}`"
+                <NuxtImg :src="getImageUrl(blogDetails.featuredImage?.url)"
                     :alt="blogDetails.featuredImage.alternativeText" :width="blogDetails.featuredImage.width || 50"
                     :height="blogDetails.featuredImage.height || 50" format="webp" class="h-full w-full object-cover" />
             </div>
@@ -34,7 +34,7 @@
 
 <script setup>
 import { onMounted, onUnmounted, ref } from "vue";
-
+import { getImageUrl } from "~/utils/getImageUrl";
 import MarkdownIt from 'markdown-it';
 import RelatedBlogs from './RelatedBlogs.vue';
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;

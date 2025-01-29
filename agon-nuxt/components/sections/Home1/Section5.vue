@@ -2,7 +2,7 @@
     <div class="px-[12px] md:px-[36px] xl:px-0 mt-[70px] lg:mt-[100px]">
         <div v-if="whatWeDoData !== null" class="lg:grid lg:grid-cols-2 lg:gap-[30px] xl:gap-[95px]">
             <div class="relative">
-                <NuxtImg :src="`${strapiBaseUrl}${whatWeDoData.Image.url}`" :alt="whatWeDoData.Image.alternativeText"
+                <NuxtImg :src="getImageUrl(whatWeDoData.Image.url)" :alt="whatWeDoData.Image.alternativeText"
                     :width="whatWeDoData.Image.width || 637" :height="whatWeDoData.Image.height || 738" format="webp"
                     class="rounded-2xl mb-[30px] lg:mb-0 lg:flex-1" />
 
@@ -33,24 +33,9 @@
     </div>
 </template>
 
-<!-- <script setup>
-import { ref } from 'vue';
-const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
-const whatWeDoData = ref([]);
 
-const { data, pending, error, refresh } = await useFetch(`${strapiBaseUrl}/api/what-we-do-block?populate=*`);
-
-if (data.value) {
-    whatWeDoData.value = data.value.data;
-    // console.log(whatWeDoData.value);
-} else if (error.value) {
-    console.log(error.value);
-} else {
-    console.log('Loading...');
-}
-
-</script> -->
 <script setup>
+import { getImageUrl } from '~/utils/getImageUrl';
 import { ref } from 'vue';
 import qs from 'qs'; // Import qs for query string handling
 

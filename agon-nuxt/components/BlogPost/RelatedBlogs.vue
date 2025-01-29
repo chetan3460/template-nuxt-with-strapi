@@ -12,7 +12,7 @@
                 <div class="relative mb-16">
                     <div class="relative">
                         <div class="pr-[26px] aspect-[430/275]">
-                            <NuxtImg :src="`${strapiBaseUrl}${blog.image.url}`" :alt="blog.image.alternativeText"
+                            <NuxtImg :src="getImageUrl(blog.image?.url)" :alt="blog.image.alternativeText"
                                 :width="blog.image.width || 50" :height="blog.image.height || 50" format="webp"
                                 class="h-full w-full object-cover rounded-2xl z-10 relative" />
                         </div>
@@ -41,7 +41,7 @@
 
 <script setup>
 import { defineProps } from 'vue';
-
+import { getImageUrl } from '~/utils/getImageUrl';
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 
 // Props

@@ -46,7 +46,7 @@
             </div>
             <div class="relative lg:w-1/2">
 
-                <NuxtImg :src="`${strapiBaseUrl}${item.image.url}`"
+                <NuxtImg :src="getImageUrl(item.image?.url)"
                     :alt="item.image.alternativeText || `Partner logo ${index + 1}`" :width="item.image.width || 150"
                     :height="item.image.height || 75" format="webp" class="h-full w-full object-cover" />
 
@@ -62,75 +62,8 @@
     </div>
     <modal-video :channel="videoChannel" :videoId="videoId" v-model:isOpen="videoIsOpen" />
 </template>
-<!-- <script setup>
-
-import { ref, computed } from 'vue'
-import ModalVideo from '../components/elements/ModalVideo.vue'
-import MarkdownIt from 'markdown-it';
-// Initialize the Markdown parser
-const markdownParser = new MarkdownIt();
-
-// Define a method to render Markdown
-const renderMarkdown = (content) => {
-    return markdownParser.render(content);
-};
-
-// Base URL for Strapi images
-const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
-
-// State to hold partnerItems data
-const seeWhyData = ref([]);
-
-// Fetch partner items
-const { data, error } = await useFetch(`${strapiBaseUrl}/api/see-why-block?populate=SeeWhyBlockItems.image`);
-// console.log(data.value);
-
-
-
-if (data.value) {
-    seeWhyData.value = data.value.data
-
-} else if (error.value) {
-    // Log the error details for debugging
-    console.error("Error fetching data:", error.value);
-} else {
-    // Optional: Handle cases where both data and error are undefined
-    console.warn("No data or error received.");
-}
-
-// Defining reactive variables using ref
-// `selectedTab` keeps track of the currently selected tab
-const selectedTab = ref(0)
-
-// `videoIsOpen` controls whether the video modal is open or closed
-const videoIsOpen = ref(false)
-
-// Method to change the selected tab based on the index passed
-const selectTab = (index) => {
-    selectedTab.value = index // Update the selected tab's value
-}
-
-// Method to toggle the video modal's open/close state
-const openVideo = () => {
-    videoIsOpen.value = !videoIsOpen.value // Invert the current state of `videoIsOpen`
-}
-
-// Computed property to determine the video channel (e.g., YouTube, Vimeo)
-// In this case, it always returns 'youtube', but you can implement logic here to extract it from a URL
-const videoChannel = computed(() => {
-    return 'youtube'
-})
-
-// Computed property to extract the video ID from a URL
-// Here, it is hardcoded, but you can implement logic to parse a URL and retrieve the ID dynamically
-const videoId = computed(() => {
-    return 'QiqQoqtnHrk'
-})
-</script> -->
-
-
-
-<script setup>
+< <script setup>
+import { getImageUrl } from '~/utils/getImageUrl';
 import { ref, computed } from 'vue'
 import ModalVideo from '../components/elements/ModalVideo.vue'
 import MarkdownIt from 'markdown-it';
@@ -201,8 +134,8 @@ const videoChannel = computed(() => {
 })
 
 // Computed property to extract the video ID from a URL
-// Here, it is hardcoded, but you can implement logic to parse a URL and retrieve the ID dynamically
-const videoId = computed(() => {
+    // Here, it is hardcoded, but you can implement logic to parse a URL and retrieve the ID dynamically
+    const videoId = computed(() => {
     return 'QiqQoqtnHrk'
-})
-</script>
+    })
+    </script>

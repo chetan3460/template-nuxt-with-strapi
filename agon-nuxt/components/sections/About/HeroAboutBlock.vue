@@ -51,15 +51,16 @@
             <div class="hidden relative lg:block">
                 <img v-if="item.imageLeft?.url"
                     class="animate-float absolute rounded-2xl max-w-[240px] max-h-[340px] bottom-[-12%] left-[-50%]"
-                    :src="`${strapiBaseUrl}${item.imageLeft.url}`" alt="Left Image" />
+                    :src="getImageUrl(item.imageLeft?.url)" alt="Left Image" />
                 <img v-if="item.imageRight?.url" class="animate-hero-thumb-sm-animation max-w-[512px] max-h-[689px]"
-                    :src="`${strapiBaseUrl}${item.imageRight.url}`" alt="Right Image" />
+                    :src="getImageUrl(item.imageRight?.url)" alt="Right Image" />
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
+import { getImageUrl } from '~/utils/getImageUrl';
 import { useRoute } from 'vue-router';
 import qs from 'qs';
 import { ref } from 'vue';

@@ -22,7 +22,7 @@
                     <!-- Icon -->
                     <div>
                         <NuxtImg v-if="card.icon?.url" class="max-w-[40px] md:max-w-[52px] min-w-[52px]"
-                            :src="`${strapiBaseUrl}${card.icon.url}`" :alt="card.icon.alternativeText || 'Card Icon'"
+                            :src="getImageUrl(card.icon?.url)" :alt="card.icon.alternativeText || 'Card Icon'"
                             :width="card.icon.width" :height="card.icon.height" format="webp" />
                     </div>
 
@@ -43,6 +43,7 @@
 </template>
 <script setup>
 import { ref, watchEffect } from 'vue';
+import { getImageUrl } from '~/utils/getImageUrl';
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 const route = useRoute();
 const cardBlockData = ref([]);

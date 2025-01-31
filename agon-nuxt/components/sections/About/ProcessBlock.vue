@@ -33,7 +33,7 @@
                         'hidden absolute right-0 top-full lg:block translate-x-[-60px] z-[-1] xl:translate-y-[30px]': pIndex === 2,
                         'hidden absolute right-0 lg:block top-1/2 translate-x-[30px] z-[-1] xl:translate-x-full xl:right-[-15px]': pIndex !== 2
                     }">
-                        <img :src="`${strapiBaseUrl}${process.shapeImg.url}`" alt="direction arrow">
+                        <img :src="getImageUrl(process.shapeImg.url)" alt="direction arrow">
                     </div>
                 </div>
             </div>
@@ -42,6 +42,7 @@
 </template>
 
 <script setup>
+import { getImageUrl } from "~/utils/getImageUrl";
 import { ref } from "vue";
 import qs from "qs";
 import { useRoute } from "vue-router";

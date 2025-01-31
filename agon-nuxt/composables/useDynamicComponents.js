@@ -41,7 +41,7 @@ export function useDynamicComponents(apiEndpoint) {
             const response = await fetch(`${strapiBaseUrl}${apiEndpoint}?filters[PageURL][$eq]=${slug}&populate[seo][populate][ogImage]=true&populate[Blocks]=true`);
             const data = await response.json();
 
-            console.log('API Response:', data);
+            // console.log('API Response:', data);
 
             if (response.ok && data?.data?.length > 0) {
                 sitemap.value = data.data[0]; // Assign the first item from the response

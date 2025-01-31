@@ -18,8 +18,7 @@
 
             <!-- Dynamically rendered image from Strapi -->
             <div class="relative mx-auto max-w-[1190px]">
-                <img class="h-full w-full object-cover rounded-2xl" :src="`${strapiBaseUrl}${item.image?.url}`"
-                    alt="Agon" />
+                <img class="h-full w-full object-cover rounded-2xl" :src="getImageUrl(item.image?.url)" alt="Agon" />
 
                 <button @click="openVideo"
                     class="rounded-full bg-white grid place-items-center absolute play-video w-[60px] h-[60px] md:w-[138px] md:h-[138px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -34,6 +33,7 @@
 </template>
 
 <script setup>
+import { getImageUrl } from "~/utils/getImageUrl";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import ModalVideo from "../components/elements/ModalVideo.vue";

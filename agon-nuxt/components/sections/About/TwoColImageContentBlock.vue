@@ -20,7 +20,7 @@
                     <p v-if="card.content" class="text-md text-gray-600 mb-[22px] lg:mx-16">{{ card.content }}</p>
 
                     <img class="p-5 rounded-2xl object-cover mx-auto w-full bg-[#EBECF4]"
-                        :src="`${strapiBaseUrl}${card.icon.url}`" alt="Feature image" />
+                        :src="getImageUrl(card.icon.url)" alt="Feature image" />
                 </div>
 
             </div>
@@ -32,6 +32,7 @@
     </div>
 </template>
 <script setup>
+import { getImageUrl } from '~/utils/getImageUrl';
 import { ref, watchEffect } from 'vue';
 import qs from 'qs';
 const cardBlockData = ref([]);

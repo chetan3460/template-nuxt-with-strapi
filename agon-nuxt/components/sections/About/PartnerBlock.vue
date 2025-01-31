@@ -20,7 +20,7 @@
                     class="router-link-active router-link-exact-active transition-all duration-300 partner-item p-[15px] md:pr-[15px] xl:w-auto lg:w-[184px] hover:translate-y-[-3px]">
 
                     <!-- Display each image using its URL and provide alternative text for accessibility -->
-                    <img :src="`${strapiBaseUrl}${image.url}`" :alt="image.alternativeText || 'Partner Image'" />
+                    <img :src="getImageUrl(image?.url)" :alt="image.alternativeText || 'Partner Image'" />
                 </div>
             </div>
 
@@ -33,6 +33,7 @@
 </template>
 
 <script setup>
+import { getImageUrl } from '~/utils/getImageUrl';
 import { ref, watchEffect } from 'vue';
 import qs from 'qs';
 
@@ -53,7 +54,7 @@ watchEffect(async () => {
                 },
                 populate: [
                     "Blocks.HeadingBlock",
-                    "Blocks.ImageRepeater.images", 
+                    "Blocks.ImageRepeater.images",
                     "*"// Populate partner images
                 ].join(","),
             });

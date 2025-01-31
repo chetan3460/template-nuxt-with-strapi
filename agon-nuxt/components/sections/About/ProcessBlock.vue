@@ -21,7 +21,7 @@
                 ]">
                     <div v-if="process.icon?.url"
                         class="bg-white rounded-full grid place-items-center mx-auto mb-8 w-[80px] h-[80px]">
-                        <img :src="`${strapiBaseUrl}${process.icon.url}`" alt="icon" class="max-w-[36px]" />
+                        <img :src="getImageUrl(process.icon.url)" alt="icon" class="max-w-[36px]" />
                     </div>
                     <h4 v-if="process.title" class="font-bold font-chivo text-[14px] xl:text-heading-5 mb-[15px]">
                         {{ process.title }}

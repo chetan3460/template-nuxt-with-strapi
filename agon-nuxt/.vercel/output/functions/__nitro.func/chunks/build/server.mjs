@@ -634,7 +634,7 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-CbU1Dt97.mjs')
+    component: () => import('./_slug_-Bj8KrVn_.mjs')
   },
   {
     name: "blog-details-slug",
@@ -654,7 +654,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DjmSpf61.mjs')
+    component: () => import('./index-D01pwMdD.mjs')
   },
   {
     name: "term-conditions",
@@ -664,12 +664,12 @@ const _routes = [
   {
     name: "test",
     path: "/test",
-    component: () => import('./index-DrmTpO5Z.mjs')
+    component: () => import('./index-CtalYwNo.mjs')
   },
   {
     name: "test-slugbackup",
     path: "/test/slugbackup",
-    component: () => import('./slugbackup-BqeZS2eX.mjs')
+    component: () => import('./slugbackup-6NEW7QF8.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {

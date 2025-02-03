@@ -634,27 +634,27 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-Bj8KrVn_.mjs')
+    component: () => import('./_slug_-D-NNSb3D.mjs')
   },
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-DhBhAzX_.mjs')
+    component: () => import('./_...slug_-DluEdO1r.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-B9TT4gIC.mjs')
+    component: () => import('./index-DFB2jcqh.mjs')
   },
   {
     name: "error-404",
     path: "/error-404",
-    component: () => import('./index-DIN0Xgp8.mjs')
+    component: () => import('./index-DqSUG-8a.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-D01pwMdD.mjs')
+    component: () => import('./index-D4nfLulZ.mjs')
   },
   {
     name: "term-conditions",
@@ -664,12 +664,12 @@ const _routes = [
   {
     name: "test",
     path: "/test",
-    component: () => import('./index-CtalYwNo.mjs')
+    component: () => import('./index-Cep1K3AA.mjs')
   },
   {
     name: "test-slugbackup",
     path: "/test/slugbackup",
-    component: () => import('./slugbackup-6NEW7QF8.mjs')
+    component: () => import('./slugbackup-D80j1VoB.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -2059,5 +2059,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _export_sfc as _, useRouter as a, createSitePathResolver as b, createError as c, useSchemaOrg as d, entry$1 as default, useNuxtApp as e, _imports_0 as f, useHead as g, _imports_0$1 as h, injectHead as i, useRoute as j, useSeoMeta as k, useOgImageRuntimeConfig as l, navigateTo as m, nuxtLinkDefaults as n, useRuntimeConfig as o, fetchDefaults as p, useRequestFetch as q, resolveRouteObject as r, useRequestEvent as s, asyncDataDefaults as t, useSiteConfig as u };
+export { _export_sfc as _, useRouter as a, createSitePathResolver as b, createError as c, useSchemaOrg as d, entry$1 as default, useNuxtApp as e, useSeoMeta as f, useHead as g, _imports_0 as h, injectHead as i, _imports_0$1 as j, useRoute as k, useOgImageRuntimeConfig as l, navigateTo as m, nuxtLinkDefaults as n, useRuntimeConfig as o, fetchDefaults as p, useRequestFetch as q, resolveRouteObject as r, useRequestEvent as s, asyncDataDefaults as t, useSiteConfig as u };
 //# sourceMappingURL=server.mjs.map

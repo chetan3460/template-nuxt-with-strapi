@@ -1,4 +1,4 @@
-import { d as defineSitemapEventHandler } from '../../../nitro/nitro.mjs';
+import { d as defineSitemapEventHandler, u as useRuntimeConfig } from '../../../nitro/nitro.mjs';
 import 'lru-cache';
 import '@unocss/core';
 import '@unocss/preset-wind';
@@ -14,12 +14,11 @@ import 'ipx';
 
 const urls = defineSitemapEventHandler(async () => {
   try {
-    const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+    const strapiBaseUrl = useRuntimeConfig().public.STRAPI_BASE_URL || (false ? "http://localhost:1337" : "https://agon-cms-strapi.onrender.com");
     const [posts, pages] = await Promise.all([
       // Fetch blogs
       $fetch(`${strapiBaseUrl}/api/blogs?populate=*`).then((response) => {
-        const data = response.data;
-        return data.map((blog) => ({
+        return response.data.map((blog) => ({
           loc: `/blog/${blog.slug}`,
           lastmod: blog.updatedAt || (/* @__PURE__ */ new Date()).toISOString(),
           _sitemap: "posts"
@@ -27,8 +26,7 @@ const urls = defineSitemapEventHandler(async () => {
       }),
       // Fetch pages
       $fetch(`${strapiBaseUrl}/api/sitemaps`).then((response) => {
-        const data = response.data;
-        return data.map((page) => ({
+        return response.data.map((page) => ({
           loc: `/${page.PageURL}`,
           lastmod: page.updatedAt || (/* @__PURE__ */ new Date()).toISOString(),
           _sitemap: "pages"

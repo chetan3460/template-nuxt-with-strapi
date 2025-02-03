@@ -23,6 +23,7 @@
 <script setup>
 import Breadcrumbs from '~/components/elements/Breadcrumbs.vue';
 import { useDynamicComponents } from '~/composables/useDynamicComponents';
+import { useSeoConfig } from '~/composables/useSeoConfig';
 
 const { sitemap, filteredBlocks, resolveComponent, fetchData, route } = useDynamicComponents('/api/sitemaps');
 
@@ -34,6 +35,8 @@ watchEffect(() => {
         fetchData(slug);
     }
 });
+
+const { seoMetadata } = useSeoConfig(sitemap);
 
 </script>
 

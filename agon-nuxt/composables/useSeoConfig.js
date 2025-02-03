@@ -1,4 +1,5 @@
 import { computed, watchEffect } from 'vue';
+import { getImageUrl } from '~/utils/getImageUrl';
 
 export function useSeoConfig(sitemap) {
     // Computed SEO metadata
@@ -12,12 +13,12 @@ export function useSeoConfig(sitemap) {
             keywords: metadata.keywords,
             ogTitle: metadata.metaTitle,
             ogDescription: metadata.metaDescription,
-            ogImage: metadata.ogImage?.url ? `${strapiBaseUrl}${metadata.ogImage.url}` : '/default-og-image.jpg',
+            ogImage: metadata.ogImage?.url ? getImageUrl(metadata.ogImage.url) : '/default-og-image.jpg',
             ogSiteName: 'Agon',
             twitterCard: 'summary_large_image',
             twitterTitle: metadata.metaTitle,
             twitterDescription: metadata.metaDescription,
-            twitterImage: metadata.ogImage?.url ? `${strapiBaseUrl}${metadata.ogImage.url}` : '/default-og-image.jpg',
+            twitterImage: metadata.ogImage?.url ? getImageUrl(metadata.ogImage.url) : '/default-og-image.jpg',
         };
     });
 

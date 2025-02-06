@@ -58,8 +58,3 @@ export function useDynamicComponents(apiEndpoint) {
 
     return { sitemap, loadingMessage, filteredBlocks, resolveComponent, fetchData, route };
 }
-
-
-
-
-

@@ -1,4 +1,4 @@
-import { hasInjectionContext, inject, version, ref, watchEffect, watch, getCurrentInstance, computed, unref, defineAsyncComponent, defineComponent, h, provide, shallowReactive, Suspense, nextTick, Fragment, Transition, mergeProps, useSSRContext, createApp, effectScope, reactive, getCurrentScope, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, isReadonly, withCtx, isRef, isShallow, isReactive, toRaw, toValue } from 'vue';
+import { hasInjectionContext, inject, version, ref, watchEffect, watch, getCurrentInstance, computed, unref, defineAsyncComponent, defineComponent, h, provide, shallowReactive, Suspense, nextTick, Fragment, Transition, mergeProps, useSSRContext, createApp, effectScope, reactive, getCurrentScope, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, isReadonly, toRaw, withCtx, isRef, isShallow, isReactive, toValue } from 'vue';
 import { $ as $fetch, G as baseURL, I as hasProtocol, J as isScriptProtocol, K as joinURL, L as withQuery, c as createError$1, M as defu, p as publicAssetsURL, N as sanitizeStatusCode, B as parseURL, O as withLeadingSlash, P as withoutTrailingSlash, Q as withBase, w as withTrailingSlash, R as getContext, S as createHooks, T as titleCase, U as toRouteMatcher, V as createRouter$1, W as camelCase, X as withoutBase, Y as stringifyQuery } from '../nitro/nitro.mjs';
 import { getActiveHead, CapoPlugin } from 'unhead';
 import { defineHeadPlugin, composableNames, unpackMeta } from '@unhead/shared';
@@ -208,6 +208,7 @@ function defineNuxtPlugin(plugin2) {
   return Object.assign(plugin2.setup || (() => {
   }), plugin2, { [NuxtPluginIndicator]: true, _name });
 }
+const definePayloadPlugin = defineNuxtPlugin;
 function callWithNuxt(nuxt, setup, args) {
   const fn = () => setup();
   const nuxtAppCtx = getNuxtAppCtx(nuxt._id);
@@ -366,6 +367,586 @@ const createError = (error) => {
   });
   return nuxtError;
 };
+function getAugmentedNamespace(n) {
+  if (n.__esModule) return n;
+  var f = n.default;
+  if (typeof f == "function") {
+    var a = function a2() {
+      if (this instanceof a2) {
+        return Reflect.construct(f, arguments, this.constructor);
+      }
+      return f.apply(this, arguments);
+    };
+    a.prototype = f.prototype;
+  } else a = {};
+  Object.defineProperty(a, "__esModule", { value: true });
+  Object.keys(n).forEach(function(k) {
+    var d = Object.getOwnPropertyDescriptor(n, k);
+    Object.defineProperty(a, k, d.get ? d : {
+      enumerable: true,
+      get: function() {
+        return n[k];
+      }
+    });
+  });
+  return a;
+}
+var pinia_prod = {};
+const install = () => {
+};
+function set(target, key, val) {
+  if (Array.isArray(target)) {
+    target.length = Math.max(target.length, key);
+    target.splice(key, 1, val);
+    return val;
+  }
+  target[key] = val;
+  return val;
+}
+function del(target, key) {
+  if (Array.isArray(target)) {
+    target.splice(key, 1);
+    return;
+  }
+  delete target[key];
+}
+const Vue2 = void 0;
+const isVue2 = false;
+const isVue3 = true;
+const vueDemi = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  Vue2,
+  del,
+  install,
+  isVue2,
+  isVue3,
+  set
+}, Symbol.toStringTag, { value: "Module" }));
+const require$$0 = /* @__PURE__ */ getAugmentedNamespace(vueDemi);
+(function(exports) {
+  /*!
+   * pinia v2.3.1
+   * (c) 2025 Eduardo San Martin Morote
+   * @license MIT
+   */
+  var vueDemi2 = require$$0;
+  let activePinia;
+  const setActivePinia = (pinia) => activePinia = pinia;
+  const getActivePinia = () => vueDemi2.hasInjectionContext() && vueDemi2.inject(piniaSymbol) || activePinia;
+  const piniaSymbol = (
+    /* istanbul ignore next */
+    Symbol()
+  );
+  function isPlainObject(o) {
+    return o && typeof o === "object" && Object.prototype.toString.call(o) === "[object Object]" && typeof o.toJSON !== "function";
+  }
+  exports.MutationType = void 0;
+  (function(MutationType) {
+    MutationType["direct"] = "direct";
+    MutationType["patchObject"] = "patch object";
+    MutationType["patchFunction"] = "patch function";
+  })(exports.MutationType || (exports.MutationType = {}));
+  function createPinia() {
+    const scope = vueDemi2.effectScope(true);
+    const state = scope.run(() => vueDemi2.ref({}));
+    let _p = [];
+    let toBeInstalled = [];
+    const pinia = vueDemi2.markRaw({
+      install(app) {
+        setActivePinia(pinia);
+        if (!vueDemi2.isVue2) {
+          pinia._a = app;
+          app.provide(piniaSymbol, pinia);
+          app.config.globalProperties.$pinia = pinia;
+          toBeInstalled.forEach((plugin2) => _p.push(plugin2));
+          toBeInstalled = [];
+        }
+      },
+      use(plugin2) {
+        if (!this._a && !vueDemi2.isVue2) {
+          toBeInstalled.push(plugin2);
+        } else {
+          _p.push(plugin2);
+        }
+        return this;
+      },
+      _p,
+      // it's actually undefined here
+      // @ts-expect-error
+      _a: null,
+      _e: scope,
+      _s: /* @__PURE__ */ new Map(),
+      state
+    });
+    return pinia;
+  }
+  function disposePinia(pinia) {
+    pinia._e.stop();
+    pinia._s.clear();
+    pinia._p.splice(0);
+    pinia.state.value = {};
+    pinia._a = null;
+  }
+  function acceptHMRUpdate(initialUseStore, hot) {
+    {
+      return () => {
+      };
+    }
+  }
+  const noop = () => {
+  };
+  function addSubscription(subscriptions, callback, detached, onCleanup = noop) {
+    subscriptions.push(callback);
+    const removeSubscription = () => {
+      const idx = subscriptions.indexOf(callback);
+      if (idx > -1) {
+        subscriptions.splice(idx, 1);
+        onCleanup();
+      }
+    };
+    if (!detached && vueDemi2.getCurrentScope()) {
+      vueDemi2.onScopeDispose(removeSubscription);
+    }
+    return removeSubscription;
+  }
+  function triggerSubscriptions(subscriptions, ...args) {
+    subscriptions.slice().forEach((callback) => {
+      callback(...args);
+    });
+  }
+  const fallbackRunWithContext = (fn) => fn();
+  const ACTION_MARKER = Symbol();
+  const ACTION_NAME = Symbol();
+  function mergeReactiveObjects(target, patchToApply) {
+    if (target instanceof Map && patchToApply instanceof Map) {
+      patchToApply.forEach((value, key) => target.set(key, value));
+    } else if (target instanceof Set && patchToApply instanceof Set) {
+      patchToApply.forEach(target.add, target);
+    }
+    for (const key in patchToApply) {
+      if (!patchToApply.hasOwnProperty(key))
+        continue;
+      const subPatch = patchToApply[key];
+      const targetValue = target[key];
+      if (isPlainObject(targetValue) && isPlainObject(subPatch) && target.hasOwnProperty(key) && !vueDemi2.isRef(subPatch) && !vueDemi2.isReactive(subPatch)) {
+        target[key] = mergeReactiveObjects(targetValue, subPatch);
+      } else {
+        target[key] = subPatch;
+      }
+    }
+    return target;
+  }
+  const skipHydrateSymbol = (
+    /* istanbul ignore next */
+    Symbol()
+  );
+  function skipHydrate(obj) {
+    return Object.defineProperty(obj, skipHydrateSymbol, {});
+  }
+  function shouldHydrate(obj) {
+    return !isPlainObject(obj) || !obj.hasOwnProperty(skipHydrateSymbol);
+  }
+  const { assign } = Object;
+  function isComputed(o) {
+    return !!(vueDemi2.isRef(o) && o.effect);
+  }
+  function createOptionsStore(id, options, pinia, hot) {
+    const { state, actions, getters } = options;
+    const initialState = pinia.state.value[id];
+    let store;
+    function setup() {
+      if (!initialState && true) {
+        if (vueDemi2.isVue2) {
+          vueDemi2.set(pinia.state.value, id, state ? state() : {});
+        } else {
+          pinia.state.value[id] = state ? state() : {};
+        }
+      }
+      const localState = vueDemi2.toRefs(pinia.state.value[id]);
+      return assign(localState, actions, Object.keys(getters || {}).reduce((computedGetters, name) => {
+        computedGetters[name] = vueDemi2.markRaw(vueDemi2.computed(() => {
+          setActivePinia(pinia);
+          const store2 = pinia._s.get(id);
+          if (vueDemi2.isVue2 && !store2._r)
+            return;
+          return getters[name].call(store2, store2);
+        }));
+        return computedGetters;
+      }, {}));
+    }
+    store = createSetupStore(id, setup, options, pinia, hot, true);
+    return store;
+  }
+  function createSetupStore($id, setup, options = {}, pinia, hot, isOptionsStore) {
+    let scope;
+    const optionsForPlugin = assign({ actions: {} }, options);
+    const $subscribeOptions = { deep: true };
+    let isListening;
+    let isSyncListening;
+    let subscriptions = [];
+    let actionSubscriptions = [];
+    let debuggerEvents;
+    const initialState = pinia.state.value[$id];
+    if (!isOptionsStore && !initialState && true) {
+      if (vueDemi2.isVue2) {
+        vueDemi2.set(pinia.state.value, $id, {});
+      } else {
+        pinia.state.value[$id] = {};
+      }
+    }
+    vueDemi2.ref({});
+    let activeListener;
+    function $patch(partialStateOrMutator) {
+      let subscriptionMutation;
+      isListening = isSyncListening = false;
+      if (typeof partialStateOrMutator === "function") {
+        partialStateOrMutator(pinia.state.value[$id]);
+        subscriptionMutation = {
+          type: exports.MutationType.patchFunction,
+          storeId: $id,
+          events: debuggerEvents
+        };
+      } else {
+        mergeReactiveObjects(pinia.state.value[$id], partialStateOrMutator);
+        subscriptionMutation = {
+          type: exports.MutationType.patchObject,
+          payload: partialStateOrMutator,
+          storeId: $id,
+          events: debuggerEvents
+        };
+      }
+      const myListenerId = activeListener = Symbol();
+      vueDemi2.nextTick().then(() => {
+        if (activeListener === myListenerId) {
+          isListening = true;
+        }
+      });
+      isSyncListening = true;
+      triggerSubscriptions(subscriptions, subscriptionMutation, pinia.state.value[$id]);
+    }
+    const $reset = isOptionsStore ? function $reset2() {
+      const { state } = options;
+      const newState = state ? state() : {};
+      this.$patch(($state) => {
+        assign($state, newState);
+      });
+    } : (
+      /* istanbul ignore next */
+      noop
+    );
+    function $dispose() {
+      scope.stop();
+      subscriptions = [];
+      actionSubscriptions = [];
+      pinia._s.delete($id);
+    }
+    const action = (fn, name = "") => {
+      if (ACTION_MARKER in fn) {
+        fn[ACTION_NAME] = name;
+        return fn;
+      }
+      const wrappedAction = function() {
+        setActivePinia(pinia);
+        const args = Array.from(arguments);
+        const afterCallbackList = [];
+        const onErrorCallbackList = [];
+        function after(callback) {
+          afterCallbackList.push(callback);
+        }
+        function onError(callback) {
+          onErrorCallbackList.push(callback);
+        }
+        triggerSubscriptions(actionSubscriptions, {
+          args,
+          name: wrappedAction[ACTION_NAME],
+          store,
+          after,
+          onError
+        });
+        let ret;
+        try {
+          ret = fn.apply(this && this.$id === $id ? this : store, args);
+        } catch (error) {
+          triggerSubscriptions(onErrorCallbackList, error);
+          throw error;
+        }
+        if (ret instanceof Promise) {
+          return ret.then((value) => {
+            triggerSubscriptions(afterCallbackList, value);
+            return value;
+          }).catch((error) => {
+            triggerSubscriptions(onErrorCallbackList, error);
+            return Promise.reject(error);
+          });
+        }
+        triggerSubscriptions(afterCallbackList, ret);
+        return ret;
+      };
+      wrappedAction[ACTION_MARKER] = true;
+      wrappedAction[ACTION_NAME] = name;
+      return wrappedAction;
+    };
+    const partialStore = {
+      _p: pinia,
+      // _s: scope,
+      $id,
+      $onAction: addSubscription.bind(null, actionSubscriptions),
+      $patch,
+      $reset,
+      $subscribe(callback, options2 = {}) {
+        const removeSubscription = addSubscription(subscriptions, callback, options2.detached, () => stopWatcher());
+        const stopWatcher = scope.run(() => vueDemi2.watch(() => pinia.state.value[$id], (state) => {
+          if (options2.flush === "sync" ? isSyncListening : isListening) {
+            callback({
+              storeId: $id,
+              type: exports.MutationType.direct,
+              events: debuggerEvents
+            }, state);
+          }
+        }, assign({}, $subscribeOptions, options2)));
+        return removeSubscription;
+      },
+      $dispose
+    };
+    if (vueDemi2.isVue2) {
+      partialStore._r = false;
+    }
+    const store = vueDemi2.reactive(partialStore);
+    pinia._s.set($id, store);
+    const runWithContext = pinia._a && pinia._a.runWithContext || fallbackRunWithContext;
+    const setupStore = runWithContext(() => pinia._e.run(() => (scope = vueDemi2.effectScope()).run(() => setup({ action }))));
+    for (const key in setupStore) {
+      const prop = setupStore[key];
+      if (vueDemi2.isRef(prop) && !isComputed(prop) || vueDemi2.isReactive(prop)) {
+        if (!isOptionsStore) {
+          if (initialState && shouldHydrate(prop)) {
+            if (vueDemi2.isRef(prop)) {
+              prop.value = initialState[key];
+            } else {
+              mergeReactiveObjects(prop, initialState[key]);
+            }
+          }
+          if (vueDemi2.isVue2) {
+            vueDemi2.set(pinia.state.value[$id], key, prop);
+          } else {
+            pinia.state.value[$id][key] = prop;
+          }
+        }
+      } else if (typeof prop === "function") {
+        const actionValue = action(prop, key);
+        if (vueDemi2.isVue2) {
+          vueDemi2.set(setupStore, key, actionValue);
+        } else {
+          setupStore[key] = actionValue;
+        }
+        optionsForPlugin.actions[key] = prop;
+      } else ;
+    }
+    if (vueDemi2.isVue2) {
+      Object.keys(setupStore).forEach((key) => {
+        vueDemi2.set(store, key, setupStore[key]);
+      });
+    } else {
+      assign(store, setupStore);
+      assign(vueDemi2.toRaw(store), setupStore);
+    }
+    Object.defineProperty(store, "$state", {
+      get: () => pinia.state.value[$id],
+      set: (state) => {
+        $patch(($state) => {
+          assign($state, state);
+        });
+      }
+    });
+    if (vueDemi2.isVue2) {
+      store._r = true;
+    }
+    pinia._p.forEach((extender) => {
+      {
+        assign(store, scope.run(() => extender({
+          store,
+          app: pinia._a,
+          pinia,
+          options: optionsForPlugin
+        })));
+      }
+    });
+    if (initialState && isOptionsStore && options.hydrate) {
+      options.hydrate(store.$state, initialState);
+    }
+    isListening = true;
+    isSyncListening = true;
+    return store;
+  }
+  /*! #__NO_SIDE_EFFECTS__ */
+  // @__NO_SIDE_EFFECTS__
+  function defineStore(idOrOptions, setup, setupOptions) {
+    let id;
+    let options;
+    const isSetupStore = typeof setup === "function";
+    if (typeof idOrOptions === "string") {
+      id = idOrOptions;
+      options = isSetupStore ? setupOptions : setup;
+    } else {
+      options = idOrOptions;
+      id = idOrOptions.id;
+    }
+    function useStore(pinia, hot) {
+      const hasContext = vueDemi2.hasInjectionContext();
+      pinia = // in test mode, ignore the argument provided as we can always retrieve a
+      // pinia instance with getActivePinia()
+      (pinia) || (hasContext ? vueDemi2.inject(piniaSymbol, null) : null);
+      if (pinia)
+        setActivePinia(pinia);
+      pinia = activePinia;
+      if (!pinia._s.has(id)) {
+        if (isSetupStore) {
+          createSetupStore(id, setup, options, pinia);
+        } else {
+          createOptionsStore(id, options, pinia);
+        }
+      }
+      const store = pinia._s.get(id);
+      return store;
+    }
+    useStore.$id = id;
+    return useStore;
+  }
+  let mapStoreSuffix = "Store";
+  function setMapStoreSuffix(suffix) {
+    mapStoreSuffix = suffix;
+  }
+  function mapStores(...stores) {
+    return stores.reduce((reduced, useStore) => {
+      reduced[useStore.$id + mapStoreSuffix] = function() {
+        return useStore(this.$pinia);
+      };
+      return reduced;
+    }, {});
+  }
+  function mapState(useStore, keysOrMapper) {
+    return Array.isArray(keysOrMapper) ? keysOrMapper.reduce((reduced, key) => {
+      reduced[key] = function() {
+        return useStore(this.$pinia)[key];
+      };
+      return reduced;
+    }, {}) : Object.keys(keysOrMapper).reduce((reduced, key) => {
+      reduced[key] = function() {
+        const store = useStore(this.$pinia);
+        const storeKey = keysOrMapper[key];
+        return typeof storeKey === "function" ? storeKey.call(this, store) : (
+          // @ts-expect-error: FIXME: should work?
+          store[storeKey]
+        );
+      };
+      return reduced;
+    }, {});
+  }
+  const mapGetters = mapState;
+  function mapActions(useStore, keysOrMapper) {
+    return Array.isArray(keysOrMapper) ? keysOrMapper.reduce((reduced, key) => {
+      reduced[key] = function(...args) {
+        return useStore(this.$pinia)[key](...args);
+      };
+      return reduced;
+    }, {}) : Object.keys(keysOrMapper).reduce((reduced, key) => {
+      reduced[key] = function(...args) {
+        return useStore(this.$pinia)[keysOrMapper[key]](...args);
+      };
+      return reduced;
+    }, {});
+  }
+  function mapWritableState(useStore, keysOrMapper) {
+    return Array.isArray(keysOrMapper) ? keysOrMapper.reduce((reduced, key) => {
+      reduced[key] = {
+        get() {
+          return useStore(this.$pinia)[key];
+        },
+        set(value) {
+          return useStore(this.$pinia)[key] = value;
+        }
+      };
+      return reduced;
+    }, {}) : Object.keys(keysOrMapper).reduce((reduced, key) => {
+      reduced[key] = {
+        get() {
+          return useStore(this.$pinia)[keysOrMapper[key]];
+        },
+        set(value) {
+          return useStore(this.$pinia)[keysOrMapper[key]] = value;
+        }
+      };
+      return reduced;
+    }, {});
+  }
+  function storeToRefs(store) {
+    if (vueDemi2.isVue2) {
+      return vueDemi2.toRefs(store);
+    } else {
+      const rawStore = vueDemi2.toRaw(store);
+      const refs = {};
+      for (const key in rawStore) {
+        const value = rawStore[key];
+        if (value.effect) {
+          refs[key] = // ...
+          vueDemi2.computed({
+            get: () => store[key],
+            set(value2) {
+              store[key] = value2;
+            }
+          });
+        } else if (vueDemi2.isRef(value) || vueDemi2.isReactive(value)) {
+          refs[key] = // ---
+          vueDemi2.toRef(store, key);
+        }
+      }
+      return refs;
+    }
+  }
+  const PiniaVuePlugin = function(_Vue) {
+    _Vue.mixin({
+      beforeCreate() {
+        const options = this.$options;
+        if (options.pinia) {
+          const pinia = options.pinia;
+          if (!this._provided) {
+            const provideCache = {};
+            Object.defineProperty(this, "_provided", {
+              get: () => provideCache,
+              set: (v) => Object.assign(provideCache, v)
+            });
+          }
+          this._provided[piniaSymbol] = pinia;
+          if (!this.$pinia) {
+            this.$pinia = pinia;
+          }
+          pinia._a = this;
+        } else if (!this.$pinia && options.parent && options.parent.$pinia) {
+          this.$pinia = options.parent.$pinia;
+        }
+      },
+      destroyed() {
+        delete this._pStores;
+      }
+    });
+  };
+  exports.PiniaVuePlugin = PiniaVuePlugin;
+  exports.acceptHMRUpdate = acceptHMRUpdate;
+  exports.createPinia = createPinia;
+  exports.defineStore = defineStore;
+  exports.disposePinia = disposePinia;
+  exports.getActivePinia = getActivePinia;
+  exports.mapActions = mapActions;
+  exports.mapGetters = mapGetters;
+  exports.mapState = mapState;
+  exports.mapStores = mapStores;
+  exports.mapWritableState = mapWritableState;
+  exports.setActivePinia = setActivePinia;
+  exports.setMapStoreSuffix = setMapStoreSuffix;
+  exports.shouldHydrate = shouldHydrate;
+  exports.skipHydrate = skipHydrate;
+  exports.storeToRefs = storeToRefs;
+})(pinia_prod);
 version[0] === "3";
 function resolveUnref(r) {
   return typeof r === "function" ? r() : unref(r);
@@ -470,6 +1051,26 @@ function useServerHead(input, options = {}) {
   if (head)
     return head.push(input, { ...options, mode: "server" });
 }
+async function getRouteRules(url) {
+  {
+    const _routeRulesMatcher = toRouteMatcher(
+      createRouter$1({ routes: (/* @__PURE__ */ useRuntimeConfig()).nitro.routeRules })
+    );
+    return defu({}, ..._routeRulesMatcher.matchAll(url).reverse());
+  }
+}
+function definePayloadReducer(name, reduce) {
+  {
+    useNuxtApp().ssrContext._payloadReducers[name] = reduce;
+  }
+}
+const payloadPlugin = definePayloadPlugin(() => {
+  definePayloadReducer(
+    "skipHydrate",
+    // We need to return something truthy to be treated as a match
+    (data) => !pinia_prod.shouldHydrate(data) && 1
+  );
+});
 [CapoPlugin({ track: true })];
 const unhead_KgADcZ0jPj = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:head",
@@ -622,54 +1223,46 @@ const wrapInKeepAlive = (props, children) => {
 function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
-async function getRouteRules(url) {
-  {
-    const _routeRulesMatcher = toRouteMatcher(
-      createRouter$1({ routes: (/* @__PURE__ */ useRuntimeConfig()).nitro.routeRules })
-    );
-    return defu({}, ..._routeRulesMatcher.matchAll(url).reverse());
-  }
-}
 const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-D-NNSb3D.mjs')
+    component: () => import('./_slug_-Bfyh-5Su.mjs')
   },
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-DluEdO1r.mjs')
+    component: () => import('./_...slug_-D6967JVr.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-DFB2jcqh.mjs')
+    component: () => import('./index-DGy5VfMF.mjs')
   },
   {
     name: "error-404",
     path: "/error-404",
-    component: () => import('./index-DqSUG-8a.mjs')
+    component: () => import('./index-DHDsCnD7.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-D4nfLulZ.mjs')
+    component: () => import('./index-Bq120f78.mjs')
   },
   {
     name: "term-conditions",
     path: "/term-conditions",
-    component: () => import('./index-D9QkXd-Y.mjs')
+    component: () => import('./index-DM1lI_ao.mjs')
   },
   {
     name: "test",
     path: "/test",
-    component: () => import('./index-Cep1K3AA.mjs')
+    component: () => import('./index-DUoxtTYN.mjs')
   },
   {
     name: "test-slugbackup",
     path: "/test/slugbackup",
-    component: () => import('./slugbackup-D80j1VoB.mjs')
+    component: () => import('./slugbackup-ISL3N6O2.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -797,7 +1390,7 @@ const globalMiddleware = [
   manifest_45route_45rule
 ];
 const namedMiddleware = {};
-const plugin = /* @__PURE__ */ defineNuxtPlugin({
+const plugin$1 = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:router",
   enforce: "pre",
   async setup(nuxtApp) {
@@ -1019,11 +1612,6 @@ function useRequestFetch() {
   var _a;
   return ((_a = useRequestEvent()) == null ? void 0 : _a.$fetch) || globalThis.$fetch;
 }
-function definePayloadReducer(name, reduce) {
-  {
-    useNuxtApp().ssrContext._payloadReducers[name] = reduce;
-  }
-}
 const _0_siteConfig_jtc2qNDx4l = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt-site-config:init",
   enforce: "pre",
@@ -1065,6 +1653,22 @@ const revive_payload_server_eJ33V7gbc6 = /* @__PURE__ */ defineNuxtPlugin({
     for (const [reducer, fn] of reducers) {
       definePayloadReducer(reducer, fn);
     }
+  }
+});
+const plugin = /* @__PURE__ */ defineNuxtPlugin({
+  name: "pinia",
+  setup(nuxtApp) {
+    const pinia = pinia_prod.createPinia();
+    nuxtApp.vueApp.use(pinia);
+    pinia_prod.setActivePinia(pinia);
+    {
+      nuxtApp.payload.pinia = toRaw(pinia.state.value);
+    }
+    return {
+      provide: {
+        pinia
+      }
+    };
   }
 });
 const components_plugin_KR1HBZs4kY = /* @__PURE__ */ defineNuxtPlugin({
@@ -1574,6 +2178,8 @@ const robot_meta_server_8htXH4OkuR = /* @__PURE__ */ defineNuxtPlugin({
     });
   }
 });
+const components_tlGWamUiEq = () => {
+};
 const strapi_liDD6vJf4g = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
   const strapiBaseUrl = (/* @__PURE__ */ useRuntimeConfig()).STRAPI_BASE_URL || ("https://agon-cms-strapi.onrender.com");
   nuxtApp.provide("strapiBaseUrl", strapiBaseUrl);
@@ -1676,10 +2282,12 @@ const defaults_M8ptihKv0z = /* @__PURE__ */ defineNuxtPlugin({
   }
 });
 const plugins = [
+  payloadPlugin,
   unhead_KgADcZ0jPj,
-  plugin,
+  plugin$1,
   _0_siteConfig_jtc2qNDx4l,
   revive_payload_server_eJ33V7gbc6,
+  plugin,
   components_plugin_KR1HBZs4kY,
   siteConfig_JRId4KOeUL,
   inferSeoMetaPlugin_JSh5nGhzCz,
@@ -1689,14 +2297,15 @@ const plugins = [
   og_image_canonical_urls_server_QnQwHpoQ3t,
   route_rule_og_image_server_svhvDKOpur,
   robot_meta_server_8htXH4OkuR,
+  components_tlGWamUiEq,
   strapi_liDD6vJf4g,
   _1_absoluteImageUrls_server_zDt3Q5SdZ4,
   _0_routeRules_server_3qJ8nyBJBb,
   defaults_M8ptihKv0z
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-BZjSkUgL.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-EcJaCB8N.mjs'))
+  default: defineAsyncComponent(() => import('./default-qokNXD5F.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-h_llAC_Z.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -1995,7 +2604,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-oijugvJF.mjs').then((r) => r.default || r));
+    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-BcbXEwwf.mjs').then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
     nuxtApp.ssrContext.url;

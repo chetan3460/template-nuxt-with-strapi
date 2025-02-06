@@ -8,9 +8,7 @@ export default defineNuxtConfig({
       strapiBaseUrl: process.env.STRAPI_BASE_URL || 'https://agon-cms-strapi.onrender.com',
     }
   },
-  // runtimeConfig: {
-  //   STRAPI_BASE_URL: process.env.STRAPI_BASE_URL || 'https://agon-cms-strapi.onrender.com',
-  // },
+
   ssr: true, 
   // target: 'server',
   image: {
@@ -53,7 +51,7 @@ export default defineNuxtConfig({
       download: true,
       inject: true,
     }
-  ], "@nuxt/image", "@nuxtjs/seo", "nuxt-seo-utils"],
+  ], "@nuxt/image", "@nuxtjs/seo", "nuxt-seo-utils", '@pinia/nuxt'],
 
   app: {
     head: {
@@ -65,7 +63,9 @@ export default defineNuxtConfig({
         siteName: 'MySite'
       },
     },
-    baseURL: '/'
+    baseURL: '/',
+    fetch: true,
+
   },
 
   seo: {
@@ -98,22 +98,19 @@ export default defineNuxtConfig({
   sitemap: {
     sources: ['/api/__sitemap__/urls'],
   },
-//   redirects: [
-//     {
-//         from: '/',
-//         to: '/homepage',
-//     },
-
-// ],
-// pageTransition: {
-//   name: 'fade',
-//   mode: 'out-in',
-// },
+  build: {
+    transpile: ['pinia'],
+  },
 nitro: {
   preset: 'vercel'
 },
 publicRuntimeConfig: {
   fetchWithSSR: true,
 },
+pinia: {
+  autoImports: ['defineStore'],
+  persist: true, // Auto-import `defineStore`
+},
+plugins: ['~/plugins/components.js'],
   compatibilityDate: "2024-12-12",
 });

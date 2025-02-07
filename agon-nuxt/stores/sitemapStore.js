@@ -1,32 +1,31 @@
-// stores/sitemapStore.js
 import { defineStore } from 'pinia';
 
 export const useSitemapStore = defineStore('sitemap', {
     state: () => ({
-        sitemap: null,  // Store fetched sitemap data
-        loading: false,  // Loading state for data fetching
-        error: null,  // To store error messages
+        cache: {}, // ✅ Store cached data to prevent re-fetching
     }),
-    actions: {
-        // Fetch sitemap data based on the slug
-        async fetchData(slug) {
-            this.loading = true;
-            try {
-                const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;                // Use config for the API URL
-                const response = await fetch(`${strapiBaseUrl}/api/sitemaps?populate=Blocks`);
-                const data = await response.json();
 
-                if (data?.data) {
-                    this.sitemap = data.data;  // Store fetched data
-                    this.error = null;
-                } else {
-                    this.error = 'No data found';
+    actions: {
+        async fetchData(slug) {
+            if (this.cache[slug]) return this.cache[slug]; // ✅ Return cached data if available
+
+            try {
+                const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
+
+                const data = await $fetch(`${strapiBaseUrl}/api/sitemaps`, {
+                    query: {
+                        'filters[PageURL][$eq]': slug,
+                        'populate': '*'
+                    }
+                });
+
+                if (data?.data?.length > 0) {
+                    this.cache[slug] = data.data[0]; // ✅ Store in Pinia cache
+                    return data.data[0];
                 }
-            } catch (err) {
-                this.error = 'Failed to fetch data';
-            } finally {
-                this.loading = false;
+            } catch (error) {
+                console.error('Error fetching data:', error);
             }
-        },
-    },
+        }
+    }
 });

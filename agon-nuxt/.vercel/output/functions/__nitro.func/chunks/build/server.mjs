@@ -1,5 +1,5 @@
-import { hasInjectionContext, inject, version, ref, watchEffect, watch, getCurrentInstance, computed, unref, defineAsyncComponent, defineComponent, h, provide, shallowReactive, Suspense, nextTick, Fragment, Transition, mergeProps, useSSRContext, createApp, effectScope, reactive, getCurrentScope, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, isReadonly, toRaw, withCtx, isRef, isShallow, isReactive, toValue } from 'vue';
-import { $ as $fetch, G as baseURL, I as hasProtocol, J as isScriptProtocol, K as joinURL, L as withQuery, c as createError$1, M as defu, p as publicAssetsURL, N as sanitizeStatusCode, B as parseURL, O as withLeadingSlash, P as withoutTrailingSlash, Q as withBase, w as withTrailingSlash, R as getContext, S as createHooks, T as titleCase, U as toRouteMatcher, V as createRouter$1, W as camelCase, X as withoutBase, Y as stringifyQuery } from '../nitro/nitro.mjs';
+import { hasInjectionContext, inject, version, ref, watchEffect, watch, getCurrentInstance, defineAsyncComponent, defineComponent, h, computed, unref, provide, shallowReactive, Suspense, nextTick, Fragment, Transition, mergeProps, useSSRContext, createApp, effectScope, reactive, getCurrentScope, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, isReadonly, toRaw, withCtx, isRef, isShallow, isReactive, toValue } from 'vue';
+import { $ as $fetch, G as baseURL, I as hasProtocol, J as isScriptProtocol, K as joinURL, L as withQuery, c as createError$1, M as defu, p as publicAssetsURL, N as sanitizeStatusCode, O as getContext, P as createHooks, Q as withoutTrailingSlash, R as titleCase, S as toRouteMatcher, T as createRouter$1, U as camelCase, B as parseURL, V as withoutBase, W as stringifyQuery, X as withLeadingSlash, Y as withBase, w as withTrailingSlash } from '../nitro/nitro.mjs';
 import { getActiveHead, CapoPlugin } from 'unhead';
 import { defineHeadPlugin, composableNames, unpackMeta } from '@unhead/shared';
 import { useRoute as useRoute$1, RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
@@ -23,8 +23,8 @@ if (!globalThis.$fetch) {
     baseURL: baseURL()
   });
 }
+const appPageTransition = { "name": "page", "mode": "out-in" };
 const appLayoutTransition = false;
-const appPageTransition = false;
 const appKeepalive = false;
 const nuxtLinkDefaults = { "componentName": "NuxtLink", "prefetch": true, "prefetchOn": { "visibility": true } };
 const asyncDataDefaults = { "value": null, "errorValue": null, "deep": true };
@@ -1227,42 +1227,42 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-Bfyh-5Su.mjs')
+    component: () => import('./_slug_-BuaybsoN.mjs')
   },
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-D6967JVr.mjs')
+    component: () => import('./_...slug_-B98sqSyH.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-DGy5VfMF.mjs')
+    component: () => import('./index-CcJPcXKD.mjs')
   },
   {
     name: "error-404",
     path: "/error-404",
-    component: () => import('./index-DHDsCnD7.mjs')
+    component: () => import('./index-Bn6eUfTO.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-Bq120f78.mjs')
+    component: () => import('./index-Dj-uwJkh.mjs')
   },
   {
     name: "term-conditions",
     path: "/term-conditions",
-    component: () => import('./index-DM1lI_ao.mjs')
+    component: () => import('./index-ZHM8W0SU.mjs')
   },
   {
     name: "test",
     path: "/test",
-    component: () => import('./index-DUoxtTYN.mjs')
+    component: () => import('./index-ZnkzsUfq.mjs')
   },
   {
     name: "test-slugbackup",
     path: "/test/slugbackup",
-    component: () => import('./slugbackup-ISL3N6O2.mjs')
+    component: () => import('./slugbackup-DG06nUoe.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -2304,8 +2304,8 @@ const plugins = [
   defaults_M8ptihKv0z
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-qokNXD5F.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-h_llAC_Z.mjs'))
+  default: defineAsyncComponent(() => import('./default-CXE1zEJC.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-CcNNuyTn.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -2604,7 +2604,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-BcbXEwwf.mjs').then((r) => r.default || r));
+    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-BDB1o_Mh.mjs').then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
     nuxtApp.ssrContext.url;
@@ -2668,5 +2668,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _export_sfc as _, useRouter as a, createSitePathResolver as b, createError as c, useSchemaOrg as d, entry$1 as default, useNuxtApp as e, useSeoMeta as f, useHead as g, _imports_0 as h, injectHead as i, _imports_0$1 as j, useRoute as k, useOgImageRuntimeConfig as l, navigateTo as m, nuxtLinkDefaults as n, useRuntimeConfig as o, fetchDefaults as p, useRequestFetch as q, resolveRouteObject as r, useRequestEvent as s, asyncDataDefaults as t, useSiteConfig as u };
+export { _export_sfc as _, useSeoMeta as a, useHead as b, createError as c, useRoute as d, entry$1 as default, _imports_0 as e, _imports_0$1 as f, useOgImageRuntimeConfig as g, useSiteConfig as h, injectHead as i, useRuntimeConfig as j, useRequestEvent as k, fetchDefaults as l, useRequestFetch as m, useRouter as n, nuxtLinkDefaults as o, pinia_prod as p, navigateTo as q, resolveRouteObject as r, asyncDataDefaults as s, useNuxtApp as u };
 //# sourceMappingURL=server.mjs.map

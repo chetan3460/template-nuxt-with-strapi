@@ -112,6 +112,6 @@ pinia: {
   autoImports: ['defineStore'],
   persist: true, // Auto-import `defineStore`
 },
-plugins: ['~/plugins/components.js'],
+// plugins: ['~/plugins/components.js'],
   compatibilityDate: "2024-12-12",
 });

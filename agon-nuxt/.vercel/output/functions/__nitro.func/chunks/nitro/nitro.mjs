@@ -4602,7 +4602,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "390dec55-1e29-435a-ad78-84f2c1c0a893",
+    "buildId": "045686cb-c48a-4642-823c-4b207ef3adfb",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -5421,11 +5421,11 @@ async function dispose(driver) {
 const _assets = {
   ["nuxt-og-image:fonts:Inter-400.ttf.base64"]: {
     import: () => import('../raw/Inter-400.ttf.mjs').then(r => r.default || r),
-    meta: {"type":"text/plain; charset=utf-8","etag":"\"652cc-qEeSD1DXCSV8gPP2rnBA6ePGdZ4\"","mtime":"2025-02-07T12:27:24.032Z"}
+    meta: {"type":"text/plain; charset=utf-8","etag":"\"652cc-qEeSD1DXCSV8gPP2rnBA6ePGdZ4\"","mtime":"2025-02-10T11:33:17.166Z"}
   },
   ["nuxt-og-image:fonts:Inter-700.ttf.base64"]: {
     import: () => import('../raw/Inter-700.ttf.mjs').then(r => r.default || r),
-    meta: {"type":"text/plain; charset=utf-8","etag":"\"674f0-FZReUXHhPTnY0HmYVn2iPpKm9ds\"","mtime":"2025-02-07T12:27:24.032Z"}
+    meta: {"type":"text/plain; charset=utf-8","etag":"\"674f0-FZReUXHhPTnY0HmYVn2iPpKm9ds\"","mtime":"2025-02-10T11:33:17.166Z"}
   }
 };
 
@@ -8214,5 +8214,5 @@ const listener = function(req, res) {
   return handler(req, res);
 };
 
-export { $fetch as $, hash as A, parseURL as B, setResponseHeader as C, proxyRequest as D, sendRedirect as E, resolveContext as F, baseURL as G, H3Error as H, hasProtocol as I, isScriptProtocol as J, joinURL as K, withQuery as L, defu as M, sanitizeStatusCode as N, getContext as O, createHooks as P, withoutTrailingSlash as Q, titleCase as R, toRouteMatcher as S, createRouter$1 as T, camelCase as U, withoutBase as V, stringifyQuery as W, withLeadingSlash as X, withBase as Y, decodeHtml as Z, logger as _, defineRenderHandler as a, toBase64Image as a0, createConsola as a1, htmlDecodeQuotes as a2, fontCache as a3, encodeParam as a4, withoutLeadingSlash as a5, encodePath as a6, parseQuery as a7, listener as a8, empty$1 as a9, buildAssetsURL as b, createError$1 as c, defineSitemapEventHandler as d, getRouteRules as e, getResponseStatus as f, getQuery as g, getResponseStatusText as h, destr as i, useNitroApp as j, defineEventHandler as k, prefixStorage as l, useStorage as m, useNitroOrigin as n, emojiCache as o, publicAssetsURL as p, useOgImageRuntimeConfig as q, readBody as r, fetchIsland as s, normaliseFontInput as t, useRuntimeConfig as u, theme as v, withTrailingSlash as w, handleCacheHeaders as x, setHeaders as y, setHeader as z };
+export { $fetch as $, hash as A, parseURL as B, setResponseHeader as C, proxyRequest as D, sendRedirect as E, resolveContext as F, baseURL as G, H3Error as H, hasProtocol as I, isScriptProtocol as J, joinURL as K, withQuery as L, defu as M, sanitizeStatusCode as N, withLeadingSlash as O, withoutTrailingSlash as P, withBase as Q, getContext as R, createHooks as S, titleCase as T, toRouteMatcher as U, createRouter$1 as V, camelCase as W, withoutBase as X, stringifyQuery as Y, decodeHtml as Z, logger as _, defineRenderHandler as a, toBase64Image as a0, createConsola as a1, htmlDecodeQuotes as a2, fontCache as a3, fixSlashes as a4, hasTrailingSlash as a5, stringifyParsedURL as a6, parseQuery as a7, encodeParam as a8, withoutLeadingSlash as a9, encodePath as aa, listener as ab, empty$1 as ac, buildAssetsURL as b, createError$1 as c, defineSitemapEventHandler as d, getRouteRules as e, getResponseStatus as f, getQuery as g, getResponseStatusText as h, destr as i, useNitroApp as j, defineEventHandler as k, prefixStorage as l, useStorage as m, useNitroOrigin as n, emojiCache as o, publicAssetsURL as p, useOgImageRuntimeConfig as q, readBody as r, fetchIsland as s, normaliseFontInput as t, useRuntimeConfig as u, theme as v, withTrailingSlash as w, handleCacheHeaders as x, setHeaders as y, setHeader as z };
 //# sourceMappingURL=nitro.mjs.map

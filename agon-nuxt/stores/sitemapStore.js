@@ -7,25 +7,43 @@ export const useSitemapStore = defineStore('sitemap', {
 
     actions: {
         async fetchData(slug) {
-            if (this.cache[slug]) return this.cache[slug]; // ✅ Return cached data if available
+            if (this.cache[slug]) {
+                console.log('✅ Returning cached data:', this.cache[slug]);
+                return this.cache[slug];
+            }
 
             try {
                 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 
-                const data = await $fetch(`${strapiBaseUrl}/api/sitemaps`, {
+                console.log(`🟡 Fetching data for slug: ${slug}`);
+
+                // ✅ Using `useFetch`
+                const { data, error } = await useFetch(`${strapiBaseUrl}/api/sitemaps`, {
                     query: {
                         'filters[PageURL][$eq]': slug,
                         'populate': '*'
                     }
                 });
 
-                if (data?.data?.length > 0) {
-                    this.cache[slug] = data.data[0]; // ✅ Store in Pinia cache
-                    return data.data[0];
+                if (error.value) {
+                    console.error('❌ Error fetching data:', error.value);
+                    return null;
+                }
+
+                console.log('🔹 Fetched data:', data.value);
+
+                if (data.value?.data?.length > 0) {
+                    this.cache[slug] = data.value.data[0];
+                    console.log('✅ Storing in cache:', this.cache);
+                    return this.cache[slug];
+                } else {
+                    console.warn('⚠️ No data found for this slug:', slug);
                 }
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('❌ Unexpected error fetching data:', error);
             }
+
+            return null; // Prevents undefined state
         }
     }
 });

@@ -112,6 +112,13 @@ pinia: {
   autoImports: ['defineStore'],
   persist: true, // Auto-import `defineStore`
 },
+vue: {
+  config: {
+    productionTip: false,
+    devtools: true,
+    performance: true
+  }
+},
 // plugins: ['~/plugins/components.js'],
   compatibilityDate: "2024-12-12",
 });

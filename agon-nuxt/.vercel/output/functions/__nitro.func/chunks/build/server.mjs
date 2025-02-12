@@ -1227,27 +1227,27 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-3DhhV1a6.mjs')
+    component: () => import('./_slug_-BCK1yJfB.mjs')
   },
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-ChCwlm5I.mjs')
+    component: () => import('./_...slug_-C0LLDyvJ.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-db4vaKgj.mjs')
+    component: () => import('./index-x4yc1jmg.mjs')
   },
   {
     name: "error-404",
     path: "/error-404",
-    component: () => import('./index-BJkUD8dt.mjs')
+    component: () => import('./index-BMmISGyS.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-D6s836ki.mjs')
+    component: () => import('./index-pk8Bzi-K.mjs')
   },
   {
     name: "term-conditions",
@@ -1257,12 +1257,12 @@ const _routes = [
   {
     name: "test",
     path: "/test",
-    component: () => import('./index-DWozjWLm.mjs')
+    component: () => import('./index-BceDvBVm.mjs')
   },
   {
     name: "test-slugbackup",
     path: "/test/slugbackup",
-    component: () => import('./slugbackup-BCnH7gGw.mjs')
+    component: () => import('./slugbackup-DK4VhI5r.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -2304,8 +2304,8 @@ const plugins = [
   defaults_M8ptihKv0z
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-C6RO0OB1.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-h_llAC_Z.mjs'))
+  default: defineAsyncComponent(() => import('./default-D12lmMUT.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-CMHP3X2j.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -2668,5 +2668,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _export_sfc as _, useRouter as a, createSitePathResolver as b, createError as c, useSchemaOrg as d, entry$1 as default, useNuxtApp as e, useSeoMeta as f, useHead as g, useRoute as h, injectHead as i, _imports_0 as j, _imports_0$1 as k, useOgImageRuntimeConfig as l, navigateTo as m, nuxtLinkDefaults as n, useRuntimeConfig as o, pinia_prod as p, fetchDefaults as q, resolveRouteObject as r, useRequestFetch as s, asyncDataDefaults as t, useSiteConfig as u, useRequestEvent as v };
+export { _imports_0 as _, useRouter as a, createSitePathResolver as b, createError as c, useSchemaOrg as d, entry$1 as default, useNuxtApp as e, useSeoMeta as f, useHead as g, useRoute as h, injectHead as i, _imports_0$1 as j, _export_sfc as k, useOgImageRuntimeConfig as l, navigateTo as m, nuxtLinkDefaults as n, useRuntimeConfig as o, pinia_prod as p, fetchDefaults as q, resolveRouteObject as r, useRequestFetch as s, asyncDataDefaults as t, useSiteConfig as u, useRequestEvent as v };
 //# sourceMappingURL=server.mjs.map

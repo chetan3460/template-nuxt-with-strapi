@@ -1,10 +1,10 @@
 import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'vue-bundle-renderer/runtime';
-import { a as defineRenderHandler, b as buildAssetsURL, p as publicAssetsURL, g as getQuery, c as createError, e as getRouteRules, u as useRuntimeConfig, f as getResponseStatus, h as getResponseStatusText, r as readBody, i as destr, j as useNitroApp } from '../nitro/nitro.mjs';
+import { a as defineRenderHandler, b as buildAssetsURL, p as publicAssetsURL, g as getQuery, c as createError, e as getRouteRules, u as useRuntimeConfig, f as useNitroApp, h as getResponseStatusText, i as getResponseStatus, r as readBody, j as destr } from '../nitro/nitro.mjs';
 import { stringify, uneval } from 'devalue';
 import { renderToString } from 'vue/server-renderer';
 import { propsToString, renderSSRHead } from '@unhead/ssr';
 import { createServerHead as createServerHead$1, CapoPlugin } from 'unhead';
-import { version, unref } from 'vue';
+import { unref, version } from 'vue';
 import { defineHeadPlugin } from '@unhead/shared';
 import 'lru-cache';
 import '@unocss/core';
@@ -126,7 +126,11 @@ const getSSRRenderer = lazyCachedFunction(async () => {
 });
 const getSPARenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();
-  const spaTemplate = await import('../virtual/_virtual_spa-template.mjs').then((r) => r.template).catch(() => "").then((r) => APP_ROOT_OPEN_TAG + r + APP_ROOT_CLOSE_TAG);
+  const spaTemplate = await import('../virtual/_virtual_spa-template.mjs').then((r) => r.template).catch(() => "").then((r) => {
+    {
+      return APP_ROOT_OPEN_TAG + r + APP_ROOT_CLOSE_TAG;
+    }
+  });
   const options = {
     manifest,
     renderToString: () => spaTemplate,
@@ -246,6 +250,13 @@ const renderer = defineRenderHandler(async (event) => {
   const inlinedStyles = await renderInlineStyles(ssrContext.modules ?? []) ;
   const NO_SCRIPTS = routeOptions.experimentalNoScripts;
   const { styles, scripts } = getRequestDependencies(ssrContext, renderer.rendererContext);
+  if (ssrContext._preloadManifest) {
+    head.push({
+      link: [
+        { rel: "preload", as: "fetch", fetchpriority: "low", crossorigin: "anonymous", href: buildAssetsURL(`builds/meta/${ssrContext.runtimeConfig.app.buildId}.json`) }
+      ]
+    }, { ...headEntryOptions, tagPriority: "low" });
+  }
   if (inlinedStyles.length) {
     head.push({ style: inlinedStyles });
   }
@@ -314,8 +325,8 @@ const renderer = defineRenderHandler(async (event) => {
         islandHead[key] = value;
       }
     }
-    islandHead.link = islandHead.link || [];
-    islandHead.style = islandHead.style || [];
+    islandHead.link ||= [];
+    islandHead.style ||= [];
     const islandResponse = {
       id: islandContext.id,
       head: islandHead,

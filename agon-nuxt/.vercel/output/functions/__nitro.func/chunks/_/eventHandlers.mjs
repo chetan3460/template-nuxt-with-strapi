@@ -3645,14 +3645,14 @@ async function html(ctx) {
   const normalisedFonts = normaliseFontInput([...options.fonts || [], ...fonts]);
   const firstFont = normalisedFonts[0];
   if (firstFont)
-    defaultFontFamily = firstFont.name;
+    defaultFontFamily = firstFont.name.replaceAll("+", " ");
   await applyEmojis(ctx, island);
   let html2 = island.html;
   head.push({
     style: [
       {
         // default font is the first font family
-        innerHTML: `body { font-family: '${defaultFontFamily.replace("+", " ")}', sans-serif;  }`
+        innerHTML: `body { font-family: '${defaultFontFamily}', sans-serif;  }`
       },
       {
         innerHTML: `body {
@@ -3686,7 +3686,7 @@ svg[data-emoji] {
       ...fonts.map((font) => {
         return `
           @font-face {
-            font-family: '${font.name}';
+            font-family: '${font.name.replaceAll("+", " ")}';
             font-style: normal;
             font-weight: ${font.weight};
             src: url('/__og-image__/font/${font.key}') format('truetype');
@@ -3899,7 +3899,7 @@ async function imageEventHandler(e) {
       setHeader(e, "Content-Type", `text/html`);
       return html(ctx);
     case "svg":
-      if (!debug && !false) {
+      if (!debug && true) {
         return createError({
           statusCode: 404
         });

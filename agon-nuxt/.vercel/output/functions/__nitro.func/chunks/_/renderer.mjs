@@ -1,4 +1,4 @@
-import { Z as decodeHtml, _ as logger, n as useNitroOrigin, a0 as toBase64Image, Q as withBase, a1 as createConsola, s as fetchIsland, a2 as htmlDecodeQuotes, q as useOgImageRuntimeConfig, M as defu, v as theme, t as normaliseFontInput, a3 as fontCache } from '../nitro/nitro.mjs';
+import { Z as decodeHtml, _ as logger, n as useNitroOrigin, a0 as toBase64Image, O as withBase, a1 as createConsola, s as fetchIsland, a2 as htmlDecodeQuotes, q as useOgImageRuntimeConfig, M as defu, v as theme, a3 as sendError, t as normaliseFontInput, a4 as fontCache } from '../nitro/nitro.mjs';
 import { a as applyEmojis, l as loadFont } from './eventHandlers.mjs';
 import { html } from 'satori-html';
 import sizeOf from 'image-size';
@@ -203,7 +203,7 @@ const imageSrc = defineSatoriTransformer([
         if (!imageBuffer) {
           imageBuffer = await e.$fetch(src, { responseType: "arrayBuffer" }).catch(() => {
           });
-          if (!imageBuffer && !false) {
+          if (!imageBuffer && true) {
             imageBuffer = await e.$fetch(src, {
               baseURL: useNitroOrigin(e),
               responseType: "arrayBuffer"
@@ -312,6 +312,7 @@ const unocss = defineSatoriTransformer({
 });
 
 async function applyInlineCss(ctx, island) {
+  const { e } = ctx;
   let html = island.html;
   let css = island.head.style.map((s) => s.innerHTML).filter(Boolean).join("\n");
   const componentInlineStyles = island.head.link.filter((l) => l.href.startsWith("/_nuxt/components") && l.href.replaceAll("/", "").includes(ctx.options.component));
@@ -410,7 +411,9 @@ async function createSvg(event) {
     width: options.width,
     height: options.height
   });
-  return satori(vnodes, satoriOptions);
+  return satori(vnodes, satoriOptions).catch((err) => {
+    return sendError(event.e, err, false);
+  });
 }
 async function createPng(event) {
   const { resvgOptions } = useOgImageRuntimeConfig();
@@ -442,9 +445,13 @@ const SatoriRenderer = {
     }
   },
   async debug(e) {
+    const [vnodes, svg] = await Promise.all([
+      createVNodes(e),
+      createSvg(e)
+    ]);
     return {
-      vnodes: await createVNodes(e),
-      svg: await createSvg(e)
+      vnodes,
+      svg
     };
   }
 };

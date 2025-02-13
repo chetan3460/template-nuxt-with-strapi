@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     },
     formats: ['webp', 'avif'],
   },
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -112,13 +112,13 @@ pinia: {
   autoImports: ['defineStore'],
   persist: true, // Auto-import `defineStore`
 },
-vue: {
-  config: {
-    productionTip: false,
-    devtools: true,
-    performance: true
-  }
-},
-// plugins: ['~/plugins/components.js'],
+// vue: {
+//   config: {
+//     productionTip: false,
+//     devtools: true,
+//     performance: true
+//   }
+// },
+
   compatibilityDate: "2024-12-12",
 });

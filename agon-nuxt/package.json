@@ -35,6 +35,7 @@
         "@pinia/nuxt": "^0.9.0",
         "@vueuse/core": "^12.4.0",
         "axios": "^1.7.9",
+        "defu": "^6.1.4",
         "lru-cache": "^11.0.2",
         "markdown-it": "^14.1.0",
         "pinia-plugin-persistedstate": "^4.2.0",

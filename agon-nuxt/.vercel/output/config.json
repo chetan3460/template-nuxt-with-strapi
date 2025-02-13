@@ -10,15 +10,15 @@
     },
     {
       "headers": {
-        "cache-control": "public, max-age=1, immutable"
+        "Content-Type": "application/xslt+xml"
       },
-      "src": "/_nuxt/builds/(.*)"
+      "src": "/__sitemap__/style.xsl"
     },
     {
       "headers": {
-        "Content-Type": "application/xslt+xml"
+        "cache-control": "public, max-age=1, immutable"
       },
-      "src": "/sitemap.xsl"
+      "src": "/_nuxt/builds/(.*)"
     },
     {
       "headers": {

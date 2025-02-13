@@ -54,6 +54,7 @@ export default defineNuxtConfig({
   ], "@nuxt/image", "@nuxtjs/seo", "nuxt-seo-utils", '@pinia/nuxt'],
 
   app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }],
       title: "Agon - Multipurpose Agency TailwindCSS NuxtJS Template",
@@ -111,6 +112,13 @@ pinia: {
   autoImports: ['defineStore'],
   persist: true, // Auto-import `defineStore`
 },
-plugins: ['~/plugins/components.js'],
+vue: {
+  config: {
+    productionTip: false,
+    devtools: true,
+    performance: true
+  }
+},
+// plugins: ['~/plugins/components.js'],
   compatibilityDate: "2024-12-12",
 });

@@ -64,7 +64,7 @@
     </div>
 </template>
 
-<script setup>
+<!-- <script setup>
 import { ref, watchEffect } from 'vue';
 import qs from 'qs';
 
@@ -150,41 +150,81 @@ const submitForm = async () => {
     }
 };
 
-</script>
+</script> -->
+<script setup>
+import { ref, onMounted, watch } from 'vue';
+import qs from 'qs';
 
-
-<!-- <script setup>
-import { ref, watchEffect } from 'vue';
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 const route = useRoute();
 const contactBlockData = ref([]);
-import qs from 'qs';
-watchEffect(async () => {
-    const slug = route.params.slug;
-    if (slug) {
-        try {
-            const queryParams = qs.stringify({
-                filters: {
-                    PageURL: {
-                        $eq: slug,
-                    },
-                },
-                populate: [
-                    "Blocks",
-                ]
-            });
-
-            const { data, error } = await useFetch(
-                `${strapiBaseUrl}/api/sitemaps?${queryParams}`
-            );
-
-            if (data.value) {
-                const blocks = data.value.data[0]?.Blocks || [];
-                contactBlockData.value = blocks.filter(block => block.__component === 'page-blocks.contact-us');
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
+const formData = ref({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    message: '',
 });
-</script> -->
+const formStatus = ref({
+    success: null,
+    message: '',
+});
+
+// Fetch Data Using useAsyncData (Ensures SSR compatibility)
+const { data } = await useAsyncData(`contact-${route.params.slug}`, async () => {
+    const queryParams = qs.stringify({
+        filters: {
+            PageURL: {
+                $eq: route.params.slug,
+            },
+        },
+        populate: ["Blocks"]
+    });
+
+    const response = await fetch(`${strapiBaseUrl}/api/sitemaps?${queryParams}`);
+    const json = await response.json();
+    return json.data[0]?.Blocks || [];
+});
+
+// Ensure hydration consistency
+contactBlockData.value = data.value.filter(block => block.__component === 'page-blocks.contact-us');
+
+// Form submission
+const submitForm = async () => {
+    try {
+        const response = await fetch(`${strapiBaseUrl}/api/contact-us-forms`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: formData.value }), // Strapi expects "data" wrapper
+        });
+
+        if (response.ok) {
+            formStatus.value = {
+                success: true,
+                message: 'Your message has been sent successfully!',
+            };
+
+            // Reset form data
+            formData.value = {
+                name: '',
+                company: '',
+                email: '',
+                phone: '',
+                message: '',
+            };
+        } else {
+            const errorData = await response.json(); // Extract error details
+            console.error('Error response:', errorData);
+            throw new Error('Failed to submit the form.');
+        }
+    } catch (error) {
+        console.error('Form submission error:', error);
+        formStatus.value = {
+            success: false,
+            message: 'An error occurred while sending your message. Please try again later.',
+        };
+    }
+};
+</script>

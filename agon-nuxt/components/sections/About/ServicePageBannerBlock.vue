@@ -35,8 +35,8 @@
       </div>
 
       <div class="relative mx-auto max-w-[1190px]">
-        <img v-if="item.image?.url" class="h-full w-full object-cover rounded-2xl"
-          :src="`${strapiBaseUrl}${item.image.url}`" alt="Agon" />
+        <img v-if="item.image?.url" class="h-full w-full object-cover rounded-2xl" :src="getImageUrl(item.image.url)"
+          alt="Agon" />
       </div>
     </div>
   </div>
@@ -46,6 +46,7 @@
 import { ref } from 'vue';
 import qs from 'qs';
 import MarkdownIt from 'markdown-it';
+import { getImageUrl } from '~/utils/getImageUrl';
 
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 const route = useRoute();

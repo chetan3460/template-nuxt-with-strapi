@@ -1,8 +1,4 @@
 import { d as defineSitemapEventHandler, u as useRuntimeConfig } from '../../../nitro/nitro.mjs';
-import 'lru-cache';
-import '@unocss/core';
-import '@unocss/preset-wind';
-import 'devalue';
 import 'node:http';
 import 'node:https';
 import 'node:fs';

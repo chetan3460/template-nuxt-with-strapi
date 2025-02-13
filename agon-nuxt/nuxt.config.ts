@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     }
   },
 
-  ssr: true, 
+  ssr: false, 
   // target: 'server',
   image: {
     strapi: {

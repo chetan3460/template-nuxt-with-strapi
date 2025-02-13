@@ -1227,17 +1227,17 @@ const _routes = [
   {
     name: "slug",
     path: "/:slug()",
-    component: () => import('./_slug_-BCK1yJfB.mjs')
+    component: () => import('./_slug_-DMVxjTB_.mjs')
   },
   {
     name: "blog-details-slug",
     path: "/blog-details/:slug(.*)*",
-    component: () => import('./_...slug_-C0LLDyvJ.mjs')
+    component: () => import('./_...slug_-BJv2g0am.mjs')
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./index-x4yc1jmg.mjs')
+    component: () => import('./index-D_xLZFlO.mjs')
   },
   {
     name: "error-404",
@@ -1247,7 +1247,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-pk8Bzi-K.mjs')
+    component: () => import('./index-Bb9Kgmpu.mjs')
   },
   {
     name: "term-conditions",
@@ -1257,12 +1257,12 @@ const _routes = [
   {
     name: "test",
     path: "/test",
-    component: () => import('./index-BceDvBVm.mjs')
+    component: () => import('./index--fqlCu8x.mjs')
   },
   {
     name: "test-slugbackup",
     path: "/test/slugbackup",
-    component: () => import('./slugbackup-DK4VhI5r.mjs')
+    component: () => import('./slugbackup-DxJdLpv8.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -2304,8 +2304,8 @@ const plugins = [
   defaults_M8ptihKv0z
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-D12lmMUT.mjs')),
-  layout2: defineAsyncComponent(() => import('./layout2-CMHP3X2j.mjs'))
+  default: defineAsyncComponent(() => import('./default-7den5DoD.mjs')),
+  layout2: defineAsyncComponent(() => import('./layout2-BddEgENN.mjs'))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -2604,7 +2604,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-BcbXEwwf.mjs').then((r) => r.default || r));
+    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-Br3QCpfK.mjs').then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
     nuxtApp.ssrContext.url;
@@ -2668,5 +2668,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _imports_0 as _, useRouter as a, createSitePathResolver as b, createError as c, useSchemaOrg as d, entry$1 as default, useNuxtApp as e, useSeoMeta as f, useHead as g, useRoute as h, injectHead as i, _imports_0$1 as j, _export_sfc as k, useOgImageRuntimeConfig as l, navigateTo as m, nuxtLinkDefaults as n, useRuntimeConfig as o, pinia_prod as p, fetchDefaults as q, resolveRouteObject as r, useRequestFetch as s, asyncDataDefaults as t, useSiteConfig as u, useRequestEvent as v };
+export { _imports_0 as _, useRouter as a, createSitePathResolver as b, createError as c, useSchemaOrg as d, entry$1 as default, useNuxtApp as e, useSeoMeta as f, useHead as g, useRoute as h, injectHead as i, _imports_0$1 as j, _export_sfc as k, fetchDefaults as l, useRequestFetch as m, useOgImageRuntimeConfig as n, nuxtLinkDefaults as o, pinia_prod as p, navigateTo as q, resolveRouteObject as r, useRuntimeConfig as s, asyncDataDefaults as t, useSiteConfig as u, useRequestEvent as v };
 //# sourceMappingURL=server.mjs.map

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="heroData !== null" class="full-width banner-hero banner-2 bg-[#bee1e6]">
+    <div v-if="heroData?.length" class="full-width banner-hero banner-2 bg-[#bee1e6]">
         <div v-for="(item, index) in heroData" :key="item.id"
             class="px-[12px] md:px-[36px] xl:px-0 mt-0 z-10 relative mx-auto py-[60px] max-w-[1320px] lg:flex lg:items-center">
             <div class="lg:w-[60%] lg:mr-[150px]">
@@ -63,26 +63,28 @@
 import { getImageUrl } from '~/utils/getImageUrl';
 import { useRoute } from 'vue-router';
 import qs from 'qs';
-import { ref } from 'vue';
+import { computed } from 'vue';
 
-const heroData = ref([]);
+// Get Nuxt App instance & route
 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 const route = useRoute();
 
-const slug = route.params.slug;
+// Compute the current slug reactively
+const slug = computed(() => route.params.slug);
 
-const queryParams = qs.stringify({
-    filters: { PageURL: { $eq: slug } },
+// Generate query params reactively
+const queryParams = computed(() => qs.stringify({
+    filters: { PageURL: { $eq: slug.value } },
     populate: ['Blocks', 'Blocks.imageLeft', 'Blocks.imageRight']
-});
+}));
 
-const { data, error } = await useFetch(
-    `${strapiBaseUrl}/api/sitemaps?${queryParams}`
+// Fetch data using useAsyncData (avoids hydration issues)
+const { data } = await useAsyncData(`hero-block-${slug.value}`, () =>
+    $fetch(`${strapiBaseUrl}/api/sitemaps?${queryParams.value}`)
 );
 
-if (error.value) {
-    console.error("Error fetching hero data:", error.value);
-} else {
-    heroData.value = data.value?.data[0]?.Blocks.filter(block => block.__component === 'page-blocks.hero-about-block') || [];
-}
+// Extract hero block data safely
+const heroData = computed(() =>
+    data.value?.data?.[0]?.Blocks?.filter(block => block.__component === 'page-blocks.hero-about-block') || []
+);
 </script>

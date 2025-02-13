@@ -8,14 +8,14 @@ export const useSitemapStore = defineStore('sitemap', {
     actions: {
         async fetchData(slug) {
             if (this.cache[slug]) {
-                console.log('✅ Returning cached data:', this.cache[slug]);
+                // console.log('✅ Returning cached data:', this.cache[slug]);
                 return this.cache[slug];
             }
 
             try {
                 const strapiBaseUrl = useNuxtApp().$strapiBaseUrl;
 
-                console.log(`🟡 Fetching data for slug: ${slug}`);
+                // console.log(`🟡 Fetching data for slug: ${slug}`);
 
                 // ✅ Using `useFetch`
                 const { data, error } = await useFetch(`${strapiBaseUrl}/api/sitemaps`, {
@@ -30,11 +30,11 @@ export const useSitemapStore = defineStore('sitemap', {
                     return null;
                 }
 
-                console.log('🔹 Fetched data:', data.value);
+                // console.log('🔹 Fetched data:', data.value);
 
                 if (data.value?.data?.length > 0) {
                     this.cache[slug] = data.value.data[0];
-                    console.log('✅ Storing in cache:', this.cache);
+                    // console.log('✅ Storing in cache:', this.cache);
                     return this.cache[slug];
                 } else {
                     console.warn('⚠️ No data found for this slug:', slug);
